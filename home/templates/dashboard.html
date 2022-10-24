@@ -99,56 +99,28 @@
   </div>
   <!-- Page content -->
   <h1 class="text-center mt-5">Feedbacks</h1>
-  <div class="row">
-      <div class="col-xl-11 col-md-12 mx-5 mt-3">
-          <div class="card card-stats">
-            <!-- Card body -->
-            <div class="card-body">
-              <div class="row">
-                <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Total Gallery</h5>
+  {% for feedback in feedbacks %}
+    <div class="row">
+        <div class="col-xl-11 col-md-12 mx-5 mt-3">
+            <div class="card card-stats">
+              <!-- Card body -->
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">{{feedback.Name}}</h5>
+                  </div>
+                  <div class="col-auto">
+                  </div>
                 </div>
-                <div class="col-auto">
-                </div>
+                <p class="m-2">{{feedback.Message}}</p>
               </div>
-              <p class="m-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim voluptatibus a facilis quisquam nemo at perspiciatis quasi error repellat, id beatae sed voluptates reiciendis sequi quidem doloremque alias delectus cum?</p>
             </div>
-          </div>
-      </div>
-  </div>
-  <div class="row">
-      <div class="col-xl-11 col-md-12 mx-5 mt-3">
-          <div class="card card-stats">
-            <!-- Card body -->
-            <div class="card-body">
-              <div class="row">
-                <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Total Gallery</h5>
-                </div>
-                <div class="col-auto">
-                </div>
-              </div>
-              <p class="m-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim voluptatibus a facilis quisquam nemo at perspiciatis quasi error repellat, id beatae sed voluptates reiciendis sequi quidem doloremque alias delectus cum?</p>
-            </div>
-          </div>
-      </div>
-  </div>
-  <div class="row">
-      <div class="col-xl-11 col-md-12 mx-5 mt-3">
-          <div class="card card-stats">
-            <!-- Card body -->
-            <div class="card-body">
-              <div class="row">
-                <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Total Gallery</h5>
-                </div>
-                <div class="col-auto">
-                </div>
-              </div>
-              <p class="m-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim voluptatibus a facilis quisquam nemo at perspiciatis quasi error repellat, id beatae sed voluptates reiciendis sequi quidem doloremque alias delectus cum?</p>
-            </div>
-          </div>
-      </div>
+        </div>
+    </div>
+  {% endfor %}
+  <hr>
+  <div class="text-center mb-5">
+    <button type="submit" class="btn-primary text-center btn btn-pill">View More</button>
   </div>
   <!-- Page content ends -->
 {% endblock content %}

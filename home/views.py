@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from home.models import User
+from home.models import User,Feedback
 from django.contrib import messages
 
 # Create your views here.
@@ -28,7 +28,12 @@ def login(request):
 
 def dashboard(request,uid):
     user = User.objects.get(id=uid)
-    return render(request,'dashboard.html',{'user':user})
+    feedbacks = Feedback.objects.all()
+    context = {
+        'feedbacks':feedbacks,
+        'user':user,
+    }
+    return render(request,'dashboard.html',context)
 
 def about_us(request,uid):
     user = User.objects.get(id=uid)

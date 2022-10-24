@@ -8,3 +8,16 @@ class User(models.Model):
 
     def __str__(self):
         return self.Username
+
+class Feedback(models.Model):
+    Date = models.DateField()
+    Name = models.CharField(max_length=100)
+    Email = models.EmailField()
+    Contact = models.CharField(max_length=15)
+    Message = models.TextField()
+
+    class Meta:
+        ordering =('-id',)
+
+    def __str__(self):
+        return self.Name
