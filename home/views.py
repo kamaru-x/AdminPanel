@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from home.models import User
+from django.contrib import messages
 
 # Create your views here.
 
@@ -8,6 +9,21 @@ def index(request,uid):
     return render(request,'index.html',{'user':user})
 
 def login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = User.objects.filter(Username=username).exists()
+
+        if not user:
+            messages.warning(request,'invalid Username')
+            return redirect('login')
+        elif password != (User.objects.get(Username=username)).Password:
+            messages.warning(request,'incorrect password')
+            return redirect('login')
+        else:
+            userdata = User.objects.get(Username=username)
+            return redirect('dashboard/%s' %userdata.id)
     return render(request,'login.html')
 
 def dashboard(request,uid):
