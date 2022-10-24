@@ -1,33 +1,47 @@
 from django.shortcuts import render
+from home.models import User
 
 # Create your views here.
 
-def index(request):
-    return render(request,'index.html')
+def index(request,uid):
+    user = User.objects.get(id=uid)
+    return render(request,'index.html',{'user':user})
 
-def dashboard(request):
-    return render(request,'dashboard.html')
+def login(request):
+    return render(request,'login.html')
 
-def about_us(request):
-    return render(request,'about_us.html')
+def dashboard(request,uid):
+    user = User.objects.get(id=uid)
+    return render(request,'dashboard.html',{'user':user})
 
-def blog(request):
-    return render(request,'blog.html')
+def about_us(request,uid):
+    user = User.objects.get(id=uid)
+    return render(request,'about_us.html',{'user':user})
 
-def gallery(request):
-    return render(request,'gallery.html')
+def blog(request,uid):
+    user = User.objects.get(id=uid)
+    return render(request,'blog.html',{'user':user})
 
-def contact_us(request):
-    return render(request,'contact_us.html')
+def gallery(request,uid):
+    user = User.objects.get(id=uid)
+    return render(request,'gallery.html',{'user':user})
 
-def products(request):
-    return render(request,'products.html')
+def contact_us(request,uid):
+    user = User.objects.get(id=uid)
+    return render(request,'contact_us.html',{'user':user})
 
-def services(request):
-    return render(request,'services.html')
+def products(request,uid):
+    user = User.objects.get(id=uid)
+    return render(request,'products.html',{'user':user})
 
-def feedback(request):
-    return render(request,'feedback.html')
+def services(request,uid):
+    user = User.objects.get(id=uid)
+    return render(request,'services.html',{'user':user})
 
-def manage_menu(request):
-    return render(request,'manage_menu.html')
+def feedback(request,uid):
+    user = User.objects.get(id=uid)
+    return render(request,'feedback.html',{'user':user})
+
+def manage_menu(request,uid):
+    user = User.objects.get(id=uid)
+    return render(request,'manage_menu.html',{'user':user})

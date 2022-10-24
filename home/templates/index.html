@@ -51,55 +51,55 @@
           <!-- Nav items -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" href="{% url 'dashboard' %}">
+              <a class="nav-link active" href="{% url 'dashboard' user.id %}">
                 <i class="ni ni-tv-2 text-primary"></i>
                 <span class="nav-link-text">Dashboard</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'about_us' %}">
+              <a class="nav-link" href="{% url 'about_us' user.id %}">
                 <i class="ni ni-single-02 text-yellow"></i>
                 <span class="nav-link-text">About Us</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'blog' %}">
+              <a class="nav-link" href="{% url 'blog' user.id %}">
                 <i class="ni ni-books text-orange"></i>
                 <span class="nav-link-text">Blogs</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'gallery' %}">
+              <a class="nav-link" href="{% url 'gallery' user.id %}">
                 <i class="ni ni-image text-yellow"></i>
                 <span class="nav-link-text">Image Gallery</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'contact_us' %}">
+              <a class="nav-link" href="{% url 'contact_us' user.id %}">
                 <i class="ni ni-mobile-button text-green"></i>
                 <span class="nav-link-text">Contact Us</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'products' %}">
+              <a class="nav-link" href="{% url 'products' user.id %}">
                 <i class="ni ni-basket text-info"></i>
                 <span class="nav-link-text">Products</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'services' %}">
+              <a class="nav-link" href="{% url 'services' user.id %}">
                 <i class="ni ni-support-16 text-pink"></i>
                 <span class="nav-link-text">Services</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'feedback' %}">
+              <a class="nav-link" href="{% url 'feedback' user.id %}">
                 <i class="ni ni-single-copy-04 text-dark"></i>
                 <span class="nav-link-text">Feedback</span>
               </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'manage_menu' %}">
+                <a class="nav-link" href="{% url 'manage_menu' user.id %}">
                     <i class="ni ni-settings-gear-65 text-blue"></i>
                   <span class="nav-link-text">Manage Menu</span>
                 </a>
