@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from home.models import User,Feedback,About
+from home.models import User,Feedback,About,Blog
 from django.contrib import messages
 
 # Create your views here.
@@ -54,6 +54,19 @@ def about_us(request,uid):
 
 def blog(request,uid):
     user = User.objects.get(id=uid)
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        image = request.FILES['image']
+        description = request.POST.get('description')
+        url = request.POST.get('url')
+        smtitle = request.POST.get('smtitle')
+        smkeywords = request.POST.get('smkeywords')
+        smdescription = request.POST.get('smdescription')
+        
+        Data = Blog(Title=title,Description=description,Image=image,Url=url,SMTitle=smtitle,
+        SMDescription=smdescription,SMKeywords=smkeywords)
+        Data.save()
+        return redirect('.')
     return render(request,'blog.html',{'user':user})
 
 def gallery(request,uid):
