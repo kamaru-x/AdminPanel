@@ -75,7 +75,7 @@
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="{% url 'create_album' user.id %}">Create Album</a>
                   <a class="dropdown-item" href="{% url 'upload_image' user.id %}">Upload Images</a>
-                  <a class="dropdown-item" href="#">Manage Album</a>
+                  <a class="dropdown-item" href="{% url 'manage_album' user.id %}">Manage Album</a>
                 </div>
               </a>
             </li>

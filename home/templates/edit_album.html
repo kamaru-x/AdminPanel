@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+{% block content %}
+    <h1 class="text-center mt-5 mb-5">{{album.Title}}</h1>
+    <div class="row d-flex justify-content-around">
+        {% for image in images %}
+        <div class="col-md-3 mx-3">
+            <div class="card">
+                <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top" alt="Fissure in Sandstone"/>
+                <div class="card-body text-center">
+                  <h5 class="card-title">{{image.Image.url}}</h5>
+                  <a href="{% url 'remove_image' user.id album.id image.id %}" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

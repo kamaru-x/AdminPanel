@@ -2,12 +2,16 @@ from django.db import models
 
 # Create your models here.
 
+########################################################################
+
 class User(models.Model):
     Username = models.CharField(max_length=25)
     Password = models.CharField(max_length=25)
 
     def __str__(self):
         return self.Username
+
+########################################################################
 
 class Feedback(models.Model):
     Date = models.DateField()
@@ -22,6 +26,8 @@ class Feedback(models.Model):
     def __str__(self):
         return self.Name
 
+########################################################################
+
 class About(models.Model):
     Title = models.CharField(max_length=50)
     Description = models.TextField()
@@ -33,6 +39,8 @@ class About(models.Model):
 
     def __str__(self):
         return self.Title
+
+########################################################################
 
 class Blog(models.Model):
     Title = models.CharField(max_length=50)
@@ -46,6 +54,8 @@ class Blog(models.Model):
     def __str__(self):
         return self.Title
 
+########################################################################
+
 class Album(models.Model):
     Title = models.CharField(max_length=50)
     Thumbnail = models.ImageField(blank=True,null=True,upload_to='album')
@@ -56,6 +66,8 @@ class Album(models.Model):
 
     def __str__(self):
         return self.Title
+
+########################################################################
 
 class Album_Image(models.Model):
     Album_Name = models.ForeignKey(Album, on_delete=models.CASCADE)

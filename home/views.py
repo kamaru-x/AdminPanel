@@ -6,9 +6,13 @@ from django.contrib import messages
 
 # Create your views here.
 
+########################################################################
+
 def index(request,uid):
     user = User.objects.get(id=uid)
     return render(request,'index.html',{'user':user})
+
+########################################################################
 
 def login(request):
     if request.method == 'POST':
@@ -28,6 +32,8 @@ def login(request):
             return redirect('dashboard/%s' %userdata.id)
     return render(request,'login.html')
 
+########################################################################
+
 def dashboard(request,uid):
     user = User.objects.get(id=uid)
     feedbacks = Feedback.objects.all()
@@ -36,6 +42,8 @@ def dashboard(request,uid):
         'user':user,
     }
     return render(request,'dashboard.html',context)
+
+########################################################################
 
 def about_us(request,uid):
     user = User.objects.get(id=uid)
@@ -54,6 +62,8 @@ def about_us(request,uid):
         return redirect('.')
     return render(request,'about_us.html',{'user':user})
 
+########################################################################
+
 def blog(request,uid):
     user = User.objects.get(id=uid)
     if request.method == 'POST':
@@ -71,6 +81,8 @@ def blog(request,uid):
         return redirect('.')
     return render(request,'blog.html',{'user':user})
 
+########################################################################
+
 def gallery(request,uid):
     user = User.objects.get(id=uid)
     albums = Album.objects.all()
@@ -79,6 +91,8 @@ def gallery(request,uid):
         'albums' : albums,
     }
     return render(request,'gallery.html',context)
+
+########################################################################
 
 def create_album(request,uid):
     user = User.objects.get(id=uid)
@@ -93,11 +107,13 @@ def create_album(request,uid):
         Data = Album(Title=title,Thumbnail=image,Url=url,SMTitle=smtitle,
         SMDescription=smdescription,SMKeywords=smkeywords)
         Data.save()
-        return redirect('/gallery/%s' %user.id)
+        return redirect('.')
     context = {
         'user' : user
     }
     return render(request,'create_album.html',context)
+
+########################################################################
 
 def view_ablum(request,uid,aid):
     user = User.objects.get(id=uid)
@@ -107,6 +123,8 @@ def view_ablum(request,uid,aid):
         'album' : album,
     }
     return render(request,'album_view.html',context)
+
+########################################################################
 
 def upload_image(request,uid):
     user = User.objects.get(id=uid)
@@ -126,22 +144,74 @@ def upload_image(request,uid):
     }
     return render(request,'upload_image.html',context)
 
+########################################################################
+
+def manage_album(request,uid):
+    user = User.objects.get(id=uid)
+    albums = Album.objects.all()
+    context = {
+        'user' : user,
+        'albums' : albums
+    }
+    return render(request,'manage_album.html',context)
+
+########################################################################
+
+def edit_album(request,uid,aid):
+    user = User.objects.get(id=uid)
+    album = Album.objects.get(id=aid)
+    images = Album_Image.objects.filter(Album_Name=aid)
+    context = {
+        'user' : user,
+        'album' : album,
+        'images' : images,
+    }
+    return render(request,'edit_album.html',context)
+
+########################################################################
+
 def contact_us(request,uid):
     user = User.objects.get(id=uid)
     return render(request,'contact_us.html',{'user':user})
+
+########################################################################
 
 def products(request,uid):
     user = User.objects.get(id=uid)
     return render(request,'products.html',{'user':user})
 
+########################################################################
+
 def services(request,uid):
     user = User.objects.get(id=uid)
     return render(request,'services.html',{'user':user})
+
+########################################################################
 
 def feedback(request,uid):
     user = User.objects.get(id=uid)
     return render(request,'feedback.html',{'user':user})
 
+########################################################################
+
 def manage_menu(request,uid):
     user = User.objects.get(id=uid)
     return render(request,'manage_menu.html',{'user':user})
+
+########################################################################
+
+def remove(request,uid,aid):
+    album = Album.objects.get(id=aid)
+    user = User.objects.get(id=uid)
+    album.delete()
+    return redirect('/manage_album/%s' %user.id)
+
+########################################################################
+
+def remove_image(request,uid,aid,iid):
+    user = User.objects.get(id=uid)
+    album = Album.objects.get(id=aid) 
+    image = Album_Image.objects.get(id=iid)
+    
+    image.delete()
+    return redirect('/manage_album/%s' %user.id)
