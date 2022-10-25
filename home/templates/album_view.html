@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+{% block content %}
+    <main class="mx-5 mt-5 mb-3">
+        <h1 class="text-center">{{album.Title}}</h1>
+        <div class="row">
+            <div class="col-md-3">
+                <a href="">
+                    <img width="200px" height="200px" src="{{album.Thumbnail.url}}" alt="">
+                </a>
+                <p>{{image.Title}}</p>
+            </div>
+        </div>
+        <div class="create mt-5 text-center">
+            <a href="">
+                <button class="btn btn-primary btn-lg">Add new image</button>
+            </a>
+            <a href="">
+                <button class="btn btn-primary btn-lg">Manage Album</button>
+            </a>
+        </div>
+    </main>
+{% endblock content %}

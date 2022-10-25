@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from home.models import User,Feedback,About,Blog
+from home.models import User,Feedback,About,Blog,Album
 from django.contrib import messages
 
 # Create your views here.
@@ -71,7 +71,40 @@ def blog(request,uid):
 
 def gallery(request,uid):
     user = User.objects.get(id=uid)
-    return render(request,'gallery.html',{'user':user})
+    albums = Album.objects.all()
+    context = {
+        'user' : user,
+        'albums' : albums,
+    }
+    return render(request,'gallery.html',context)
+
+def create_album(request,uid):
+    user = User.objects.get(id=uid)
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        image = request.FILES['image']
+        url = request.POST.get('url')
+        smtitle = request.POST.get('smtitle')
+        smkeywords = request.POST.get('smkeywords')
+        smdescription = request.POST.get('smdescription')
+        
+        Data = Album(Title=title,Thumbnail=image,Url=url,SMTitle=smtitle,
+        SMDescription=smdescription,SMKeywords=smkeywords)
+        Data.save()
+        return redirect('/gallery/%s' %user.id)
+    context = {
+        'user' : user
+    }
+    return render(request,'create_album.html',context)
+
+def view_ablum(request,uid,aid):
+    user = User.objects.get(id=uid)
+    album = Album.objects.get(id=aid)
+    context = {
+        'user' : user,
+        'album' : album,
+    }
+    return render(request,'album_view.html',context)
 
 def contact_us(request,uid):
     user = User.objects.get(id=uid)
