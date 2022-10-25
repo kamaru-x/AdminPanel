@@ -1,8 +1,8 @@
-from re import U
-from tkinter import Image
 from django.shortcuts import render,redirect
 from home.models import Album_Image, Contact, User,Feedback,About,Blog,Album
+from home.forms import Edit_Blog
 from django.contrib import messages
+import os
 
 # Create your views here.
 
@@ -80,6 +80,37 @@ def blog(request,uid):
         Data.save()
         return redirect('.')
     return render(request,'blog.html',{'user':user})
+
+########################################################################
+
+def manage_blog(request,uid):
+    user = User.objects.get(id=uid)
+    blogs = Blog.objects.all()
+    return render(request,'manage_blog.html',{'blogs':blogs,'user':user})
+
+########################################################################
+
+def edit_blog(request,uid,bid):
+    user = User.objects.get(id=uid)
+    blog = Blog.objects.get(id=bid)
+    if request.method == 'POST':
+        if len(request.FILES) != 0:
+            if len(blog.Image) > 0:
+                os.remove(blog.Image.path)
+            blog.Image = request.FILES['image']
+        blog.Title = request.POST.get('title')
+        blog.Description = request.POST.get('description')
+        blog.Url = request.POST.get('url')
+        blog.SMTitle = request.POST.get('smtitle')
+        blog.SMDescription = request.POST.get('smdescription')
+        blog.SMKeywords = request.POST.get('smkeywords')
+        blog.save()
+        return redirect('.')
+    context = {
+        'user' : user,
+        'blog' : blog,
+    }
+    return render(request,'edit_blog.html',context)
 
 ########################################################################
 

@@ -14,6 +14,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
 {% load static %}
+{%load crispy_forms_tags %}
 <!DOCTYPE html>
 <html>
 
@@ -63,9 +64,13 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'blog' user.id %}">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="ni ni-books text-orange"></i>
                 <span class="nav-link-text">Blogs</span>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="{% url 'blog' user.id %}">Add new blog</a>
+                  <a class="dropdown-item" href="{% url 'manage_blog' user.id %}">Manage blog</a>
+                </div>
               </a>
             </li>
             <li class="nav-item">
@@ -86,15 +91,23 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'products' user.id %}">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="ni ni-basket text-info"></i>
                 <span class="nav-link-text">Products</span>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="{% url 'blog' user.id %}">Add new blog</a>
+                  <a class="dropdown-item" href="{% url 'manage_blog' user.id %}">Manage blog</a>
+                </div>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'services' user.id %}">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="ni ni-support-16 text-pink"></i>
                 <span class="nav-link-text">Services</span>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="{% url 'blog' user.id %}">Add new blog</a>
+                  <a class="dropdown-item" href="{% url 'manage_blog' user.id %}">Manage blog</a>
+                </div>
               </a>
             </li>
             <li class="nav-item">

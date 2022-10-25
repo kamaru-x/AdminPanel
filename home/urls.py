@@ -6,7 +6,11 @@ urlpatterns = [
     path('<int:uid>',views.index,name='index'),
     path('dashboard/<int:uid>/',views.dashboard,name='dashboard'),
     path('about_us/<int:uid>/',views.about_us,name='about_us'),
+
     path('blog/<int:uid>/',views.blog,name='blog'),
+    path('manage_blog/<int:uid>/',views.manage_blog,name='manage_blog'),
+    path('edit_blog/<int:uid>/<int:bid>/',views.edit_blog,name='edit_blog'),
+
     path('gallery/<int:uid>/',views.gallery,name='gallery'),
     path('create_album/<int:uid>/',views.create_album,name='create_album'),
     path('upload_image/<int:uid>/',views.upload_image,name='upload_image'),

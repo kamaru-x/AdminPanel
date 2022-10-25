@@ -1,0 +1,43 @@
+{% extends 'index.html' %}
+{% block content %}
+    <main class="mx-5">
+        <div class="container-fluid p-5">
+            <div class="text-center">
+                <h1>Manage Blogs</h1>
+            </div>
+            <table class="table align-items-center table-white table-flush">
+              <thead class="thead-white">
+                <tr>
+                  <th scope="col" class="sort text-center" data-sort="name">SI</th>
+                  <th scope="col" class="sort text-center" data-sort="budget">Blog Title</th>
+                  <th scope="col" class="sort text-center" data-sort="status">Number of images</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody class="list">
+                {% for blog in blogs %}
+                  <tr>
+                    <td class="budget text-center">
+                        {{ blog.id }}
+                    </td>
+                    <td class="budget text-center">
+                        {{ blog.Title }}
+                    </td>
+                    <td class="budget text-center">
+                        1
+                    </td>
+                    <td class="budget text-center">
+                        <a href="{% url 'edit_blog' user.id blog.id %}"><button class="btn btn-primary">Edit</button></a>
+                    </td>
+                    <td class="budget text-center">
+                      <a href=""><button class="btn btn-danger">Delete</button></a>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+    </main>
+{% endblock content %}
