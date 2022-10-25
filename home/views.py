@@ -1,3 +1,4 @@
+from email.message import Message
 from django.shortcuts import render,redirect
 from home.models import Album_Image, Contact, User,Feedback,About,Blog,Album
 from home.forms import Edit_Blog
@@ -248,6 +249,17 @@ def services(request,uid):
 
 def feedback(request,uid):
     user = User.objects.get(id=uid)
+    if request.method == "POST":
+        date = request.POST.get('date')
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        contact = request.POST.get('contact')
+        message = request.POST.get('message')
+
+        data = Feedback(Date=date,Name=name,Email=email,Contact=contact,Message=message)
+        data.save()
+        return redirect('.')
+
     return render(request,'feedback.html',{'user':user})
 
 ########################################################################
