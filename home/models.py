@@ -75,3 +75,27 @@ class Album_Image(models.Model):
 
     def __str__(self):
         return self.Album_Name.Title
+
+########################################################################
+
+class Contact(models.Model):
+    Company_Name = models.CharField(max_length=50)
+    Adress = models.TextField()
+    Telephone = models.CharField(max_length=15)
+    Mobile = models.CharField(max_length=15)
+    Whatsapp = models.CharField(max_length=15)
+    Email = models.CharField(max_length=100)
+    Website = models.CharField(max_length=250)
+    Longitude = models.CharField(max_length=30)
+    Latitude = models.CharField(max_length=30)
+    Facebook = models.CharField(max_length=50)
+    Instagram = models.CharField(max_length=50)
+    Linkedin = models.CharField(max_length=50)
+    Image = models.ImageField(blank=True,null=True,upload_to='Company')
+    Url = models.CharField(max_length=20000)
+    SMTitle = models.CharField(max_length=2000)
+    SMDescription = models.TextField()
+    SMKeywords = models.CharField(max_length=2000)
+
+    def __str__(self):
+        return self.Company_Name

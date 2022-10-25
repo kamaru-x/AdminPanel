@@ -1,5 +1,5 @@
 from django.contrib import admin
-from home.models import User,Feedback,About,Blog,Album,Album_Image
+from home.models import User,Feedback,About,Blog,Album,Album_Image,Contact
 # Register your models here.
 
 admin.site.register(User)
@@ -8,3 +8,4 @@ admin.site.register(About)
 admin.site.register(Blog)
 admin.site.register(Album)
 admin.site.register(Album_Image)
+admin.site.register(Contact)

@@ -1,7 +1,7 @@
 from re import U
 from tkinter import Image
 from django.shortcuts import render,redirect
-from home.models import Album_Image, User,Feedback,About,Blog,Album
+from home.models import Album_Image, Contact, User,Feedback,About,Blog,Album
 from django.contrib import messages
 
 # Create your views here.
@@ -172,6 +172,33 @@ def edit_album(request,uid,aid):
 
 def contact_us(request,uid):
     user = User.objects.get(id=uid)
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        mobile = request.POST.get('mobile')
+        telephone = request.POST.get('telephone')
+        email = request.POST.get('email')
+        website = request.POST.get('website')
+        address = request.POST.get('address')
+        latitude = request.POST.get('latitude')
+        longitude = request.POST.get('longitude')
+        whatsapp = request.POST.get('whatsapp')
+        facebook = request.POST.get('facebook')
+        instagram = request.POST.get('instagram')
+        twitter = request.POST.get('twitter')
+        linkedin = request.POST.get('linkedin')
+        image = request.FILES['image']
+        url = request.POST.get('url')
+        smtitle = request.POST.get('smtitle')
+        smkeywords = request.POST.get('smkeywords')
+        smdescription = request.POST.get('smdescription') 
+
+        Data = Contact(Company_Name=name,Adress=address,Telephone=telephone,Mobile=mobile,
+        Whatsapp=whatsapp,Email=email,Website=website,Longitude=longitude,Latitude=latitude,
+        Facebook=facebook,Instagram=instagram,Linkedin=linkedin,Image=image,Url=url,
+        SMTitle=smtitle,SMDescription=smdescription,SMKeywords=smkeywords)
+
+        Data.save()
+        return redirect('.')
     return render(request,'contact_us.html',{'user':user})
 
 ########################################################################
