@@ -273,3 +273,12 @@ def remove_image(request,uid,aid,iid):
     
     image.delete()
     return redirect('/manage_album/%s' %user.id)
+
+########################################################################
+
+def remove_blog(request,uid,bid):
+    user = User.objects.get(id=uid)
+    blog = Blog.objects.get(id=bid)
+
+    blog.delete()
+    return redirect('/manage_blog/%s' %user.id)
