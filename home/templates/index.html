@@ -69,9 +69,14 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'gallery' user.id %}">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="ni ni-image text-yellow"></i>
                 <span class="nav-link-text">Image Gallery</span>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="{% url 'create_album' user.id %}">Create Album</a>
+                  <a class="dropdown-item" href="{% url 'upload_image' user.id %}">Upload Images</a>
+                  <a class="dropdown-item" href="#">Manage Album</a>
+                </div>
               </a>
             </li>
             <li class="nav-item">
@@ -408,9 +413,6 @@
         <div class="col">
           <div class="card">
             <!-- Card header -->
-            <div class="card-header border-0">
-              <h3 class="mb-0">Light table</h3>
-            </div>
             <!-- Light table -->
             <div class="table-responsive">
               <table class="table align-items-center table-flush">

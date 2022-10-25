@@ -1,5 +1,7 @@
+from re import U
+from tkinter import Image
 from django.shortcuts import render,redirect
-from home.models import User,Feedback,About,Blog,Album
+from home.models import Album_Image, User,Feedback,About,Blog,Album
 from django.contrib import messages
 
 # Create your views here.
@@ -105,6 +107,24 @@ def view_ablum(request,uid,aid):
         'album' : album,
     }
     return render(request,'album_view.html',context)
+
+def upload_image(request,uid):
+    user = User.objects.get(id=uid)
+    albums = Album.objects.all()
+    if request.method == 'POST':
+        select = request.POST.get('select')
+        image = request.FILES['image']
+
+        album = Album.objects.get(id=select)
+        
+        Data = Album_Image(Album_Name=album,Image=image,)
+        Data.save()
+        return redirect('.')
+    context = {
+        'user' : user,
+        'albums' : albums
+    }
+    return render(request,'upload_image.html',context)
 
 def contact_us(request,uid):
     user = User.objects.get(id=uid)

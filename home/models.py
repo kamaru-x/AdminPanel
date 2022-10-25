@@ -56,3 +56,10 @@ class Album(models.Model):
 
     def __str__(self):
         return self.Title
+
+class Album_Image(models.Model):
+    Album_Name = models.ForeignKey(Album, on_delete=models.CASCADE)
+    Image = models.ImageField(blank=True,null=True,upload_to='album-image')
+
+    def __str__(self):
+        return self.Album_Name.Title
