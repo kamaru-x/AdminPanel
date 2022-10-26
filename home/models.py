@@ -104,18 +104,18 @@ class Contact(models.Model):
 ########################################################################
 
 class Product(models.Model):
-    Title = models.CharField(max_length=50)
+    Title = models.CharField(max_length=50, null=True, default=None, blank=True)
     Description = models.TextField()
     Image = models.ImageField(blank=True,null=True,upload_to='Product')
-    Show_Price = models.BooleanField(default=False)
-    Actual_Price = models.IntegerField(blank=True,null=True)
-    Offer_Price = models.IntegerField(blank=True,null=True)
-    Show_Whatsapp = models.BooleanField(default=False)
-    Whatsapp_Number = models.CharField(max_length=15,blank=True,null=True)
-    Show_Enquiry = models.BooleanField(default=False)
-    SMTitle = models.CharField(max_length=2000)
+    Show_Price = models.BooleanField(default=False, null=True, blank=True)
+    Actual_Price = models.CharField(max_length=15, null=True, default=None, blank=True)
+    Offer_Price = models.CharField(max_length=15, null=True, default=None, blank=True)
+    Show_Whatsapp = models.BooleanField(default=False, null=True, blank=True)
+    Whatsapp_Number = models.CharField(max_length=15, null=True, default=None, blank=True)
+    Show_Enquiry = models.BooleanField(default=False, null=True, blank=True)
+    SMTitle = models.CharField(max_length=2000, null=True, default=None, blank=True)
     SMDescription = models.TextField()
-    SMKeywords = models.CharField(max_length=2000)
+    SMKeywords = models.CharField(max_length=2000, null=True, default=None, blank=True)
 
     def __str__(self):
         return self.Title
@@ -123,18 +123,18 @@ class Product(models.Model):
 ########################################################################
 
 class Service(models.Model):
-    Title = models.CharField(max_length=50)
+    Title = models.CharField(max_length=50, null=True, default=None, blank=True)
     Description = models.TextField()
     Image = models.ImageField(blank=True,null=True,upload_to='Product')
-    Show_Price = models.BooleanField(default=False)
-    Actual_Price = models.IntegerField(blank=True,null=True)
-    Offer_Price = models.IntegerField(blank=True,null=True)
-    Show_Whatsapp = models.BooleanField(default=False)
-    Whatsapp_Number = models.CharField(max_length=15,blank=True,null=True)
-    Show_Enquiry = models.BooleanField(default=False)
-    SMTitle = models.CharField(max_length=2000)
+    Show_Price = models.BooleanField(default=False, null=True, blank=True)
+    Actual_Price = models.CharField(max_length=15, null=True, default=None, blank=True)
+    Offer_Price = models.CharField(max_length=15, null=True, default=None, blank=True)
+    Show_Whatsapp = models.BooleanField(default=False, null=True, blank=True)
+    Whatsapp_Number = models.CharField(max_length=15, null=True, default=None, blank=True)
+    Show_Enquiry = models.BooleanField(default=False, null=True, blank=True)
+    SMTitle = models.CharField(max_length=2000, null=True, default=None, blank=True)
     SMDescription = models.TextField()
-    SMKeywords = models.CharField(max_length=2000)
+    SMKeywords = models.CharField(max_length=2000, null=True, default=None, blank=True)
 
     def __str__(self):
         return self.Title

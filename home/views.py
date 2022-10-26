@@ -274,6 +274,35 @@ def manage_product(request,uid):
 
 ########################################################################
 
+def edit_product(request,uid,pid):
+    user = User.objects.get(id=uid)
+    product = Product.objects.get(id=pid)
+    if request.method == 'POST':
+        if len(request.FILES) != 0:
+            if len(product.Image) > 0:
+                os.remove(product.Image.path)
+            product.Image = request.FILES['image']
+        product.Title = request.POST.get('title')
+        product.Description = request.POST.get('description')
+        product.Show_Price = request.POST.get('check1')
+        product.Actual_Price = request.POST.get('actual_price')
+        product.Offer_Price = request.POST.get('offer_price')
+        product.Show_Whatsapp = request.POST.get('check2')
+        product.Whatsapp_Number = request.POST.get('number')
+        #product.Show_Enquiry = request.POST.get('check3')
+        product.SMTitle = request.POST.get('smtitle')
+        product.SMDescription = request.POST.get('smdescription')
+        product.SMKeywords = request.POST.get('smkeywords')
+        product.save()
+        return redirect('.')
+    context = {
+        'user' : user,
+        'product' : product,
+    }
+    return render(request,'edit_product.html',context)
+
+########################################################################
+
 def services(request,uid):
     user = User.objects.get(id=uid)
     if request.method == 'POST':
@@ -307,6 +336,35 @@ def manage_service(request,uid):
         'services' : services,
     }
     return render(request,'manage_service.html',context)
+
+########################################################################
+
+def edit_service(request,uid,sid):
+    user = User.objects.get(id=uid)
+    service = Service.objects.get(id=sid)
+    if request.method == 'POST':
+        if len(request.FILES) != 0:
+            if len(service.Image) > 0:
+                os.remove(service.Image.path)
+            service.Image = request.FILES['image']
+        service.Title = request.POST.get('title')
+        service.Description = request.POST.get('description')
+        service.Show_Price = request.POST.get('check1')
+        service.Actual_Price = request.POST.get('actual_price')
+        service.Offer_Price = request.POST.get('offer_price')
+        service.Show_Whatsapp = request.POST.get('check2')
+        service.Whatsapp_Number = request.POST.get('number')
+        service.Show_Enquiry = request.POST.get('check3')
+        service.SMTitle = request.POST.get('smtitle')
+        service.SMDescription = request.POST.get('smdescription')
+        service.SMKeywords = request.POST.get('smkeywords')
+        service.save()
+        return redirect('.')
+    context = {
+        'user' : user,
+        'service' : service,
+    }
+    return render(request,'edit_service.html',context)
 
 ########################################################################
 

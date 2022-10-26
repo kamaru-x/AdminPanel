@@ -26,6 +26,8 @@ urlpatterns = [
 
     path('edit_blog/<int:uid>/<int:bid>/',views.edit_blog,name='edit_blog'),
     path('edit_album/<int:uid>/<int:aid>/',views.edit_album,name='edit_album'),
+    path('edit_product/<int:uid>/<int:pid>/',views.edit_product,name='edit_product'),
+    path('edit_service/<int:uid>/<int:sid>/',views.edit_service,name='edit_service'),
 
     path('remove/<int:uid>/<int:aid>/',views.remove,name='remove'),
     path('remove_image/<int:uid>/<int:aid>/<int:iid>/',views.remove_image,name='remove_image'),

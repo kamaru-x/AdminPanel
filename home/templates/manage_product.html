@@ -27,7 +27,7 @@
                 </div>
             </td>
             <td>
-                <a href=""><button class="btn btn-primary">Edit</button></a>
+                <a href="{% url 'edit_product' user.id product.id %}"><button class="btn btn-primary">Edit</button></a>
             </td>
             <td>
                 <a href="{% url 'remove_product' user.id product.id %}"><button class="btn btn-danger">Delete</button></a>
