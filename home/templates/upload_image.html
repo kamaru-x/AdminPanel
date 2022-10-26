@@ -10,7 +10,7 @@
               <div class="row">
                     <div class="form-outline mb-4 col-md-6">
                         <label class="form-label">Album Title</label>
-                        <select name="select" id="" class="form-control">
+                        <select required="True" name="select" id="" class="form-control">
                             {% for album in albums %}
                                 <option value="{{album.id}}">{{album.Title}}</option>
                             {% endfor %}
@@ -18,7 +18,7 @@
                     </div>
                     <div class="form-outline mb-4 col-md-6">
                         <label class="form-label">Album Thumbnail</label>
-                        <input type="file" name="image" class="form-control" />
+                        <input required="True" type="file" name="image" class="form-control" />
                     </div>
               </div>
               
