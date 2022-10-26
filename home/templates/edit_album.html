@@ -5,7 +5,7 @@
         {% for image in images %}
         <div class="col-md-3 mx-3">
             <div class="card">
-                <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top" alt="Fissure in Sandstone"/>
+                <img src="{{image.Image.url}}" class="card-img-top" alt="Fissure in Sandstone"/>
                 <div class="card-body text-center">
                   <h5 class="card-title">{{image.Image.url}}</h5>
                   <a href="{% url 'remove_image' user.id album.id image.id %}" class="btn btn-danger">Delete</a>

@@ -1,9 +1,9 @@
-from email.message import Message
 from django.shortcuts import render,redirect
 from home.models import Album_Image, Contact, User,Feedback,About,Blog,Album
 from home.forms import Edit_Blog
 from django.contrib import messages
 import os
+from django.contrib.auth import logout
 
 # Create your views here.
 
@@ -241,6 +241,15 @@ def products(request,uid):
 
 ########################################################################
 
+def manage_product(request,uid):
+    user = User.objects.get(id=uid)
+    context = {
+        'user' : user
+    }
+    return render(request,'manage_product.html',context)
+
+########################################################################
+
 def services(request,uid):
     user = User.objects.get(id=uid)
     return render(request,'services.html',{'user':user})
@@ -294,3 +303,5 @@ def remove_blog(request,uid,bid):
 
     blog.delete()
     return redirect('/manage_blog/%s' %user.id)
+
+########################################################################

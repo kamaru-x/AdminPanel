@@ -95,8 +95,8 @@
                 <i class="ni ni-basket text-info"></i>
                 <span class="nav-link-text">Products</span>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="{% url 'blog' user.id %}">Add new blog</a>
-                  <a class="dropdown-item" href="{% url 'manage_blog' user.id %}">Manage blog</a>
+                  <a class="dropdown-item" href="{% url 'products' user.id %}">Add new product</a>
+                  <a class="dropdown-item" href="{% url 'manage_product' user.id %}">Manage product</a>
                 </div>
               </a>
             </li>
@@ -387,7 +387,7 @@
                   <span>Support</span>
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="#!" class="dropdown-item">
+                <a href="{% url 'login' %}" class="dropdown-item">
                   <i class="ni ni-user-run"></i>
                   <span>Logout</span>
                 </a>

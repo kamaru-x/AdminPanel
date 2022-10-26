@@ -2,37 +2,39 @@
 {% block content %}
 <div class="table-responsive">
     <div class="text-center mt-5 mb-5">
-        <h1>Manage Blog</h1>
+        <h1>Manage Albums</h1>
     </div>
     <table class="table align-items-center table-flush">
       <thead class="thead-light">
         <tr class="text-center">
           <th scope="col" class="sort" data-sort="name">SI</th>
-          <th scope="col" class="sort" data-sort="budget">Blog Title</th>
+          <th scope="col" class="sort" data-sort="budget">Album Title</th>
           <th scope="col" class="sort" data-sort="status">Thumbnail</th>
+          <th scope="col" class="sort" data-sort="completion">Number of Image</th>
           <th scope="col" class="sort" data-sort="completion"></th>
           <th scope="col" class="sort" data-sort="completion"></th>
         </tr>
       </thead>
       <tbody class="list text-center">
-        {% for blog in blogs %}
-          <tr>
+        {% for album in albums %}
+            <tr>
             <td>1</td> 
-            <td>{{blog.Title}}</td>  
+            <td>{{album.Title}}</td>  
             <td scope="row" class="align-items-center d-flex justify-content-center">
-              <div class="media align-items-center">
+                <div class="media align-items-center">
                 <a href="#" class="avatar rounded-circle mr-3">
-                  <img width="fill" height="fill" alt="" src="{{blog.Image.url}}">
+                    <img alt="" src="../assets/img/theme/bootstrap.jpg">
                 </a>
-              </div>
+                </div>
+            </td>
+            <td>1</td>
+            <td>
+                <a href=""><button class="btn btn-primary">Edit</button></a>
             </td>
             <td>
-              <a href="{% url 'edit_blog' user.id blog.id %}"><button class="btn btn-primary">Edit</button></a>
+                <a href=""><button class="btn btn-danger">Delete</button></a>
             </td>
-            <td>
-              <a href="{% url 'remove_blog' user.id blog.id %}"><button class="btn btn-danger">Delete</button></a>
-            </td>
-          </tr>
+            </tr>
         {% endfor %}
       </tbody>
     </table>

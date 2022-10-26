@@ -1,43 +1,42 @@
 {% extends 'index.html' %}
 {% block content %}
-    <main class="mx-5">
-        <div class="container-fluid p-5">
-            <div class="text-center">
-                <h1>Manage Albums</h1>
-            </div>
-            <table class="table align-items-center table-white table-flush">
-              <thead class="thead-white">
-                <tr>
-                  <th scope="col" class="sort text-center" data-sort="name">SI</th>
-                  <th scope="col" class="sort text-center" data-sort="budget">Album Title</th>
-                  <th scope="col" class="sort text-center" data-sort="status">Number of images</th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
-                </tr>
-              </thead>
-              <tbody class="list">
-                {% for album in albums %}
-                  <tr>
-                    <td class="budget text-center">
-                        {{ album.id }}
-                    </td>
-                    <td class="budget text-center">
-                        {{ album.Title }}
-                    </td>
-                    <td class="budget text-center">
-                        1
-                    </td>
-                    <td class="budget text-center">
-                        <a href="{% url 'edit_album' user.id album.id %}"><button class="btn btn-primary">Edit</button></a>
-                    </td>
-                    <td class="budget text-center">
-                      <a href="{% url 'remove' user.id album.id %}"><button class="btn btn-danger">Delete</button></a>
-                    </td>
-                  </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-          </div>
-    </main>
+<div class="table-responsive">
+    <div class="text-center mt-5 mb-5">
+        <h1>Manage Albums</h1>
+    </div>
+    <table class="table align-items-center table-flush">
+      <thead class="thead-light">
+        <tr class="text-center">
+          <th scope="col" class="sort" data-sort="name">SI</th>
+          <th scope="col" class="sort" data-sort="budget">Album Title</th>
+          <th scope="col" class="sort" data-sort="status">Thumbnail</th>
+          <th scope="col" class="sort" data-sort="completion">Number of Image</th>
+          <th scope="col" class="sort" data-sort="completion"></th>
+          <th scope="col" class="sort" data-sort="completion"></th>
+        </tr>
+      </thead>
+      <tbody class="list text-center">
+        {% for album in albums %}
+          <tr>
+            <td>1</td> 
+            <td>{{album.Title}}</td>  
+            <td scope="row" class="align-items-center d-flex justify-content-center">
+              <div class="media align-items-center">
+                <a href="#" class="avatar rounded-circle mr-3">
+                  <img width="fill" height="fill" alt="" src="{{album.Thumbnail.url}}">
+                </a>
+              </div>
+            </td>
+            <td>1</td>
+            <td>
+              <a href="{% url 'edit_album' user.id album.id %}"><button class="btn btn-primary">Edit</button></a>
+            </td>
+            <td>
+              <a href="{% url 'remove' user.id album.id %}"><button class="btn btn-danger">Delete</button></a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 {% endblock content %}
