@@ -30,4 +30,6 @@ urlpatterns = [
     path('remove/<int:uid>/<int:aid>/',views.remove,name='remove'),
     path('remove_image/<int:uid>/<int:aid>/<int:iid>/',views.remove_image,name='remove_image'),
     path('remove_blog/<int:uid>/<int:bid>/',views.remove_blog,name='remove_blog'),
+    path('remove_product/<int:uid>/<int:pid>/',views.remove_product,name='remove_product'),
+    path('remove_service/<int:uid>/<int:sid>/',views.remove_service,name='remove_service'),
 ]

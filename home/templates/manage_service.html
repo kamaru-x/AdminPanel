@@ -30,7 +30,7 @@
                 <a href=""><button class="btn btn-primary">Edit</button></a>
             </td>
             <td>
-                <a href=""><button class="btn btn-danger">Delete</button></a>
+                <a href="{% url 'remove_service' user.id service.id %}"><button class="btn btn-danger">Delete</button></a>
             </td>
             </tr>
         {% endfor %}

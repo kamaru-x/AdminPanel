@@ -306,7 +306,7 @@ def manage_service(request,uid):
         'user' : user,
         'services' : services,
     }
-    return render(request,'manage_service.html')
+    return render(request,'manage_service.html',context)
 
 ########################################################################
 
@@ -357,5 +357,23 @@ def remove_blog(request,uid,bid):
 
     blog.delete()
     return redirect('/manage_blog/%s' %user.id)
+
+########################################################################
+
+def remove_product(request,uid,pid):
+    user = User.objects.get(id=uid)
+    product = Product.objects.get(id=pid)
+
+    product.delete()
+    return redirect('/manage_product/%s' %user.id)
+
+########################################################################
+
+def remove_service(request,uid,sid):
+    user = User.objects.get(id=uid)
+    service = Service.objects.get(id=sid)
+
+    service.delete()
+    return redirect('/manage_service/%s' %user.id)
 
 ########################################################################

@@ -2,7 +2,7 @@
 {% block content %}
 <div class="table-responsive">
     <div class="text-center mt-5 mb-5">
-        <h1>Manage Albums</h1>
+        <h1>Manage Products</h1>
     </div>
     <table class="table align-items-center table-flush">
       <thead class="thead-light">
@@ -30,7 +30,7 @@
                 <a href=""><button class="btn btn-primary">Edit</button></a>
             </td>
             <td>
-                <a href=""><button class="btn btn-danger">Delete</button></a>
+                <a href="{% url 'remove_product' user.id product.id %}"><button class="btn btn-danger">Delete</button></a>
             </td>
             </tr>
         {% endfor %}
