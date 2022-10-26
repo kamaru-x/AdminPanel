@@ -1,5 +1,6 @@
+import re
 from django.shortcuts import render,redirect
-from home.models import Album_Image, Contact, User,Feedback,About,Blog,Album
+from home.models import Album_Image, Contact, Product, Service, User,Feedback,About,Blog,Album
 from home.forms import Edit_Blog
 from django.contrib import messages
 import os
@@ -237,14 +238,37 @@ def contact_us(request,uid):
 
 def products(request,uid):
     user = User.objects.get(id=uid)
+
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        image = request.FILES['image']
+        description = request.POST.get('description')
+        show_price = request.POST.get('check1')
+        whatsapp = request.POST.get('check2')
+        show_enquiry = request.POST.get('check3')
+        actual_price = request.POST.get('actual_price')
+        offer_price = request.POST.get('offer_price')
+        number = request.POST.get('number')
+        smtitle = request.POST.get('smtitle')
+        smkeywords = request.POST.get('smkeywords')
+        smdescription = request.POST.get('smdescription')
+
+        Data = Product(Title=title,Image=image,Description=description,Show_Price=show_price,
+        Actual_Price=actual_price,Offer_Price=offer_price,Show_Whatsapp=whatsapp,Whatsapp_Number=number,
+        Show_Enquiry=show_enquiry,SMTitle=smtitle,SMDescription=smdescription,SMKeywords=smkeywords)
+        Data.save()
+        return redirect('.')
+
     return render(request,'products.html',{'user':user})
 
 ########################################################################
 
 def manage_product(request,uid):
     user = User.objects.get(id=uid)
+    products = Product.objects.all()
     context = {
-        'user' : user
+        'user' : user,
+        'products' : products
     }
     return render(request,'manage_product.html',context)
 
@@ -252,7 +276,37 @@ def manage_product(request,uid):
 
 def services(request,uid):
     user = User.objects.get(id=uid)
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        image = request.FILES['image']
+        description = request.POST.get('description')
+        show_price = request.POST.get('check1')
+        whatsapp = request.POST.get('check2')
+        show_enquiry = request.POST.get('check3')
+        actual_price = request.POST.get('actual_price')
+        offer_price = request.POST.get('offer_price')
+        number = request.POST.get('number')
+        smtitle = request.POST.get('smtitle')
+        smkeywords = request.POST.get('smkeywords')
+        smdescription = request.POST.get('smdescription')
+
+        Data = Service(Title=title,Image=image,Description=description,Show_Price=show_price,
+        Actual_Price=actual_price,Offer_Price=offer_price,Show_Whatsapp=whatsapp,Whatsapp_Number=number,
+        Show_Enquiry=show_enquiry,SMTitle=smtitle,SMDescription=smdescription,SMKeywords=smkeywords)
+        Data.save()
+        return redirect('.')
     return render(request,'services.html',{'user':user})
+
+########################################################################
+
+def manage_service(request,uid):
+    user = User.objects.get(id=uid)
+    services = Service.objects.all()
+    context = {
+        'user' : user,
+        'services' : services,
+    }
+    return render(request,'manage_service.html')
 
 ########################################################################
 

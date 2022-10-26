@@ -3,7 +3,7 @@
     <main class="mx-5">
         <div class="container-fluid p-5">
             <div class="text-center">
-                <h1>ADD Products</h1>
+                <h1>ADD PRODUCT</h1>
             </div>
             <form method="post" enctype="multipart/form-data">
               {% csrf_token %}
@@ -23,31 +23,37 @@
                 <textarea name="description" id="" cols="30" rows="5" class="form-control">enter message here</textarea>
               </div>
 
-              <div class="row">
-                <div class="form-outline mb-4 col-md-6">
-                  <label class="form-label"></label>
-                  <input type="button" id="btn" value="show price" class="form-control btn btn-warning mt-2">
+              <div class="row text-center mt-5 mb-5">
+                <div class="col-md-4">
+                    <label class="form-label">Show Price</label>
+                    <input type="checkbox" id="checkbox" value="True" name="check1">
                 </div>
-                <div class="form-outline mb-4 col-md-6">
-                  <label class="form-label"></label>
-                  <input type="button" id="btn2" value="Add whatsapp" class="form-control btn btn-success mt-2">
+                <div class="col-md-4">
+                    <label class="form-label">Order By whatsapp</label>
+                    <input type="checkbox" id="checkbox" value="True" name="check2">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Show enquiry form</label>
+                    <input type="checkbox" id="checkbox" value="True" name="check3">
                 </div>
               </div>
 
-              <div class="form-outline mb-4 ch" display="none">
-                <label class="form-label">Contact number</label>
-                <input type="text" name="smtitle" class="form-control" />
+              <div class="row border-info" name="div1">
+                <div class="form-outline mb-4 col-md-6">
+                    <label class="form-label">Actual Price</label>
+                    <input type="text" name="actual_price" class="form-control" />
+                </div>
+                <div class="form-outline mb-4 col-md-6">
+                    <label class="form-label">Offer Price</label>
+                    <input type="text" name="offer_price" class="form-control" />
+                </div> 
               </div>
 
-              <div class="row">
-                <div class="form-outline mb-4 col-md-6 sh">
-                    <label class="form-label">Prize</label>
-                    <input type="text" name="smtitle" class="form-control" />
-                </div>
-                <div class="form-outline mb-4 col-md-6 sh">
-                    <label class="form-label">offer prize</label>
-                    <input type="text" name="smkeywords" class="form-control" />
-                </div>
+              <div class="row" name="div2">
+                <div class="form-outline mb-4 col-md-12">
+                    <label class="form-label">Whatsapp Number</label>
+                    <input type="text" name="number" class="form-control" />
+                </div> 
               </div>
 
               <div class="row">

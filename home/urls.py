@@ -22,6 +22,7 @@ urlpatterns = [
     path('manage_album/<int:uid>/',views.manage_album,name='manage_album'),
     path('manage_menu/<int:uid>/',views.manage_menu,name='manage_menu'),
     path('manage_product/<int:uid>/',views.manage_product,name='manage_product'),
+    path('manage_service/<int:uid>/',views.manage_service,name='manage_service'),
 
     path('edit_blog/<int:uid>/<int:bid>/',views.edit_blog,name='edit_blog'),
     path('edit_album/<int:uid>/<int:aid>/',views.edit_album,name='edit_album'),

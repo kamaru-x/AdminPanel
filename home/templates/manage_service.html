@@ -2,27 +2,27 @@
 {% block content %}
 <div class="table-responsive">
     <div class="text-center mt-5 mb-5">
-        <h1>Manage Albums</h1>
+        <h1>Manage Service</h1>
     </div>
     <table class="table align-items-center table-flush">
       <thead class="thead-light">
         <tr class="text-center">
           <th scope="col" class="sort" data-sort="name">SI</th>
-          <th scope="col" class="sort" data-sort="budget">Product Title</th>
-          <th scope="col" class="sort" data-sort="status">Product image</th>
+          <th scope="col" class="sort" data-sort="budget">Service Title</th>
+          <th scope="col" class="sort" data-sort="status">Service Image</th>
           <th scope="col" class="sort" data-sort="completion"></th>
           <th scope="col" class="sort" data-sort="completion"></th>
         </tr>
       </thead>
       <tbody class="list text-center">
-        {% for product in products %}
+        {% for service in services %}
             <tr>
             <td>1</td> 
-            <td>{{product.Title}}</td>  
+            <td>{{service.Title}}</td>  
             <td scope="row" class="align-items-center d-flex justify-content-center">
                 <div class="media align-items-center">
                 <a href="#" class="avatar rounded-circle mr-3">
-                    <img alt="" src="{{product.Image.url}}">
+                    <img alt="" src="{{service.Image.url}}">
                 </a>
                 </div>
             </td>

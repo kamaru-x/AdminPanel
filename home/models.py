@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 
 # Create your models here.
@@ -99,3 +100,41 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.Company_Name
+    
+########################################################################
+
+class Product(models.Model):
+    Title = models.CharField(max_length=50)
+    Description = models.TextField()
+    Image = models.ImageField(blank=True,null=True,upload_to='Product')
+    Show_Price = models.BooleanField(default=False)
+    Actual_Price = models.IntegerField(blank=True,null=True)
+    Offer_Price = models.IntegerField(blank=True,null=True)
+    Show_Whatsapp = models.BooleanField(default=False)
+    Whatsapp_Number = models.CharField(max_length=15,blank=True,null=True)
+    Show_Enquiry = models.BooleanField(default=False)
+    SMTitle = models.CharField(max_length=2000)
+    SMDescription = models.TextField()
+    SMKeywords = models.CharField(max_length=2000)
+
+    def __str__(self):
+        return self.Title
+
+########################################################################
+
+class Service(models.Model):
+    Title = models.CharField(max_length=50)
+    Description = models.TextField()
+    Image = models.ImageField(blank=True,null=True,upload_to='Product')
+    Show_Price = models.BooleanField(default=False)
+    Actual_Price = models.IntegerField(blank=True,null=True)
+    Offer_Price = models.IntegerField(blank=True,null=True)
+    Show_Whatsapp = models.BooleanField(default=False)
+    Whatsapp_Number = models.CharField(max_length=15,blank=True,null=True)
+    Show_Enquiry = models.BooleanField(default=False)
+    SMTitle = models.CharField(max_length=2000)
+    SMDescription = models.TextField()
+    SMKeywords = models.CharField(max_length=2000)
+
+    def __str__(self):
+        return self.Title
