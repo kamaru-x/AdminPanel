@@ -4,7 +4,6 @@ from home.models import Album_Image, Contact, Product, Service, User,Feedback,Ab
 from home.forms import Edit_Blog
 from django.contrib import messages
 import os
-from django.contrib.auth import logout
 
 # Create your views here.
 
@@ -39,6 +38,7 @@ def login(request):
 def dashboard(request,uid):
     user = User.objects.get(id=uid)
     feedbacks = Feedback.objects.all()
+
     context = {
         'feedbacks':feedbacks,
         'user':user,
