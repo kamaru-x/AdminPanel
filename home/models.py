@@ -156,3 +156,55 @@ class Enquiry(models.Model):
         return self.Name
 
 ########################################################################
+
+class Manage_Menu(models.Model):
+    About_Page = models.BooleanField(default=False, null=True, blank=True)
+    Blog_Page = models.BooleanField(default=False, null=True, blank=True)
+    Image_Gallery = models.BooleanField(default=False, null=True, blank=True)
+    Contact_Page = models.BooleanField(default=False, null=True, blank=True)
+    Products_Page = models.BooleanField(default=False, null=True, blank=True)
+    Service_Page = models.BooleanField(default=False, null=True, blank=True)
+    Feedback_Page = models.BooleanField(default=False, null=True, blank=True)
+    Enquiry_Page = models.BooleanField(default=False, null=True, blank=True)
+    Group_Company = models.BooleanField(default=False, null=True, blank=True)
+    Testimonials = models.BooleanField(default=False, null=True, blank=True)
+
+########################################################################
+
+class Quick_Links(models.Model):
+    About_Page = models.BooleanField(default=False, null=True, blank=True)
+    Blog_Page = models.BooleanField(default=False, null=True, blank=True)
+    Image_Gallery = models.BooleanField(default=False, null=True, blank=True)
+    Contact_Page = models.BooleanField(default=False, null=True, blank=True)
+    Products_Page = models.BooleanField(default=False, null=True, blank=True)
+    Service_Page = models.BooleanField(default=False, null=True, blank=True)
+    Testimonials = models.BooleanField(default=False, null=True, blank=True)
+
+########################################################################
+
+class Group_Of_Companies(models.Model):
+    Logo = models.ImageField(blank=True,null=True,upload_to='CompanyLogo')
+
+########################################################################
+
+class Testimonial(models.Model):
+    Tes_Name = models.CharField(max_length=50)
+    Designation = models.CharField(max_length=50)
+    Company_Name = models.CharField(max_length=50)
+    Testimonial = models.TextField()
+    Tes_Image = models.ImageField(blank=True,null=True,upload_to='TestimonialImage')
+
+    def __str__(self):
+        return self.Tes_Name
+
+########################################################################
+
+class Banners(models.Model):
+    Caption = models.CharField(max_length=100)
+    Sub_Caption = models.CharField(max_length=100)
+    Button_Label = models.CharField(max_length=30)
+    Link = models.CharField(max_length=1000)
+    Banner_Image = models.ImageField(blank=True,null=True,upload_to='BannerImage')
+
+    def __str__(self):
+        return self.Caption
