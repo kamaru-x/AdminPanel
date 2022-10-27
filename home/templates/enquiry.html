@@ -35,24 +35,20 @@
                   <th scope="col">#</th>
                   <th scope="col">Name</th>
                   <th scope="col">Email</th>
-                  <th scope="col">Contact</th>
+                  <th scope="col">Mobile</th>
+                  <th scop="col">Product</th>
                   <th scope="col">Date</th>
-                  <th scop="col">Message</th>
                 </tr>
               </thead>
               <tbody>
-                {% for feedback in feedbacks %}
+                {% for enquiry in enquiries %}
                 <tr>
                   <th scope="row">1</th>
-                  <td>{{feedback.Name}}</td>
-                  <td>{{feedback.Email}}</td>
-                  <td>{{feedback.Contact}}</td>
-                  <td>{{feedback.Date}}</td>
-                  <td>
-                    <div>
-                      {{feedback.Message}}
-                    </div>
-                  </td>
+                  <td>{{enquiry.Name}}</td>
+                  <td>{{enquiry.Email}}</td>
+                  <td>{{enquiry.Mobile_Number}}</td>
+                  <td>{{enquiry.Product_Name.Title}}</td>
+                  <td>{{enquiry.Date}}</td>
                 </tr>
                 {% endfor %}
               </tbody>

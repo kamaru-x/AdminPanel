@@ -1,6 +1,6 @@
 import re
 from django.shortcuts import render,redirect
-from home.models import Album_Image, Contact, Product, Service, User,Feedback,About,Blog,Album
+from home.models import Album_Image, Contact, Enquiry, Product, Service, User,Feedback,About,Blog,Album
 from home.forms import Edit_Blog
 from django.contrib import messages
 import os
@@ -397,6 +397,17 @@ def feedback(request,uid):
         'feedbacks' : feedbacks
     }
     return render(request,'feedback.html',context)
+
+########################################################################
+
+def enquiry(request,uid):
+    user = User.objects.get(id=uid)
+    enquiries = Enquiry.objects.all()
+    context = {
+        'user' : user,
+        'enquiries' : enquiries,
+    }
+    return render(request,'enquiry.html',context)
 
 ########################################################################
 

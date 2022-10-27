@@ -17,6 +17,7 @@ urlpatterns = [
     path('products/<int:uid>/',views.products,name='products'),
     path('services/<int:uid>/',views.services,name='services'),
     path('feedback/<int:uid>/',views.feedback,name='feedback'),
+    path('enquiry/<int:uid>/',views.enquiry,name='enquiry'),
     
     path('manage_blog/<int:uid>/',views.manage_blog,name='manage_blog'),
     path('manage_album/<int:uid>/',views.manage_album,name='manage_album'),
