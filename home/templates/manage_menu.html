@@ -26,5 +26,40 @@
 {% block content %}
     <main class="mx-5 mt-5">
         <h1 class="text-center">Manage menu page</h1>
+        <div class="row mt-5 mb-5">
+          <div class="col-md-4 text-center">
+            <label class="form-label">About Us</label>
+            <input type="checkbox" id="checkbox" value="True" name="check1">
+          </div>
+          <div class="col-md-4 text-center">
+            <label class="form-label">Blog</label>
+            <input type="checkbox" id="checkbox" value="True" name="check1">
+          </div>
+          <div class="col-md-4 text-center">
+            <label class="form-label">Image Gallery</label>
+            <input type="checkbox" id="checkbox" value="True" name="check1">
+          </div>
+        </div>
+        <div class="row mt-5 mb-5">
+          <div class="col-md-4 text-center">
+            <label class="form-label">Contact Us</label>
+            <input type="checkbox" id="checkbox" value="True" name="check1">
+          </div>
+          <div class="col-md-4 text-center">
+            <label class="form-label">Products</label>
+            <input type="checkbox" id="checkbox" value="True" name="check1">
+          </div>
+          <div class="col-md-4 text-center">
+            <label class="form-label">Services</label>
+            <input type="checkbox" id="checkbox" value="True" name="check1">
+          </div>
+        </div>
+        <div class="row mb-4">
+          <div class="col-md-4"></div>
+          <div class="col d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary btn-block">submit</button>
+          </div>
+          <div class="col-md-4"></div>
+        </div>
     </main>
 {% endblock content %}

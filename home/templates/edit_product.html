@@ -36,9 +36,17 @@
                         <label class="form-label">Product Title</label>
                         <input required="True" type="text" name="title" value="{{product.Title}}" class="form-control" />
                     </div>
-                    <div class="form-outline mb-4 col-md-6">
+                    <div class="form-outline mb-4 col-md-4">
                         <label class="form-label">Product Image</label>
                         <input type="file" name="image" class="form-control" />
+                    </div>
+                    <div class="media align-items-center col-md-1">
+                      <a href="#" class="">
+                        <img width="65px" height="65px" alt="" src="{{product.Image.url}}">
+                      </a>
+                    </div>
+                    <div class="media align-items-center col-md-1">
+                      <a href=""><span class="badge badge-warning" style="margin-top:-42px; margin-left:-38px; position: absolute;">X</span></a>
                     </div>
               </div>
 
@@ -111,7 +119,7 @@
               {% endif %}
 
               {% if product.Show_Whatsapp %}
-                <div class="row">
+                <div class="row" name="div2">
                   <div class="form-outline mb-4 col-md-12">
                       <label class="form-label">Whatsapp Number</label>
                       <input type="text" name="number" value="{{product.Whatsapp_Number}}" class="form-control" />

@@ -234,7 +234,7 @@ def contact_us(request,uid):
 
         Data = Contact(Company_Name=name,Adress=address,Telephone=telephone,Mobile=mobile,
         Whatsapp=whatsapp,Email=email,Website=website,Longitude=longitude,Latitude=latitude,
-        Facebook=facebook,Instagram=instagram,Linkedin=linkedin,Image=image,Url=url,
+        Facebook=facebook,Instagram=instagram,Linkedin=linkedin,Twitter=twitter,Image=image,Url=url,
         SMTitle=smtitle,SMDescription=smdescription,SMKeywords=smkeywords)
 
         Data.save()
@@ -296,7 +296,7 @@ def edit_product(request,uid,pid):
         product.Offer_Price = request.POST.get('offer_price')
         product.Show_Whatsapp = request.POST.get('check2')
         product.Whatsapp_Number = request.POST.get('number')
-        #product.Show_Enquiry = request.POST.get('check3')
+        product.Show_Enquiry = request.POST.get('check3')
         product.SMTitle = request.POST.get('smtitle')
         product.SMDescription = request.POST.get('smdescription')
         product.SMKeywords = request.POST.get('smkeywords')

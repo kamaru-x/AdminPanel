@@ -92,6 +92,7 @@ class Contact(models.Model):
     Facebook = models.CharField(max_length=50)
     Instagram = models.CharField(max_length=50)
     Linkedin = models.CharField(max_length=50)
+    Twitter = models.CharField(max_length=50)
     Image = models.ImageField(blank=True,null=True,upload_to='Company')
     Url = models.CharField(max_length=20000)
     SMTitle = models.CharField(max_length=2000)
