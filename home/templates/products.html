@@ -32,14 +32,18 @@
             <form method="post" enctype="multipart/form-data">
               {% csrf_token %}
               <div class="row mt-3">
-                    <div class="form-outline mb-4 col-md-6">
+                    <div class="form-outline mb-4 col-md-4">
                         <label class="form-label">Product Title</label>
                         <input required="True" type="text" name="title" class="form-control" />
                     </div>
-                    <div class="form-outline mb-4 col-md-6">
+                    <div class="form-outline mb-4 col-md-4">
                         <label class="form-label">Product Image</label>
                         <input required="True" type="file" name="image" class="form-control" />
                     </div>
+                    <div class="form-outline mb-4 col-md-4">
+                      <label class="form-label">Refer Number</label>
+                      <input required="True" type="text" name="rfr" class="form-control" />
+                  </div>
               </div>
 
               <div class="form-outline mb-4">

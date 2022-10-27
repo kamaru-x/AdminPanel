@@ -62,24 +62,24 @@ def dashboard(request,uid):
 
 def about_us(request,uid):
     user = User.objects.get(id=uid)
-    data = About.objects.last()
+    about = About.objects.last()
     if request.method == 'POST':
-        title = request.POST.get('title')
-        image = request.FILES['image']
-        description = request.POST.get('description')
-        url = request.POST.get('url')
-        smtitle = request.POST.get('smtitle')
-        smkeywords = request.POST.get('smkeywords')
-        smdescription = request.POST.get('smdescription')
-        
-        Data = About(Title=title,Description=description,Image=image,Url=url,SMTitle=smtitle,
-        SMDescription=smdescription,SMKeywords=smkeywords)
-        Data.save()
+        if len(request.FILES) != 0:
+            if len(about.Image) > 0:
+                os.remove(about.Image.path)
+            about.Image = request.FILES['image']
+        about.Title = request.POST.get('title')
+        about.Description = request.POST.get('description')
+        about.Url = request.POST.get('url')
+        about.SMTitle = request.POST.get('smtitle')
+        about.SMDescription = request.POST.get('smdescription')
+        about.SMKeywords = request.POST.get('smkeywords')
+        about.save()
         return redirect('.')
     
     context = {
         'user':user,
-        'data':data
+        'data':about
     }
     return render(request,'about_us.html',context)
 
@@ -225,35 +225,32 @@ def edit_album(request,uid,aid):
 
 def contact_us(request,uid):
     user = User.objects.get(id=uid)
-    data = Contact.objects.last()
+    contact = Contact.objects.last()
     if request.method == 'POST':
-        name = request.POST.get('name')
-        mobile = request.POST.get('mobile')
-        telephone = request.POST.get('telephone')
-        email = request.POST.get('email')
-        website = request.POST.get('website')
-        address = request.POST.get('address')
-        latitude = request.POST.get('latitude')
-        longitude = request.POST.get('longitude')
-        whatsapp = request.POST.get('whatsapp')
-        facebook = request.POST.get('facebook')
-        instagram = request.POST.get('instagram')
-        twitter = request.POST.get('twitter')
-        linkedin = request.POST.get('linkedin')
-        image = request.FILES['image']
-        url = request.POST.get('url')
-        smtitle = request.POST.get('smtitle')
-        smkeywords = request.POST.get('smkeywords')
-        smdescription = request.POST.get('smdescription') 
-
-        Data = Contact(Company_Name=name,Adress=address,Telephone=telephone,Mobile=mobile,
-        Whatsapp=whatsapp,Email=email,Website=website,Longitude=longitude,Latitude=latitude,
-        Facebook=facebook,Instagram=instagram,Linkedin=linkedin,Twitter=twitter,Image=image,Url=url,
-        SMTitle=smtitle,SMDescription=smdescription,SMKeywords=smkeywords)
-
-        Data.save()
+        if len(request.FILES) != 0:
+            if len(contact.Image) > 0:
+                os.remove(contact.Image.path)
+            contact.Image = request.FILES['image']
+        contact.Company_Name = request.POST.get('name')
+        contact.Mobile = request.POST.get('mobile')
+        contact.Telephone = request.POST.get('telephone')
+        contact.Email = request.POST.get('email')
+        contact.Website = request.POST.get('website')
+        contact.Adress = request.POST.get('address')
+        contact.Latitude = request.POST.get('latitude')
+        contact.Longitude = request.POST.get('longitude')
+        contact.Whatsapp = request.POST.get('whatsapp')
+        contact.Facebook = request.POST.get('facebook')
+        contact.Url = request.POST.get('url')
+        contact.Instagram = request.POST.get('instagram')
+        contact.Twitter = request.POST.get('twitter')
+        contact.Linkedin = request.POST.get('linkedin')
+        contact.SMTitle = request.POST.get('smtitle')
+        contact.SMDescription = request.POST.get('smdescription')
+        contact.SMKeywords = request.POST.get('smkeywords')
+        contact.save()
         return redirect('.')
-    return render(request,'contact_us.html',{'user':user,'data':data})
+    return render(request,'contact_us.html',{'user':user,'data':contact})
 
 ########################################################################
 
@@ -263,6 +260,7 @@ def products(request,uid):
     if request.method == 'POST':
         title = request.POST.get('title')
         image = request.FILES['image']
+        refer = request.POST.get('rfr')
         description = request.POST.get('description')
         show_price = request.POST.get('check1')
         whatsapp = request.POST.get('check2')
@@ -274,7 +272,7 @@ def products(request,uid):
         smkeywords = request.POST.get('smkeywords')
         smdescription = request.POST.get('smdescription')
 
-        Data = Product(Title=title,Image=image,Description=description,Show_Price=show_price,
+        Data = Product(Title=title,Image=image,Refer_number=refer,Description=description,Show_Price=show_price,
         Actual_Price=actual_price,Offer_Price=offer_price,Show_Whatsapp=whatsapp,Whatsapp_Number=number,
         Show_Enquiry=show_enquiry,SMTitle=smtitle,SMDescription=smdescription,SMKeywords=smkeywords)
         Data.save()
@@ -329,6 +327,7 @@ def services(request,uid):
     if request.method == 'POST':
         title = request.POST.get('title')
         image = request.FILES['image']
+        refer = request.POST.get('rfr')
         description = request.POST.get('description')
         show_price = request.POST.get('check1')
         whatsapp = request.POST.get('check2')
@@ -340,7 +339,7 @@ def services(request,uid):
         smkeywords = request.POST.get('smkeywords')
         smdescription = request.POST.get('smdescription')
 
-        Data = Service(Title=title,Image=image,Description=description,Show_Price=show_price,
+        Data = Service(Title=title,Image=image,Refer_number=refer,Description=description,Show_Price=show_price,
         Actual_Price=actual_price,Offer_Price=offer_price,Show_Whatsapp=whatsapp,Whatsapp_Number=number,
         Show_Enquiry=show_enquiry,SMTitle=smtitle,SMDescription=smdescription,SMKeywords=smkeywords)
         Data.save()

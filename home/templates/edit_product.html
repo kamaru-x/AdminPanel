@@ -81,7 +81,7 @@
                   </div>
                 {% endif %}
 
-                {% if Show_Enquiry %}
+                {% if product.Show_Enquiry %}
                   <div class="col-md-4">
                       <label class="form-label">Show enquiry form</label>
                       <input type="checkbox" id="checkbox" checked="True" value="True" name="check3">
@@ -94,7 +94,7 @@
                 {% endif %}
               </div>
 
-              {% if Show_Enquiry %}
+              {% if product.Show_Price %}
                 <div class="row border-info">
                   <div class="form-outline mb-4 col-md-6">
                       <label class="form-label">Actual Price</label>
