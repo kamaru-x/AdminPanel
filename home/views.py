@@ -416,6 +416,15 @@ def manage_menu(request,uid):
 
 ########################################################################
 
+def quick_links(request,uid):
+    user = User.objects.get(id=uid)
+    context = {
+        'user' : user
+    }
+    return render(request,'quick_links.html',context)
+
+########################################################################
+
 def remove(request,uid,aid):
     album = Album.objects.get(id=aid)
     user = User.objects.get(id=uid)
@@ -458,5 +467,77 @@ def remove_service(request,uid,sid):
 
     service.delete()
     return redirect('/manage_service/%s' %user.id)
+
+########################################################################
+
+def add_logo(request,uid):
+    user = User.objects.get(id=uid)
+    context = {
+        'user' : user,
+    }
+    return render(request,'add_logo.html',context)
+
+########################################################################
+
+def manage_logo(request,uid):
+    user = User.objects.get(id=uid)
+    context = {
+        'user' : user,
+    }
+    return render(request,'manage_logo.html',context)
+
+########################################################################
+
+def add_testimonial(request,uid):
+    user = User.objects.get(id=uid)
+    context = {
+        'user' : user,
+    }
+    return render(request,'add_testimonial.html',context)
+
+########################################################################
+
+def manage_testimonial(request,uid):
+    user = User.objects.get(id=uid)
+    context = {
+        'user' : user,
+    }
+    return render(request,'manage_testimonial.html',context)
+
+########################################################################
+
+def edit_testimonial(request,uid):
+    user = User.objects.get(id=uid)
+    context = {
+        'user' : user,
+    }
+    return render(request,'manage_testimonial.html',context)
+
+########################################################################
+
+def banner(request,uid):
+    user = User.objects.get(id=uid)
+    context = {
+        'user' : user,
+    }
+    return render(request,'banner.html',context)
+
+########################################################################
+
+def manage_banner(request,uid):
+    user = User.objects.get(id=uid)
+    context = {
+        'user' : user,
+    }
+    return render(request,'manage_banner.html',context)
+
+########################################################################
+
+def edit_banner(request,uid):
+    user = User.objects.get(id=uid)
+    context = {
+        'user' : user,
+    }
+    return render(request,'edit_banner.html',context)
 
 ########################################################################

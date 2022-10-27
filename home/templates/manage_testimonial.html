@@ -1,0 +1,66 @@
+{% extends 'index.html' %}
+{% block header %}
+<div class="header bg-primary pb-6">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2 text-white d-inline-block mb-0"></h6>
+          <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+            <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+              <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+              <li class="breadcrumb-item"><a href="#">127.0.0.1</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Manage Testimonial</li>
+            </ol>
+          </nav>
+        </div>
+        <div class="col-lg-6 col-5 text-right">
+          <a href="#" class="btn btn-sm btn-neutral">New</a>
+          <a href="#" class="btn btn-sm btn-neutral">Filters</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock header %}
+{% block content %}
+<div class="table-responsive">
+    <div class="text-center mt-5 mb-5">
+        <h1>Manage Testimonial</h1>
+    </div>
+    <table class="table align-items-center table-flush">
+      <thead class="thead-light">
+        <tr class="text-center">
+          <th scope="col" class="sort" data-sort="name">SI</th>
+          <th scope="col" class="sort" data-sort="budget">Testimonial Title</th>
+          <th scope="col" class="sort" data-sort="status">Image</th>
+          <th scope="col" class="sort" data-sort="completion"></th>
+          <th scope="col" class="sort" data-sort="completion"></th>
+          <th scope="col" class="sort" data-sort="completion"></th>
+        </tr>
+      </thead>
+      <tbody class="list text-center">
+        {% for album in albums %}
+          <tr>
+            <td>1</td> 
+            <td>{{album.Title}}</td>  
+            <td scope="row" class="align-items-center d-flex justify-content-center">
+              <div class="media align-items-center">
+                <a href="#" class="avatar rounded-circle mr-3">
+                  <img width="fill" height="fill" alt="" src="{{album.Thumbnail.url}}">
+                </a>
+              </div>
+            </td>
+            <td>1</td>
+            <td>
+              <a href="{% url 'edit_album' user.id album.id %}"><button class="btn btn-primary">Edit</button></a>
+            </td>
+            <td>
+              <a href="{% url 'remove' user.id album.id %}"><button class="btn btn-danger">Delete</button></a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock content %}

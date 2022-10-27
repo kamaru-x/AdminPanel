@@ -18,17 +18,25 @@ urlpatterns = [
     path('services/<int:uid>/',views.services,name='services'),
     path('feedback/<int:uid>/',views.feedback,name='feedback'),
     path('enquiry/<int:uid>/',views.enquiry,name='enquiry'),
-    
+    path('quick_links/<int:uid>/',views.quick_links,name='quick_links'),
+    path('add_logo/<int:uid>/',views.add_logo,name='add_logo'),
+    path('add_testimonial/<int:uid>/',views.add_testimonial,name='add_testimonial'),
+    path('banner/<int:uid>/',views.banner,name='banner'),
+
     path('manage_blog/<int:uid>/',views.manage_blog,name='manage_blog'),
     path('manage_album/<int:uid>/',views.manage_album,name='manage_album'),
     path('manage_menu/<int:uid>/',views.manage_menu,name='manage_menu'),
     path('manage_product/<int:uid>/',views.manage_product,name='manage_product'),
     path('manage_service/<int:uid>/',views.manage_service,name='manage_service'),
+    path('manage_logo/<int:uid>/',views.manage_logo,name='manage_logo'),
+    path('manage_testimonial/<int:uid>/',views.manage_testimonial,name='manage_testimonial'),
+    path('manage_banner/<int:uid>/',views.manage_banner,name='manage_banner'),
 
     path('edit_blog/<int:uid>/<int:bid>/',views.edit_blog,name='edit_blog'),
     path('edit_album/<int:uid>/<int:aid>/',views.edit_album,name='edit_album'),
     path('edit_product/<int:uid>/<int:pid>/',views.edit_product,name='edit_product'),
     path('edit_service/<int:uid>/<int:sid>/',views.edit_service,name='edit_service'),
+    path('edit_testimonial/<int:uid>/<int:tid>/',views.edit_testimonial,name='edit_testimonial'),
 
     path('remove/<int:uid>/<int:aid>/',views.remove,name='remove'),
     path('remove_image/<int:uid>/<int:aid>/<int:iid>/',views.remove_image,name='remove_image'),
