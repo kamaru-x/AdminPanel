@@ -147,3 +147,12 @@ class Enquiry(models.Model):
     Date = models.DateField()
     Time = models.TimeField()
     Name = models.CharField(max_length=50)
+    Mobile_Number = models.CharField(max_length=15,null=True, default=None, blank=True)
+    Email = models.EmailField(null=True, default=None, blank=True)
+    Product_Name = models.ForeignKey(Product,on_delete=models.CASCADE,null=True, default=None, blank=True)
+    Refer_number = models.CharField(max_length=6,null=True, default=None, blank=True)
+
+    def __str__(self):
+        return self.Name
+
+########################################################################
