@@ -86,23 +86,45 @@
                 {% endif %}
               </div>
 
-              <div class="row border-info" name="div1">
-                <div class="form-outline mb-4 col-md-6">
-                    <label class="form-label">Actual Price</label>
-                    <input type="text" name="actual_price" value="{{service.Actual_Price}}" class="form-control" />
+              {% if service.Show_Price %}
+                <div class="row border-info">
+                  <div class="form-outline mb-4 col-md-6">
+                      <label class="form-label">Actual Price</label>
+                      <input type="text" name="actual_price" value="{{service.Actual_Price}}" class="form-control" />
+                  </div>
+                  <div class="form-outline mb-4 col-md-6">
+                      <label class="form-label">Offer Price</label>
+                      <input type="text" name="offer_price" value="{{service.Offer_Price}}" class="form-control" />
+                  </div> 
                 </div>
-                <div class="form-outline mb-4 col-md-6">
-                    <label class="form-label">Offer Price</label>
-                    <input type="text" name="offer_price" value="{{service.Offer_Price}}" class="form-control" />
-                </div> 
-              </div>
+              {% else %}
+                <div class="row border-info" name="div1">
+                  <div class="form-outline mb-4 col-md-6">
+                      <label class="form-label">Actual Price</label>
+                      <input type="text" name="actual_price" value="{{service.Actual_Price}}" class="form-control" />
+                  </div>
+                  <div class="form-outline mb-4 col-md-6">
+                      <label class="form-label">Offer Price</label>
+                      <input type="text" name="offer_price" value="{{service.Offer_Price}}" class="form-control" />
+                  </div> 
+                </div>
+              {% endif %}
 
-              <div class="row" name="div2">
-                <div class="form-outline mb-4 col-md-12">
-                    <label class="form-label">Whatsapp Number</label>
-                    <input type="text" name="number" value="{{service.Whatsapp_Number}}" class="form-control" />
-                </div> 
-              </div>
+              {% if service.Show_Whatsapp %}
+                <div class="row">
+                  <div class="form-outline mb-4 col-md-12">
+                      <label class="form-label">Whatsapp Number</label>
+                      <input type="text" name="number" value="{{service.Whatsapp_Number}}" class="form-control" />
+                  </div> 
+                </div>
+              {% else %}
+                <div class="row" name="div2">
+                  <div class="form-outline mb-4 col-md-12">
+                      <label class="form-label">Whatsapp Number</label>
+                      <input type="text" name="number" value="{{service.Whatsapp_Number}}" class="form-control" />
+                  </div> 
+                </div>
+              {% endif %}
 
               <div class="row">
                 <div class="form-outline mb-4 col-md-6">
