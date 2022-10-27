@@ -49,6 +49,7 @@ def dashboard(request,uid):
 
 def about_us(request,uid):
     user = User.objects.get(id=uid)
+    data = About.objects.last()
     if request.method == 'POST':
         title = request.POST.get('title')
         image = request.FILES['image']
@@ -62,7 +63,12 @@ def about_us(request,uid):
         SMDescription=smdescription,SMKeywords=smkeywords)
         Data.save()
         return redirect('.')
-    return render(request,'about_us.html',{'user':user})
+    
+    context = {
+        'user':user,
+        'data':data
+    }
+    return render(request,'about_us.html',context)
 
 ########################################################################
 
