@@ -1,4 +1,3 @@
-from email.policy import default
 from django.db import models
 
 # Create your models here.
@@ -108,6 +107,7 @@ class Product(models.Model):
     Title = models.CharField(max_length=50, null=True, default=None, blank=True)
     Description = models.TextField()
     Image = models.ImageField(blank=True,null=True,upload_to='Product')
+    Refer_number = models.CharField(max_length=6)
     Show_Price = models.BooleanField(default=False, null=True, blank=True)
     Actual_Price = models.CharField(max_length=15, null=True, default=None, blank=True)
     Offer_Price = models.CharField(max_length=15, null=True, default=None, blank=True)
@@ -127,6 +127,7 @@ class Service(models.Model):
     Title = models.CharField(max_length=50, null=True, default=None, blank=True)
     Description = models.TextField()
     Image = models.ImageField(blank=True,null=True,upload_to='Product')
+    Refer_number = models.CharField(max_length=6)
     Show_Price = models.BooleanField(default=False, null=True, blank=True)
     Actual_Price = models.CharField(max_length=15, null=True, default=None, blank=True)
     Offer_Price = models.CharField(max_length=15, null=True, default=None, blank=True)
@@ -139,3 +140,10 @@ class Service(models.Model):
 
     def __str__(self):
         return self.Title
+
+########################################################################
+
+class Enquiry(models.Model):
+    Date = models.DateField()
+    Time = models.TimeField()
+    Name = models.CharField(max_length=50)
