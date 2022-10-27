@@ -170,12 +170,13 @@ def upload_image(request,uid):
     albums = Album.objects.all()
     if request.method == 'POST':
         select = request.POST.get('select')
-        image = request.FILES['image']
+        image = request.FILES.getlist('image')
 
         album = Album.objects.get(id=select)
-        
-        Data = Album_Image(Album_Name=album,Image=image,)
-        Data.save()
+
+        for img in image: 
+            Data = Album_Image(Album_Name=album,Image=img,)
+            Data.save()
         return redirect('.')
     context = {
         'user' : user,
