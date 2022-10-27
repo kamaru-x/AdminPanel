@@ -33,7 +33,7 @@
           <div class="row">
             <div class="col">
               <h5 class="card-title text-uppercase text-muted mb-0">Total Products</h5>
-              <span class="h2 font-weight-bold mb-0">53</span>
+              <span class="h2 font-weight-bold mb-0">{{pro}}</span>
             </div>
             <div class="col-auto">
               <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
@@ -51,7 +51,7 @@
           <div class="row">
             <div class="col">
               <h5 class="card-title text-uppercase text-muted mb-0">total services</h5>
-              <span class="h2 font-weight-bold mb-0">35</span>
+              <span class="h2 font-weight-bold mb-0">{{ser}}</span>
             </div>
             <div class="col-auto">
               <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
@@ -69,7 +69,7 @@
           <div class="row">
             <div class="col">
               <h5 class="card-title text-uppercase text-muted mb-0">Total Blogs</h5>
-              <span class="h2 font-weight-bold mb-0">92</span>
+              <span class="h2 font-weight-bold mb-0">{{blg}}</span>
             </div>
             <div class="col-auto">
               <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
@@ -87,7 +87,7 @@
           <div class="row">
             <div class="col">
               <h5 class="card-title text-uppercase text-muted mb-0">Total Gallery</h5>
-              <span class="h2 font-weight-bold mb-0">65</span>
+              <span class="h2 font-weight-bold mb-0">{{alb}}</span>
             </div>
             <div class="col-auto">
               <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
@@ -100,25 +100,36 @@
     </div>
   </div>
   <h1 class="text-center mt-5">Feedbacks</h1>
-  {% for feedback in feedbacks %}
-    <div class="row">
-        <div class="col-xl-11 col-md-12 mx-5 mt-3">
-            <div class="card card-stats">
-              <!-- Card body -->
-              <div class="card-body">
-                <div class="row">
-                  <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">{{feedback.Name}}</h5>
-                  </div>
-                  <div class="col-auto">
-                  </div>
-                </div>
-                <p class="m-2">{{feedback.Message}}</p>
-              </div>
-            </div>
-        </div>
-    </div>
-  {% endfor %}
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Contact</th>
+        <th scope="col">Date</th>
+        <th scop="col">Message</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for feedback in feedbacks %}
+      <tr>
+        <th scope="row">1</th>
+        <td>{{feedback.Name}}</td>
+        <td>{{feedback.Email}}</td>
+        <td>{{feedback.Contact}}</td>
+        <td>{{feedback.Date}}</td>
+        <td>
+          <div>
+            {{feedback.Message}}
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
   <hr>
   <div class="text-center mb-5">
     <button type="submit" class="btn-primary text-center btn btn-pill">View More</button>

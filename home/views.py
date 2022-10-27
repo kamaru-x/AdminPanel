@@ -38,12 +38,25 @@ def login(request):
 def dashboard(request,uid):
     user = User.objects.get(id=uid)
     feedbacks = Feedback.objects.all()
+    products = Product.objects.all()
+    services = Service.objects.all()
+    blogs = Blog.objects.all()
+    albums = Album.objects.all()
+
+    product_count = len(products)
+    service_count = len(services)
+    blog_count = len(blogs)
+    album_count = len(albums)
 
     context = {
         'feedbacks':feedbacks,
         'user':user,
+        'pro' : product_count,
+        'ser' : service_count,
+        'blg' : blog_count,
+        'alb' : album_count,
     }
-    return render(request,'dashboard.html',context)
+    return render(request,'dashboard.html',context,)
 
 ########################################################################
 
@@ -378,18 +391,12 @@ def edit_service(request,uid,sid):
 
 def feedback(request,uid):
     user = User.objects.get(id=uid)
-    if request.method == "POST":
-        date = request.POST.get('date')
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        contact = request.POST.get('contact')
-        message = request.POST.get('message')
-
-        data = Feedback(Date=date,Name=name,Email=email,Contact=contact,Message=message)
-        data.save()
-        return redirect('.')
-
-    return render(request,'feedback.html',{'user':user})
+    feedbacks = Feedback.objects.all()
+    context = {
+        'user' : user,
+        'feedbacks' : feedbacks
+    }
+    return render(request,'feedback.html',context)
 
 ########################################################################
 
