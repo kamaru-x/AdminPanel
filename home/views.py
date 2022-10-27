@@ -211,6 +211,7 @@ def edit_album(request,uid,aid):
 
 def contact_us(request,uid):
     user = User.objects.get(id=uid)
+    data = Contact.objects.last()
     if request.method == 'POST':
         name = request.POST.get('name')
         mobile = request.POST.get('mobile')
@@ -238,7 +239,7 @@ def contact_us(request,uid):
 
         Data.save()
         return redirect('.')
-    return render(request,'contact_us.html',{'user':user})
+    return render(request,'contact_us.html',{'user':user,'data':data})
 
 ########################################################################
 
