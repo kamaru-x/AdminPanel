@@ -1,6 +1,6 @@
 import re
 from django.shortcuts import render,redirect
-from home.models import Album_Image, Contact, Enquiry, Product, Service, User,Feedback,About,Blog,Album
+from home.models import Album_Image, Contact, Enquiry, Group_Of_Companies, Product, Service, User,Feedback,About,Blog,Album
 from home.forms import Edit_Blog
 from django.contrib import messages
 import os
@@ -472,6 +472,13 @@ def remove_service(request,uid,sid):
 
 def add_logo(request,uid):
     user = User.objects.get(id=uid)
+    if request.method == 'POST' :
+        image = request.FILES['image']
+
+        data = Group_Of_Companies(Logo=image)
+        data.save()
+        return redirect('.')
+
     context = {
         'user' : user,
     }
