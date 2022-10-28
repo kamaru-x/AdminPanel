@@ -13,6 +13,13 @@
               <li class="breadcrumb-item active" aria-current="page">Edit Banner</li>
             </ol>
           </nav>
+          {% if messages %}
+              {% for message in messages %}
+                <div class="alert alert-success" role="alert">
+                    {{message}} 
+                </div>
+              {% endfor %}
+          {% endif %}
         </div>
       </div>
     </div>

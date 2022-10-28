@@ -13,10 +13,13 @@
               <li class="breadcrumb-item active" aria-current="page">Manage Testimonial</li>
             </ol>
           </nav>
-        </div>
-        <div class="col-lg-6 col-5 text-right">
-          <a href="#" class="btn btn-sm btn-neutral">New</a>
-          <a href="#" class="btn btn-sm btn-neutral">Filters</a>
+          {% if messages %}
+              {% for message in messages %}
+                <div class="alert alert-success" role="alert">
+                    {{message}} 
+                </div>
+              {% endfor %}
+          {% endif %}
         </div>
       </div>
     </div>

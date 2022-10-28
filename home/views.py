@@ -75,6 +75,7 @@ def about_us(request,uid):
         about.SMDescription = request.POST.get('smdescription')
         about.SMKeywords = request.POST.get('smkeywords')
         about.save()
+        messages.success(request,'about page edited')
         return redirect('.')
     
     context = {
@@ -99,6 +100,7 @@ def blog(request,uid):
         Data = Blog(Title=title,Description=description,Image=image,Url=url,SMTitle=smtitle,
         SMDescription=smdescription,SMKeywords=smkeywords)
         Data.save()
+        messages.success(request,'new blog added successfully.....!')
         return redirect('.')
     return render(request,'blog.html',{'user':user})
 
@@ -126,6 +128,7 @@ def edit_blog(request,uid,bid):
         blog.SMDescription = request.POST.get('smdescription')
         blog.SMKeywords = request.POST.get('smkeywords')
         blog.save()
+        messages.success(request,'blog edited successfull...!')
         return redirect('.')
     context = {
         'user' : user,
@@ -159,6 +162,7 @@ def create_album(request,uid):
         Data = Album(Title=title,Thumbnail=image,Url=url,SMTitle=smtitle,
         SMDescription=smdescription,SMKeywords=smkeywords)
         Data.save()
+        messages.success(request,'album created successfully...!')
         return redirect('.')
     context = {
         'user' : user
@@ -190,6 +194,7 @@ def upload_image(request,uid):
         for img in image: 
             Data = Album_Image(Album_Name=album,Image=img,)
             Data.save()
+        messages.success(request,'image uploaded successfully ...!')
         return redirect('.')
     context = {
         'user' : user,
@@ -249,6 +254,7 @@ def contact_us(request,uid):
         contact.SMDescription = request.POST.get('smdescription')
         contact.SMKeywords = request.POST.get('smkeywords')
         contact.save()
+        messages.success(request,'contact details edited successfully ...!')
         return redirect('.')
     return render(request,'contact_us.html',{'user':user,'data':contact})
 
@@ -276,6 +282,7 @@ def products(request,uid):
         Actual_Price=actual_price,Offer_Price=offer_price,Show_Whatsapp=whatsapp,Whatsapp_Number=number,
         Show_Enquiry=show_enquiry,SMTitle=smtitle,SMDescription=smdescription,SMKeywords=smkeywords)
         Data.save()
+        messages.success(request,'added new product succesfully')
         return redirect('.')
 
     return render(request,'products.html',{'user':user})
@@ -313,6 +320,7 @@ def edit_product(request,uid,pid):
         product.SMDescription = request.POST.get('smdescription')
         product.SMKeywords = request.POST.get('smkeywords')
         product.save()
+        messages.success(request,'product details edited successfully')
         return redirect('.')
     context = {
         'user' : user,
@@ -343,6 +351,7 @@ def services(request,uid):
         Actual_Price=actual_price,Offer_Price=offer_price,Show_Whatsapp=whatsapp,Whatsapp_Number=number,
         Show_Enquiry=show_enquiry,SMTitle=smtitle,SMDescription=smdescription,SMKeywords=smkeywords)
         Data.save()
+        messages.success(request,'new services added successfully')
         return redirect('.')
     return render(request,'services.html',{'user':user})
 
@@ -379,6 +388,7 @@ def edit_service(request,uid,sid):
         service.SMDescription = request.POST.get('smdescription')
         service.SMKeywords = request.POST.get('smkeywords')
         service.save()
+        messages.success(request,'service details edited successfully ...!')
         return redirect('.')
     context = {
         'user' : user,
@@ -425,6 +435,7 @@ def manage_menu(request,uid):
         manage.Enquiry_Page = request.POST.get('enquiry')
         manage.Group_Company = request.POST.get('gop')
         manage.save()
+        messages.success(request,'manage manu edited successfully ...!')
         return redirect('.')
     context = {
         'user' : user,
@@ -446,6 +457,7 @@ def quick_links(request,uid):
         quick.Service_Page = request.POST.get('services')
         quick.Testimonials = request.POST.get('testimonials')
         quick.save()
+        messages.success(request,'quick links edited successfully ...!')
         return redirect('.')
     context = {
         'user' : user,
@@ -459,6 +471,7 @@ def remove(request,uid,aid):
     album = Album.objects.get(id=aid)
     user = User.objects.get(id=uid)
     album.delete()
+    messages.success(request,'album deleted successfully')
     return redirect('/manage_album/%s' %user.id)
 
 ########################################################################
@@ -467,8 +480,8 @@ def remove_image(request,uid,aid,iid):
     user = User.objects.get(id=uid)
     album = Album.objects.get(id=aid) 
     image = Album_Image.objects.get(id=iid)
-    
     image.delete()
+    messages.success(request,'image deleted successfully')
     return redirect('/manage_album/%s' %user.id)
 
 ########################################################################
@@ -478,6 +491,7 @@ def remove_blog(request,uid,bid):
     blog = Blog.objects.get(id=bid)
 
     blog.delete()
+    messages.error(request,'blog deleted')
     return redirect('/manage_blog/%s' %user.id)
 
 ########################################################################
@@ -487,6 +501,7 @@ def remove_product(request,uid,pid):
     product = Product.objects.get(id=pid)
 
     product.delete()
+    messages.success(request,'product deleted successfully')
     return redirect('/manage_product/%s' %user.id)
 
 ########################################################################
@@ -496,6 +511,7 @@ def remove_service(request,uid,sid):
     service = Service.objects.get(id=sid)
 
     service.delete()
+    messages.success(request,'service deleted')
     return redirect('/manage_service/%s' %user.id)
 
 ########################################################################
@@ -505,6 +521,7 @@ def remove_logo(request,uid,lid):
     logo = Group_Of_Companies.objects.get(id=lid)
 
     logo.delete()
+    messages.success(request,'logo deleted')
     return redirect('/manage_logo/%s' %user.id)
 
 ########################################################################
@@ -516,6 +533,7 @@ def add_logo(request,uid):
 
         data = Group_Of_Companies(Logo=image)
         data.save()
+        messages.success(request,'logo added')
         return redirect('.')
 
     context = {
@@ -547,6 +565,7 @@ def add_testimonial(request,uid):
 
         data = Testimonial(Tes_Name=name,Designation=designation,Company_Name=cname,Testimonial=testimonial,Tes_Image=image)
         data.save()
+        messages.success(request,'testimonial added')
         return redirect('.')
     context = {
         'user' : user,
@@ -571,6 +590,7 @@ def remove_testimonial(request,uid,tid):
     testimonial = Testimonial.objects.get(id=tid)
 
     testimonial.delete()
+    messages.success(request,'testimonial deleted')
     return redirect('/manage_testimonial/%s' %user.id)
 
 ########################################################################
@@ -588,6 +608,7 @@ def edit_testimonial(request,uid,tid):
         testimonial.Company_Name = request.POST.get('cname')
         testimonial.Testimonial = request.POST.get('testimonial')
         testimonial.save()
+        messages.success(request,'testimonial edited')
         return redirect('.')
     context = {
         'user' : user,
@@ -608,6 +629,7 @@ def banner(request,uid):
 
         data = Banners (Caption=caption,Sub_Caption=scaption,Button_Label=label,Link=link,Banner_Image=image)
         data.save()
+        messages.success(request,'banner added')
         return redirect('.')
 
     context = {
@@ -641,6 +663,7 @@ def edit_banner(request,uid,bid):
         banner.Button_Label = request.POST.get('label')
         banner.Link = request.POST.get('link')
         banner.save()
+        messages.success(request,'banner edited')
         return redirect('.')
     context = {
         'user' : user,
@@ -655,6 +678,7 @@ def remove_banner(request,uid,bid):
     banner = Banners.objects.get(id=bid)
 
     banner.delete()
+    messages.success(request,'banner deleted')
     return redirect('/manage_banner/%s' %user.id)
 
 ########################################################################
