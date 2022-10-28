@@ -1,6 +1,6 @@
 import re
 from django.shortcuts import render,redirect
-from home.models import Album_Image, Banners, Contact, Enquiry, Group_Of_Companies, Product, Quick_Links, Service, Testimonial, User,Feedback,About,Blog,Album
+from home.models import Album_Image, Banners, Contact, Enquiry, Group_Of_Companies, Manage_Menu, Product, Quick_Links, Service, Testimonial, User,Feedback,About,Blog,Album
 from home.forms import Edit_Blog
 from django.contrib import messages
 import os
@@ -412,7 +412,25 @@ def enquiry(request,uid):
 
 def manage_menu(request,uid):
     user = User.objects.get(id=uid)
-    return render(request,'manage_menu.html',{'user':user})
+    manage = Manage_Menu.objects.last()
+    if request.method == 'POST':
+        manage.About_Page = request.POST.get('about')
+        manage.Blog_Page = request.POST.get('blog')
+        manage.Image_Gallery = request.POST.get('gallery')
+        manage.Contact_Page = request.POST.get('contact')
+        manage.Products_Page = request.POST.get('products')
+        manage.Service_Page = request.POST.get('services')
+        manage.Testimonials = request.POST.get('testimonials')
+        manage.Feedback_Page = request.POST.get('feedback')
+        manage.Enquiry_Page = request.POST.get('enquiry')
+        manage.Group_Company = request.POST.get('gop')
+        manage.save()
+        return redirect('.')
+    context = {
+        'user' : user,
+        'manage' : manage,
+    }
+    return render(request,'manage_menu.html',context)
 
 ########################################################################
 
