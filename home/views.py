@@ -262,11 +262,14 @@ def contact_us(request,uid):
 
 def products(request,uid):
     user = User.objects.get(id=uid)
+    product = Product.objects.last()
+
+    refer_id = ('PR-00%s' %str(product.id+1))
+
 
     if request.method == 'POST':
         title = request.POST.get('title')
         image = request.FILES['image']
-        refer = request.POST.get('rfr')
         description = request.POST.get('description')
         show_price = request.POST.get('check1')
         whatsapp = request.POST.get('check2')
@@ -278,14 +281,19 @@ def products(request,uid):
         smkeywords = request.POST.get('smkeywords')
         smdescription = request.POST.get('smdescription')
 
-        Data = Product(Title=title,Image=image,Refer_number=refer,Description=description,Show_Price=show_price,
+        Data = Product(Title=title,Image=image,Refer_number=refer_id,Description=description,Show_Price=show_price,
         Actual_Price=actual_price,Offer_Price=offer_price,Show_Whatsapp=whatsapp,Whatsapp_Number=number,
         Show_Enquiry=show_enquiry,SMTitle=smtitle,SMDescription=smdescription,SMKeywords=smkeywords)
         Data.save()
         messages.success(request,'added new product succesfully')
         return redirect('.')
 
-    return render(request,'products.html',{'user':user})
+    context = {
+        'user' : user,
+        'refer_id' : refer_id
+    }
+
+    return render(request,'products.html',context)
 
 ########################################################################
 
@@ -332,10 +340,12 @@ def edit_product(request,uid,pid):
 
 def services(request,uid):
     user = User.objects.get(id=uid)
+    service = Service.objects.last()
+
+    refer_id = ('SE-00%s' %str(service.id+1))
     if request.method == 'POST':
         title = request.POST.get('title')
         image = request.FILES['image']
-        refer = request.POST.get('rfr')
         description = request.POST.get('description')
         show_price = request.POST.get('check1')
         whatsapp = request.POST.get('check2')
@@ -347,13 +357,18 @@ def services(request,uid):
         smkeywords = request.POST.get('smkeywords')
         smdescription = request.POST.get('smdescription')
 
-        Data = Service(Title=title,Image=image,Refer_number=refer,Description=description,Show_Price=show_price,
+        Data = Service(Title=title,Image=image,Refer_number=refer_id,Description=description,Show_Price=show_price,
         Actual_Price=actual_price,Offer_Price=offer_price,Show_Whatsapp=whatsapp,Whatsapp_Number=number,
         Show_Enquiry=show_enquiry,SMTitle=smtitle,SMDescription=smdescription,SMKeywords=smkeywords)
         Data.save()
         messages.success(request,'new services added successfully')
         return redirect('.')
-    return render(request,'services.html',{'user':user})
+    
+    context = {
+        'user' : user,
+        'refer_id' : refer_id
+    }
+    return render(request,'services.html',context)
 
 ########################################################################
 
