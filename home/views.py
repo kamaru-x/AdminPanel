@@ -702,6 +702,5 @@ def remove_banner(request,uid,bid):
 def remove_img(request,uid,bid):
     user = User.objects.get(id=uid)
     blog = Blog.objects.get(id=bid)
-    blog.Image(null=True)
     messages.success(request,'image removed')
     return redirect('.')
