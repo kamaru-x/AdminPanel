@@ -30,26 +30,26 @@
               <div class="row mt-3">
                     <div class="form-outline mb-4 col-md-6">
                         <label class="form-label">Name</label>
-                        <input required="True" type="text" name="title" class="form-control" />
+                        <input required="True" type="text" value="{{tes.Tes_Name}}" name="name" class="form-control" />
                     </div>
                     <div class="form-outline mb-4 col-md-6">
                         <label class="form-label">Designation</label>
-                        <input required="True" type="text" name="rfr" class="form-control" />
+                        <input required="True" type="text" value="{{tes.Designation}}" name="designation" class="form-control" />
                     </div>
               </div>
               <div class="row border-info">
                 <div class="form-outline mb-4 col-md-6">
                     <label class="form-label">Company Name</label>
-                    <input type="text" name="actual_price" class="form-control" />
+                    <input type="text" name="cname" value="{{tes.Company_Name}}" class="form-control" />
                 </div>
                 <div class="form-outline mb-4 col-md-6">
                     <label class="form-label">Image</label>
-                    <input type="file" name="offer_price" class="form-control" />
+                    <input type="file" name="image" class="form-control" />
                 </div> 
               </div>              
               <div class="form-outline mb-4">
                 <label class="form-label">Testimonial</label>
-                <textarea required="True" name="smdescription" id="" cols="30" rows="5" class="form-control"></textarea>
+                <textarea required="True" name="testimonial" id="" cols="30" rows="5" class="form-control">{{tes.Testimonial}}</textarea>
               </div>
               
               <div class="row mb-4">

@@ -1,6 +1,6 @@
 import re
 from django.shortcuts import render,redirect
-from home.models import Album_Image, Contact, Enquiry, Group_Of_Companies, Product, Service, User,Feedback,About,Blog,Album
+from home.models import Album_Image, Contact, Enquiry, Group_Of_Companies, Product, Service, Testimonial, User,Feedback,About,Blog,Album
 from home.forms import Edit_Blog
 from django.contrib import messages
 import os
@@ -508,6 +508,16 @@ def manage_logo(request,uid):
 
 def add_testimonial(request,uid):
     user = User.objects.get(id=uid)
+    if request.method == 'POST' :
+        name = request.POST.get('name')
+        designation = request.POST.get('designation')
+        cname = request.POST.get('cname')
+        image = request.FILES['image']
+        testimonial = request.POST.get('testimonial')
+
+        data = Testimonial(Tes_Name=name,Designation=designation,Company_Name=cname,Testimonial=testimonial,Tes_Image=image)
+        data.save()
+        return redirect('.')
     context = {
         'user' : user,
     }
@@ -517,19 +527,43 @@ def add_testimonial(request,uid):
 
 def manage_testimonial(request,uid):
     user = User.objects.get(id=uid)
+    testimonials = Testimonial.objects.all()
     context = {
         'user' : user,
+        'testimonials' : testimonials
     }
     return render(request,'manage_testimonial.html',context)
 
 ########################################################################
 
-def edit_testimonial(request,uid):
+def remove_testimonial(request,uid,tid):
     user = User.objects.get(id=uid)
+    testimonial = Testimonial.objects.get(id=tid)
+
+    testimonial.delete()
+    return redirect('/manage_testimonial/%s' %user.id)
+
+########################################################################
+
+def edit_testimonial(request,uid,tid):
+    user = User.objects.get(id=uid)
+    testimonial = Testimonial.objects.get(id=tid)
+    if request.method == 'POST':
+        if len(request.FILES) != 0:
+            if len(testimonial.Image) > 0:
+                os.remove(testimonial.Image.path)
+            testimonial.Tes_Image = request.FILES['image']
+        testimonial.Tes_Name = request.POST.get('name')
+        testimonial.Designation = request.POST.get('designation')
+        testimonial.Company_Name = request.POST.get('cname')
+        testimonial.Testimonial = request.POST.get('testimonial')
+        testimonial.save()
+        return redirect('.')
     context = {
         'user' : user,
+        'tes' : testimonial,
     }
-    return render(request,'manage_testimonial.html',context)
+    return render(request,'edit_testimonial.html',context)
 
 ########################################################################
 
