@@ -37,6 +37,7 @@ urlpatterns = [
     path('edit_product/<int:uid>/<int:pid>/',views.edit_product,name='edit_product'),
     path('edit_service/<int:uid>/<int:sid>/',views.edit_service,name='edit_service'),
     path('edit_testimonial/<int:uid>/<int:tid>/',views.edit_testimonial,name='edit_testimonial'),
+    path('edit_banner/<int:uid>/<int:bid>/',views.edit_banner,name='edit_banner'),
 
     path('remove/<int:uid>/<int:aid>/',views.remove,name='remove'),
     path('remove_image/<int:uid>/<int:aid>/<int:iid>/',views.remove_image,name='remove_image'),
@@ -44,5 +45,6 @@ urlpatterns = [
     path('remove_product/<int:uid>/<int:pid>/',views.remove_product,name='remove_product'),
     path('remove_service/<int:uid>/<int:sid>/',views.remove_service,name='remove_service'),
     path('remove_logo/<int:uid>/<int:lid>/',views.remove_logo,name='remove_logo'),
-    path('remove_testimonial/<int:uid>/<int:tid>/',views.remove_testimonial,name='remove_testimonial')
+    path('remove_testimonial/<int:uid>/<int:tid>/',views.remove_testimonial,name='remove_testimonial'),
+    path('remove_banner/<int:uid>/<int:bid>/',views.remove_banner,name='remove_banner'),
 ]
