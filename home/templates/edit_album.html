@@ -34,11 +34,15 @@
             <div class="card">
                 <img src="{{image.Image.url}}" class="card-img-top" alt="Fissure in Sandstone"/>
                 <div class="card-body text-center">
-                  <h5 class="card-title">{{image.Image.url}}</h5>
                   <a href="{% url 'remove_image' user.id album.id image.id %}" class="btn btn-danger">Delete</a>
                 </div>
             </div>
         </div>
         {% endfor %}
+    </div>
+    <div class="row">
+      <div class="col-md-12 text-center">
+          <a href="{% url 'manage_album' user.id %}"><button class="btn btn-primary btn-lg">SAVE</button></a>
+      </div>
     </div>
 {% endblock content %}

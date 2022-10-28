@@ -30,17 +30,17 @@
     <main class="mx-5 mt-5">
         <h1 class="text-center">Quick Links</h1>
         <form action="" method="post" enctype="multipart/form-data">
-        <div class="row mt-5 mb-5">
+        <div class="row mt-5 mb-5 justify-content-around">
           {% csrf_token %}
 
 
             {% if quick.About_Page %}
-              <div class="col-md-3 text-center">
+              <div class="col-md-2 text-center">
                 <label class="form-label">About Us</label>
                 <input type="checkbox" id="checkbox" checked value="True" name="about">
               </div>
             {% else %}
-            <div class="col-md-3 text-center">
+            <div class="col-md-2 text-center">
               <label class="form-label">About Us</label>
               <input type="checkbox" id="checkbox" value="True" name="about">
             </div>
@@ -48,12 +48,12 @@
 
 
             {% if quick.Blog_Page %}
-              <div class="col-md-3 text-center">
+              <div class="col-md-2 text-center">
                 <label class="form-label">Blog</label>
                 <input type="checkbox" id="checkbox" checked value="True" name="blog">
               </div>
             {% else %}
-              <div class="col-md-3 text-center">
+              <div class="col-md-2 text-center">
                 <label class="form-label">Blog</label>
                 <input type="checkbox" id="checkbox" value="True" name="blog">
               </div>
@@ -61,12 +61,12 @@
 
 
             {% if quick.Image_Gallery %}
-              <div class="col-md-3 text-center">
+              <div class="col-md-2 text-center">
                 <label class="form-label">Image Gallery</label>
                 <input type="checkbox" id="checkbox" checked value="True" name="gallery">
               </div>
             {% else %}
-              <div class="col-md-3 text-center">
+              <div class="col-md-2 text-center">
                 <label class="form-label">Image Gallery</label>
                 <input type="checkbox" id="checkbox" value="True" name="gallery">
               </div>
@@ -74,27 +74,43 @@
 
 
             {% if quick.Contact_Page %}
-              <div class="col-md-3 text-center">
+              <div class="col-md-2 text-center">
                 <label class="form-label">Contact Us</label>
                 <input type="checkbox" id="checkbox" checked value="True" name="contact">
               </div>
             {% else %}
-              <div class="col-md-3 text-center">
+              <div class="col-md-2 text-center">
                 <label class="form-label">Contact Us</label>
                 <input type="checkbox" id="checkbox" value="True" name="contact">
               </div>
             {% endif %}
+
+
+            {% if quick.Testimonials %}
+              <div class="col-md-2 text-center">
+                <label class="form-label">Testimonials</label>
+                <input type="checkbox" id="checkbox" checked value="True" name="testimonials">
+              </div>
+            {% else %}
+              <div class="col-md-2 text-center">
+                <label class="form-label">Testimonials</label>
+                <input type="checkbox" id="checkbox" value="True" name="testimonials">
+              </div>
+            {% endif %}
           </div>
-          <div class="row mt-5 mb-5 justify-content-around">
+
+          <hr>
+          
+          <div class="row mb-5 justify-content-around">
 
 
             {% if quick.Products_Page %}
-              <div class="col-md-3 text-center">
+              <div class="col-md-6 text-center">
                 <label class="form-label">Products</label>
                 <input type="checkbox" id="checkbox" checked value="True" name="products">
               </div>
             {% else %}
-              <div class="col-md-3 text-center">
+              <div class="col-md-6 text-center">
                 <label class="form-label">Products</label>
                 <input type="checkbox" id="checkbox" value="True" name="products">
               </div>
@@ -102,36 +118,25 @@
 
 
             {% if quick.Service_Page %}
-              <div class="col-md-3 text-center">
+              <div class="col-md-6 text-center">
                 <label class="form-label">Services</label>
                 <input type="checkbox" id="checkbox" checked value="True" name="services">
               </div>
             {% else %}
-              <div class="col-md-3 text-center">
+              <div class="col-md-6 text-center">
                 <label class="form-label">Services</label>
                 <input type="checkbox" id="checkbox" value="True" name="services">
               </div>
             {% endif %}
 
 
-            {% if quick.Testimonials %}
-              <div class="col-md-3 text-center">
-                <label class="form-label">Testimonials</label>
-                <input type="checkbox" id="checkbox" checked value="True" name="testimonials">
-              </div>
-            {% else %}
-              <div class="col-md-3 text-center">
-                <label class="form-label">Testimonials</label>
-                <input type="checkbox" id="checkbox" value="True" name="testimonials">
-              </div>
-            {% endif %}
           </div>
           <div class="row mb-4">
-            <div class="col-md-3"></div>
+            <div class="col-md-2"></div>
             <div class="col d-flex justify-content-center">
               <button type="submit" class="btn btn-primary btn-block">submit</button>
             </div>
-            <div class="col-md-3"></div>
+            <div class="col-md-2"></div>
           </div>
       </form>
     </main>

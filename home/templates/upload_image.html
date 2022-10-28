@@ -36,15 +36,16 @@
               {% csrf_token %}
               <div class="row">
                     <div class="form-outline mb-4 col-md-6">
-                        <label class="form-label">Album Title</label>
+                        <label class="form-label">Album</label>
                         <select required="True" name="select" id="" class="form-control">
+                                <option value="">select album</option>
                             {% for album in albums %}
                                 <option value="{{album.id}}">{{album.Title}}</option>
                             {% endfor %}
                         </select>
                     </div>
                     <div class="form-outline mb-4 col-md-6">
-                        <label class="form-label">Album Thumbnail</label>
+                        <label class="form-label">Image</label>
                         <input required="True" multiple type="file" name="image" class="form-control" />
                     </div>
               </div>

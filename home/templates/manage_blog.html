@@ -45,14 +45,24 @@
         {% for blog in blogs %}
           <tr>
             <td>1</td> 
-            <td>{{blog.Title}}</td>  
-            <td scope="row" class="align-items-center d-flex justify-content-center">
-              <div class="media align-items-center">
-                <a href="#" class="avatar rounded-circle mr-3">
-                  <img width="fill" height="fill" alt="" src="{{blog.Image.url}}">
-                </a>
-              </div>
-            </td>
+            <td>{{blog.Title}}</td>
+            {% if blog.Image %}  
+              <td scope="row" class="align-items-center d-flex justify-content-center">
+                <div class="media align-items-center">
+                  <a href="#" class="avatar rounded-circle mr-3">
+                    <img width="fill" height="fill" alt="" src="{{blog.Image.url}}">
+                  </a>
+                </div>
+              </td>
+            {% else %}
+              <td scope="row" class="align-items-center d-flex justify-content-center">
+                <div class="media align-items-center">
+                  <a href="#" class="avatar rounded-circle mr-3">
+                    <img width="fill" height="fill" alt="" src="https://static.thenounproject.com/png/2222628-200.png">
+                  </a>
+                </div>
+              </td>
+            {% endif %}
             <td>
               <a href="{% url 'edit_blog' user.id blog.id %}"><button class="btn btn-primary">Edit</button></a>
             </td>

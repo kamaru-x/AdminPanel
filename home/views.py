@@ -120,7 +120,7 @@ def edit_blog(request,uid,bid):
         if len(request.FILES) != 0:
             if len(blog.Image) > 0:
                 os.remove(blog.Image.path)
-            blog.Image = request.FILES['image']
+        blog.Image = request.FILES['image']
         blog.Title = request.POST.get('title')
         blog.Description = request.POST.get('description')
         blog.Url = request.POST.get('url')
@@ -482,7 +482,7 @@ def remove_image(request,uid,aid,iid):
     image = Album_Image.objects.get(id=iid)
     image.delete()
     messages.success(request,'image deleted successfully')
-    return redirect('/manage_album/%s' %user.id)
+    return redirect('.')
 
 ########################################################################
 
@@ -529,10 +529,11 @@ def remove_logo(request,uid,lid):
 def add_logo(request,uid):
     user = User.objects.get(id=uid)
     if request.method == 'POST' :
-        image = request.FILES['image']
+        image = request.FILES.getlist('image')
 
-        data = Group_Of_Companies(Logo=image)
-        data.save()
+        for img in image :
+            data = Group_Of_Companies(Logo=img)
+            data.save()
         messages.success(request,'logo added')
         return redirect('.')
 
@@ -682,3 +683,10 @@ def remove_banner(request,uid,bid):
     return redirect('/manage_banner/%s' %user.id)
 
 ########################################################################
+
+def remove_img(request,uid,bid):
+    user = User.objects.get(id=uid)
+    blog = Blog.objects.get(id=bid)
+    blog.Image(null=True)
+    messages.success(request,'image removed')
+    return redirect('.')

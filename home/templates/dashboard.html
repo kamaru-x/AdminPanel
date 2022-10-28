@@ -132,7 +132,7 @@
   
   <hr>
   <div class="text-center mb-5">
-    <button type="submit" class="btn-primary text-center btn btn-pill">View More</button>
+    <a href="{% url 'feedback' user.id %}"><button type="submit" class="btn-primary text-center btn btn-pill">View More</button></a>
   </div>
   <!-- Page content ends -->
 {% endblock content %}
