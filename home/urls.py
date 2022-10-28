@@ -43,4 +43,5 @@ urlpatterns = [
     path('remove_blog/<int:uid>/<int:bid>/',views.remove_blog,name='remove_blog'),
     path('remove_product/<int:uid>/<int:pid>/',views.remove_product,name='remove_product'),
     path('remove_service/<int:uid>/<int:sid>/',views.remove_service,name='remove_service'),
+    path('remove_logo/<int:uid>/<int:lid>/',views.remove_logo,name='remove_logo'),
 ]

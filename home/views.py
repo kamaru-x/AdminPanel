@@ -470,6 +470,15 @@ def remove_service(request,uid,sid):
 
 ########################################################################
 
+def remove_logo(request,uid,lid):
+    user = User.objects.get(id=uid)
+    logo = Group_Of_Companies.objects.get(id=lid)
+
+    logo.delete()
+    return redirect('/manage_logo/%s' %user.id)
+
+########################################################################
+
 def add_logo(request,uid):
     user = User.objects.get(id=uid)
     if request.method == 'POST' :
@@ -488,8 +497,10 @@ def add_logo(request,uid):
 
 def manage_logo(request,uid):
     user = User.objects.get(id=uid)
+    logos = Group_Of_Companies.objects.all()
     context = {
         'user' : user,
+        'logos' : logos,
     }
     return render(request,'manage_logo.html',context)
 
