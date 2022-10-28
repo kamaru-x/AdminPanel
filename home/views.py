@@ -1,6 +1,6 @@
 import re
 from django.shortcuts import render,redirect
-from home.models import Album_Image, Banners, Contact, Enquiry, Group_Of_Companies, Product, Service, Testimonial, User,Feedback,About,Blog,Album
+from home.models import Album_Image, Banners, Contact, Enquiry, Group_Of_Companies, Product, Quick_Links, Service, Testimonial, User,Feedback,About,Blog,Album
 from home.forms import Edit_Blog
 from django.contrib import messages
 import os
@@ -418,8 +418,20 @@ def manage_menu(request,uid):
 
 def quick_links(request,uid):
     user = User.objects.get(id=uid)
+    quick = Quick_Links.objects.last()
+    if request.method == 'POST':
+        quick.About_Page = request.POST.get('about')
+        quick.Blog_Page = request.POST.get('blog')
+        quick.Image_Gallery = request.POST.get('gallery')
+        quick.Contact_Page = request.POST.get('contact')
+        quick.Products_Page = request.POST.get('products')
+        quick.Service_Page = request.POST.get('services')
+        quick.Testimonials = request.POST.get('testimonials')
+        quick.save()
+        return redirect('.')
     context = {
-        'user' : user
+        'user' : user,
+        'quick' : quick,
     }
     return render(request,'quick_links.html',context)
 
