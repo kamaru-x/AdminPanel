@@ -34,47 +34,52 @@
             </div>
             <form method="post" enctype="multipart/form-data">
               {% csrf_token %}
+              {{form.media}}
               <div class="row">
                     <div class="form-outline mb-4 col-md-6">
                         <label class="form-label">Title</label>
-                        <input required="True" value="{{data.Title}}" type="text" name="title" class="form-control" />
+                        {{form.Title}}
                     </div>
                     <div class="form-outline mb-4 col-md-4">
                         <label class="form-label">Image</label>
-                        <input type="file" name="image" class="form-control" />
+                        {{form.Image}}
                     </div>
-                    <div class="media align-items-center col-md-1">
-                      <a href="#" class="">
-                        <img width="65px" height="65px" alt="" src="{{data.Image.url}}">
-                      </a>
-                    </div>
-                    <div class="media align-items-center col-md-1">
-                      <a href=""><span class="badge badge-warning" style="margin-top:-42px; margin-left:-38px; position: absolute;">X</span></a>
-                    </div>
+                    {% if about.Image %}
+                      <div class="media align-items-center col-md-1">
+                        <a href="" class="">
+                          <img width="65px" height="65px" alt="" src="{{about.Image.url}}">
+                        </a>
+                      </div>
+                      <div class="media align-items-center col-md-1">
+                        <a href="{% url 'remove_abt_img' user.id about.id %}"><span class="badge badge-warning" style="margin-top:-42px; margin-left:-38px; position: absolute;">X</span></a>
+                      </div>
+                    {% endif %}
               </div>
-              <div class="form-outline mb-4">
+              <div class="form-outline mb-4 text-center">
                 <label class="form-label">Description</label>
-                <textarea required="True" name="description" id="" cols="30" rows="10" class="form-control">{{data.Description}}</textarea>
+                <div class="text-center">
+                    {{form.Description}}
+                </div>
               </div>
               <div class="row">
                 <div class="form-outline mb-4 col-md-4">
                     <label class="form-label">Url</label>
-                    <input required="True" type="text" name="url" value="{{data.Url}}" class="form-control" />
+                    {{form.Url}}
                 </div>
                 <div class="form-outline mb-4 col-md-4">
                     <label class="form-label">SEO Meta Title</label>
-                    <input required="True" value="{{data.SMTitle}}" type="text" name="smtitle" class="form-control" />
+                    {{form.SMTitle}}
                 </div>
                 <div class="form-outline mb-4 col-md-4">
                     <label class="form-label">SEO Meta Keywords</label>
-                    <input required="True" value="{{data.SMKeywords}}" type="text" name="smkeywords" class="form-control" />
+                    {{form.SMKeywords}}
                 </div>
               </div>
               
               
               <div class="form-outline mb-4">
                 <label class="form-label">SEO Meta Description</label>
-                <textarea required="True" name="smdescription" id="" cols="30" rows="5" class="form-control">{{data.SMDescription}}</textarea>
+                {{form.SMDescription}}
               </div>
               
               <div class="row mb-4">

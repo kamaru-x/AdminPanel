@@ -69,24 +69,17 @@ def dashboard(request,uid):
 def about_us(request,uid):
     user = User.objects.get(id=uid)
     about = About.objects.last()
-    if request.method == 'POST':
-        if len(request.FILES) != 0:
-            if len(about.Image) > 0:
-                os.remove(about.Image.path)
-            about.Image = request.FILES['image']
-        about.Title = request.POST.get('title')
-        about.Description = request.POST.get('description')
-        about.Url = request.POST.get('url')
-        about.SMTitle = request.POST.get('smtitle')
-        about.SMDescription = request.POST.get('smdescription')
-        about.SMKeywords = request.POST.get('smkeywords')
-        about.save()
-        messages.success(request,'about page edited')
-        return redirect('.')
-    
+    form = AboutForm
+    if request.method == "POST":
+        form = AboutForm(request.POST , request.FILES , instance=about)
+        if form.is_valid():
+            form.save()
+            return redirect('.')
+    form = AboutForm(instance=about)
     context = {
-        'user':user,
-        'data':about
+        'user' : user,
+        'about' : about,
+        'form' : form
     }
     return render(request,'about_us.html',context)
 
@@ -244,7 +237,7 @@ def contact_us(request,uid):
             if len(contact.Image) > 0:
                 os.remove(contact.Image.path)
             contact.Image = request.FILES['image']
-        contact.Company_Name = request.POST.get('name')
+        contact.Company_Name = request.POST.get('title')
         contact.Mobile = request.POST.get('mobile')
         contact.Telephone = request.POST.get('telephone')
         contact.Email = request.POST.get('email')
@@ -715,3 +708,14 @@ def remove_img(request,uid,bid):
     blog.save()
 
     return redirect('.')
+
+########################################################################
+
+def remove_abt_img(request,uid,aid):
+    user = User.objects.get(id=uid)
+    about = About.objects.get(id=aid)
+
+    about.Image.delete(save=True)
+    about.save()
+
+    return redirect('/about_us/%s' %user.id)

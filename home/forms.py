@@ -15,10 +15,10 @@ class AboutForm(forms.ModelForm):
         fields = ('Title','Description','Image','Url','SMTitle','SMDescription','SMKeywords')
 
         widgets = {
-            'Title': TextInput(attrs={'class' : 'form-control'}),
+            'Title': TextInput(attrs={'class' : 'form-control','name' : 'title'}),
             'Image' : FileInput(attrs={'class' : 'form-control'}),
             'Description' : Textarea(attrs={'class':'form-control'}),
-            'Url' : TextInput(attrs={'class' : 'form-control'}),
+            'Url' : TextInput(attrs={'class' : 'form-control','name' : 'url'}),
             'SMTitle' : TextInput(attrs={'class' : 'form-control'}),
             'SMKeywords' : TextInput(attrs={'class' : 'form-control'}),
             'SMDescription' : Textarea(attrs={'class' : 'form-control'}),
