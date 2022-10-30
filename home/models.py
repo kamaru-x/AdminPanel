@@ -1,5 +1,5 @@
 from django.db import models
-
+from ckeditor.fields import RichTextField
 # Create your models here.
 
 ########################################################################
@@ -30,7 +30,8 @@ class Feedback(models.Model):
 
 class About(models.Model):
     Title = models.CharField(max_length=50)
-    Description = models.TextField()
+    #Description = models.TextField()
+    Description = RichTextField()
     Image = models.ImageField(blank=True,null=True,upload_to='about_us')
     Url = models.CharField(max_length=20000)
     SMTitle = models.CharField(max_length=2000)

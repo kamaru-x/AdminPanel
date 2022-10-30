@@ -38,6 +38,7 @@
                   <th scope="col">Mobile</th>
                   <th scop="col">Product</th>
                   <th scope="col">Date</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -49,6 +50,9 @@
                   <td>{{enquiry.Mobile_Number}}</td>
                   <td>{{enquiry.Product_Name.Title}}</td>
                   <td>{{enquiry.Date}}</td>
+                  <td>
+                    <a href=""><button class="btn btn-danger">Delete</button></a>
+                  </td>
                 </tr>
                 {% endfor %}
               </tbody>

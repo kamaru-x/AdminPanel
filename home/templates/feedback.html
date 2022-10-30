@@ -38,6 +38,7 @@
                   <th scope="col">Contact</th>
                   <th scope="col">Date</th>
                   <th scop="col">Message</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -53,10 +54,34 @@
                       {{feedback.Message}}
                     </div>
                   </td>
+                  <td>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">Delete</button>
+                  </td>
                 </tr>
                 {% endfor %}
               </tbody>
             </table>
           </div>
     </main>
+    <!-- Button trigger modal -->
+    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+      Launch demo modal
+    </button> -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+          </div>
+          <div class="modal-body">
+            do you want to delete the feedback
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-danger">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
 {% endblock content %}

@@ -1,7 +1,7 @@
 import re
 from django.shortcuts import render,redirect
 from home.models import Album_Image, Banners, Contact, Enquiry, Group_Of_Companies, Manage_Menu, Product, Quick_Links, Service, Testimonial, User,Feedback,About,Blog,Album
-from home.forms import Edit_Blog
+from home.forms import Edit_Blog,AboutForm
 from django.contrib import messages
 import os
 
@@ -120,7 +120,7 @@ def edit_blog(request,uid,bid):
         if len(request.FILES) != 0:
             if len(blog.Image) > 0:
                 os.remove(blog.Image.path)
-        blog.Image = request.FILES['image']
+            blog.Image = request.FILES['image']
         blog.Title = request.POST.get('title')
         blog.Description = request.POST.get('description')
         blog.Url = request.POST.get('url')
@@ -141,9 +141,11 @@ def edit_blog(request,uid,bid):
 def gallery(request,uid):
     user = User.objects.get(id=uid)
     albums = Album.objects.all()
+    form = AboutForm
     context = {
         'user' : user,
         'albums' : albums,
+        'form' : form
     }
     return render(request,'gallery.html',context)
 
@@ -702,5 +704,8 @@ def remove_banner(request,uid,bid):
 def remove_img(request,uid,bid):
     user = User.objects.get(id=uid)
     blog = Blog.objects.get(id=bid)
-    messages.success(request,'image removed')
+
+    blog.Image.delete(save=True)
+    blog.save()
+
     return redirect('.')
