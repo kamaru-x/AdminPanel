@@ -49,4 +49,5 @@ urlpatterns = [
     path('remove_banner/<int:uid>/<int:bid>/',views.remove_banner,name='remove_banner'),
     path('remove_img/<int:uid>/<int:bid>/',views.remove_img,name='remove_img'),
     path('remove_abt_img/<int:uid>/<int:aid>/',views.remove_abt_img,name='remove_abt_img'),
+    path('remove_pro_img/<int:uid>/<int:pid>/',views.remove_pro_img,name='remove_pro_img')
 ]

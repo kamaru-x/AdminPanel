@@ -116,10 +116,12 @@ def edit_blog(request,uid,bid):
     user = User.objects.get(id=uid)
     blog = Blog.objects.get(id=bid)
     if request.method == 'POST':
-        if len(request.FILES) != 0:
-            if len(blog.Image) > 0:
-                os.remove(blog.Image.path)
-            blog.Image = request.FILES['image']
+        # if len(request.FILES) != 0:
+        #     if len(blog.Image) > 0:
+        #         os.remove(blog.Image.path)
+        #         blog.Image = request.FILES['image']
+        #     else:
+        blog.Image = request.FILES['image']
         blog.Title = request.POST.get('title')
         blog.Description = request.POST.get('description')
         blog.Url = request.POST.get('url')
@@ -233,10 +235,10 @@ def contact_us(request,uid):
     user = User.objects.get(id=uid)
     contact = Contact.objects.last()
     if request.method == 'POST':
-        if len(request.FILES) != 0:
-            if len(contact.Image) > 0:
-                os.remove(contact.Image.path)
-            contact.Image = request.FILES['image']
+    #     if len(request.FILES) != 0:
+    #         if len(contact.Image) > 0:
+    #             os.remove(contact.Image.path)
+        contact.Image = request.FILES['image']
         contact.Company_Name = request.POST.get('title')
         contact.Mobile = request.POST.get('mobile')
         contact.Telephone = request.POST.get('telephone')
@@ -313,10 +315,10 @@ def edit_product(request,uid,pid):
     user = User.objects.get(id=uid)
     product = Product.objects.get(id=pid)
     if request.method == 'POST':
-        if len(request.FILES) != 0:
-            if len(product.Image) > 0:
-                os.remove(product.Image.path)
-            product.Image = request.FILES['image']
+        # if len(request.FILES) != 0:
+        #     if len(product.Image) > 0:
+        #         os.remove(product.Image.path)
+        product.Image = request.FILES['image']
         product.Title = request.POST.get('title')
         product.Description = request.POST.get('description')
         product.Show_Price = request.POST.get('check1')
@@ -388,10 +390,10 @@ def edit_service(request,uid,sid):
     user = User.objects.get(id=uid)
     service = Service.objects.get(id=sid)
     if request.method == 'POST':
-        if len(request.FILES) != 0:
-            if len(service.Image) > 0:
-                os.remove(service.Image.path)
-            service.Image = request.FILES['image']
+        # if len(request.FILES) != 0:
+        #     if len(service.Image) > 0:
+        #         os.remove(service.Image.path)
+        service.Image = request.FILES['image']
         service.Title = request.POST.get('title')
         service.Description = request.POST.get('description')
         service.Show_Price = request.POST.get('check1')
@@ -616,10 +618,10 @@ def edit_testimonial(request,uid,tid):
     user = User.objects.get(id=uid)
     testimonial = Testimonial.objects.get(id=tid)
     if request.method == 'POST':
-        if len(request.FILES) != 0:
-            if len(testimonial.Image) > 0:
-                os.remove(testimonial.Image.path)
-            testimonial.Tes_Image = request.FILES['image']
+        # if len(request.FILES) != 0:
+        #     if len(testimonial.Image) > 0:
+        #         os.remove(testimonial.Image.path)
+        testimonial.Tes_Image = request.FILES['image']
         testimonial.Tes_Name = request.POST.get('name')
         testimonial.Designation = request.POST.get('designation')
         testimonial.Company_Name = request.POST.get('cname')
@@ -671,10 +673,10 @@ def edit_banner(request,uid,bid):
     user = User.objects.get(id=uid)
     banner = Banners.objects.get(id=bid)
     if request.method == 'POST':
-        if len(request.FILES) != 0:
-            if len(banner.Banner_Image) > 0:
-                os.remove(banner.Banner_Image.path)
-            banner.Banner_Image = request.FILES['image']
+        # if len(request.FILES) != 0:
+        #     if len(banner.Banner_Image) > 0:
+        #         os.remove(banner.Banner_Image.path)
+        banner.Banner_Image = request.FILES['image']
         banner.Caption = request.POST.get('caption')
         banner.Sub_Caption = request.POST.get('scaption')
         banner.Button_Label = request.POST.get('label')
@@ -719,3 +721,14 @@ def remove_abt_img(request,uid,aid):
     about.save()
 
     return redirect('/about_us/%s' %user.id)
+
+########################################################################
+
+def remove_pro_img(request,uid,pid):
+    user = User.objects.get(id=uid)
+    product = Product.objects.get(id=pid)
+
+    product.Image.delete(save=True)
+    product.save()
+
+    return redirect('/edit_product/%s/%d' %user.id %product.id)

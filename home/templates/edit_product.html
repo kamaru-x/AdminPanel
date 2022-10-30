@@ -43,14 +43,16 @@
                         <label class="form-label">Product Image</label>
                         <input type="file" name="image" class="form-control" />
                     </div>
-                    <div class="media align-items-center col-md-1">
-                      <a href="#" class="">
-                        <img width="65px" height="65px" alt="" src="{{product.Image.url}}">
-                      </a>
-                    </div>
-                    <div class="media align-items-center col-md-1">
-                      <a href=""><span class="badge badge-warning" style="margin-top:-42px; margin-left:-38px; position: absolute;">X</span></a>
-                    </div>
+                    {% if product.Image %}
+                      <div class="media align-items-center col-md-1">
+                        <a href="#" class="">
+                          <img width="65px" height="65px" alt="" src="{{product.Image.url}}">
+                        </a>
+                      </div>
+                      <div class="media align-items-center col-md-1">
+                        <a href="{% url 'remove_pro_img' user.id product.id %}"><span class="badge badge-warning" style="margin-top:-42px; margin-left:-38px; position: absolute;">X</span></a>
+                      </div>
+                    {% endif %}
               </div>
 
               <div class="form-outline mb-4">
