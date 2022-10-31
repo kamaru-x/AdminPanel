@@ -68,3 +68,12 @@ def remove_banner(request,uid,bid):
     return redirect('/manage_banner/%s' %user.id)
 
 ########################################################################
+
+def remove_ban_img(request,uid,bid):
+    user = User.objects.get(id=uid)
+    banner = Banners.objects.get(id=bid)
+
+    banner.Banner_Image.delete(save=True)
+    banner.save()
+
+    return redirect('.')

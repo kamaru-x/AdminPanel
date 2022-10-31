@@ -47,13 +47,23 @@
             <tr>
             <td>1</td> 
             <td>{{service.Title}}</td>  
-            <td scope="row" class="align-items-center d-flex justify-content-center">
+            {% if service.Image %}  
+              <td scope="row" class="align-items-center d-flex justify-content-center">
                 <div class="media align-items-center">
-                <a href="#" class="avatar rounded-circle mr-3">
-                    <img alt="" style="height:-webkit-fill-available;" src="{{service.Image.url}}">
-                </a>
+                  <a href="#" class="avatar rounded-circle mr-3">
+                    <img style="height:-webkit-fill-available;" alt="" src="{{service.Image.url}}">
+                  </a>
                 </div>
-            </td>
+              </td>
+            {% else %}
+              <td scope="row" class="align-items-center d-flex justify-content-center">
+                <div class="media align-items-center">
+                  <a href="#" class="avatar rounded-circle mr-3">
+                    <img style="height:-webkit-fill-available;" alt="" src="https://static.thenounproject.com/png/2222628-200.png">
+                  </a>
+                </div>
+              </td>
+            {% endif %}
             <td>
                 <a href="{% url 'edit_service' user.id service.id %}"><button class="btn btn-primary">Edit</button></a>
             </td>

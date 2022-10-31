@@ -66,3 +66,12 @@ def remove_testimonial(request,uid,tid):
     return redirect('/manage_testimonial/%s' %user.id)
 
 ########################################################################
+
+def remove_tes_img(request,uid,tid):
+    user = User.objects.get(id=uid)
+    testimonial = Testimonial.objects.get(id=tid)
+
+    testimonial.Tes_Image.delete(save=True)
+    testimonial.save()
+
+    return redirect('.')

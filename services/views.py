@@ -87,3 +87,12 @@ def remove_service(request,uid,sid):
     return redirect('/manage_service/%s' %user.id)
 
 ########################################################################
+
+def remove_ser_img(request,uid,sid):
+    user = User.objects.get(id=uid)
+    service = Service.objects.get(id=sid)
+
+    service.Image.delete(save=True)
+    service.save()
+
+    return redirect('.')

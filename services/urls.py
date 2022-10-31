@@ -6,4 +6,5 @@ urlpatterns = [
     path('manage_service/<int:uid>/',views.manage_service,name='manage_service'),
     path('edit_service/<int:uid>/<int:sid>/',views.edit_service,name='edit_service'),
     path('remove_service/<int:uid>/<int:sid>/',views.remove_service,name='remove_service'),
+    path('remove_ser_img/<int:uid>/<int:sid>/',views.remove_ser_img,name='remove_ser_img'),
 ]

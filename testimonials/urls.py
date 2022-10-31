@@ -6,4 +6,5 @@ urlpatterns = [
     path('manage_testimonial/<int:uid>/',views.manage_testimonial,name='manage_testimonial'),
     path('edit_testimonial/<int:uid>/<int:tid>/',views.edit_testimonial,name='edit_testimonial'),
     path('remove_testimonial/<int:uid>/<int:tid>/',views.remove_testimonial,name='remove_testimonial'),
+    path('remove_tes_img/<int:uid>/<int:tid>/',views.remove_tes_img,name='remove_tes_img'),
 ]

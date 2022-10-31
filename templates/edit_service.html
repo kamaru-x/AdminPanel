@@ -39,18 +39,20 @@
                         <label class="form-label">Service Title</label>
                         <input required="True" type="text" name="title" value="{{service.Title}}" class="form-control" />
                     </div>
-                    <div class="form-outline mb-4 col-md-$">
+                    <div class="form-outline mb-4 col-md-4">
                         <label class="form-label">Service Image</label>
                         <input type="file" name="image" class="form-control" />
                     </div>
-                    <div class="media align-items-center col-md-1">
-                      <a href="#" class="">
-                        <img width="65px" height="65px" alt="" src="{{service.Image.url}}">
-                      </a>
-                    </div>
-                    <div class="media align-items-center col-md-1">
-                      <a href=""><span class="badge badge-warning" style="margin-top:-42px; margin-left:-38px; position: absolute;">X</span></a>
-                    </div>
+                    {% if service.Image %}
+                      <div class="media align-items-center col-md-1">
+                        <a href="#" class="">
+                          <img width="65px" height="65px" alt="" src="{{service.Image.url}}">
+                        </a>
+                      </div>
+                      <div class="media align-items-center col-md-1">
+                        <a href="{% url 'remove_ser_img' user.id service.id %}"><span class="badge badge-warning" style="margin-top:-42px; margin-left:-38px; position: absolute;">X</span></a>
+                      </div>
+                    {% endif %}
               </div>
 
               <div class="form-outline mb-4">

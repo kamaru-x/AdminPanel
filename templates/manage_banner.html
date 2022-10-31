@@ -51,13 +51,23 @@
             <td>{{banner.Caption}}</td> 
             <td>{{banner.Sub_Caption}}</td> 
             <td>{{banner.Button_Label}}</td>
-            <td scope="row" class="align-items-center d-flex justify-content-center">
-              <div class="media align-items-center">
-                <a href="#" class="avatar rounded-circle mr-3">
-                  <img style="height:-webkit-fill-available;" alt="" src="{{banner.Banner_Image.url}}">
-                </a>
-              </div>
-            </td>
+            {% if banner.Banner_Image %}  
+              <td scope="row" class="align-items-center d-flex justify-content-center">
+                <div class="media align-items-center">
+                  <a href="#" class="avatar rounded-circle mr-3">
+                    <img style="height:-webkit-fill-available;" alt="" src="{{banner.Banner_Image.url}}">
+                  </a>
+                </div>
+              </td>
+            {% else %}
+              <td scope="row" class="align-items-center d-flex justify-content-center">
+                <div class="media align-items-center">
+                  <a href="#" class="avatar rounded-circle mr-3">
+                    <img style="height:-webkit-fill-available;" alt="" src="https://static.thenounproject.com/png/2222628-200.png">
+                  </a>
+                </div>
+              </td>
+            {% endif %}
             <td>
               <a href="{% url 'edit_banner' user.id banner.id %}"><button class="btn btn-primary">Edit</button></a>
             </td>

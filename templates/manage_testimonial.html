@@ -49,13 +49,23 @@
           <tr>
             <td>1</td> 
             <td>{{testimonial.Tes_Name}}</td>  
-            <td scope="row" class="align-items-center d-flex justify-content-center">
-              <div class="media align-items-center">
-                <a href="#" class="avatar rounded-circle mr-3">
-                  <img style="height:-webkit-fill-available;" alt="" src="{{testimonial.Tes_Image.url}}">
-                </a>
-              </div>
-            </td>
+            {% if testimonial.Tes_Image %}  
+              <td scope="row" class="align-items-center d-flex justify-content-center">
+                <div class="media align-items-center">
+                  <a href="#" class="avatar rounded-circle mr-3">
+                    <img style="height:-webkit-fill-available;" alt="" src="{{testimonial.Tes_Image.url}}">
+                  </a>
+                </div>
+              </td>
+            {% else %}
+              <td scope="row" class="align-items-center d-flex justify-content-center">
+                <div class="media align-items-center">
+                  <a href="#" class="avatar rounded-circle mr-3">
+                    <img style="height:-webkit-fill-available;" alt="" src="https://static.thenounproject.com/png/2222628-200.png">
+                  </a>
+                </div>
+              </td>
+            {% endif %}
             <td>{{testimonial.Company_Name}}</td>
             <td>{{testimonial.Testimonial}}</td>
             <td>
