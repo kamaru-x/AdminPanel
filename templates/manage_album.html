@@ -45,7 +45,7 @@
       <tbody class="list text-center">
         {% for album in albums %}
           <tr>
-            <td>1</td> 
+            <td>{{forloop.counter}}</td> 
             <td>{{album.Title}}</td>  
             <td scope="row" class="align-items-center d-flex justify-content-center">
               <div class="media align-items-center">

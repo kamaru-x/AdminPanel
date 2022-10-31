@@ -47,7 +47,7 @@
       <tbody class="list text-center">
         {% for testimonial in testimonials %}
           <tr>
-            <td>1</td> 
+            <td>{{forloop.counter}}</td> 
             <td>{{testimonial.Tes_Name}}</td>  
             {% if testimonial.Tes_Image %}  
               <td scope="row" class="align-items-center d-flex justify-content-center">

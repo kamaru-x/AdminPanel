@@ -47,7 +47,7 @@
       <tbody class="list text-center">
         {% for banner in banners %}
           <tr>
-            <td>1</td> 
+            <td>{{forloop.counter}}</td> 
             <td>{{banner.Caption}}</td> 
             <td>{{banner.Sub_Caption}}</td> 
             <td>{{banner.Button_Label}}</td>

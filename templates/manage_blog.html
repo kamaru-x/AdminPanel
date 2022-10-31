@@ -45,7 +45,7 @@
       <tbody class="list text-center">
         {% for blog in blogs %}
           <tr>
-            <td>1</td> 
+            <td>{{forloop.counter}}</td> 
             <td>{{blog.Title}}</td>
             {% if blog.Image %}  
               <td scope="row" class="align-items-center d-flex justify-content-center">
