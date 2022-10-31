@@ -1,0 +1,48 @@
+{% extends 'index.html' %}
+{% block header %}
+<div class="header bg-primary pb-6">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2 text-white d-inline-block mb-0"></h6>
+          <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+            <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+              <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+              <li class="breadcrumb-item"><a href="#">127.0.0.1</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Edit Album</li>
+            </ol>
+          </nav>
+          {% if messages %}
+              {% for message in messages %}
+                <div class="alert alert-success" role="alert">
+                    {{message}} 
+                </div>
+              {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock header %}
+{% block content %}
+    <h1 class="text-center mt-5 mb-5">{{album.Title}}</h1>
+    <div class="row d-flex justify-content-around">
+        {% for image in images %}
+        <div class="col-md-3 mx-3">
+            <div class="card">
+                <img src="{{image.Image.url}}" class="card-img-top" alt="Fissure in Sandstone"/>
+                <div class="card-body text-center">
+                  <a href="{% url 'remove_image' user.id album.id image.id %}" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="row">
+      <div class="col-md-12 text-center">
+          <a href="{% url 'manage_album' user.id %}"><button class="btn btn-primary btn-lg">SAVE</button></a>
+      </div>
+    </div>
+{% endblock content %}

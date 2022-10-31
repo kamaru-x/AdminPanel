@@ -177,6 +177,8 @@ class Quick_Links(models.Model):
     Blog_Page = models.BooleanField(default=False, null=True, blank=True)
     Image_Gallery = models.BooleanField(default=False, null=True, blank=True)
     Contact_Page = models.BooleanField(default=False, null=True, blank=True)
+    Optional_Service = models.BooleanField(default=False, null=True, blank=True)
+    Optional_Products = models.BooleanField(default=False, null=True, blank=True)
     Products_Page = models.BooleanField(default=False, null=True, blank=True)
     Service_Page = models.BooleanField(default=False, null=True, blank=True)
     Testimonials = models.BooleanField(default=False, null=True, blank=True)
