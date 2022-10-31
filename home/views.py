@@ -91,30 +91,57 @@ def contact_us(request,uid):
     user = User.objects.get(id=uid)
     contact = Contact.objects.last()
     if request.method == 'POST':
-        if len(request.FILES) != 0:
-    #         if len(contact.Image) > 0:
-    #             os.remove(contact.Image.path)
-            contact.Image = request.FILES['image']
-        contact.Company_Name = request.POST.get('title')
-        contact.Mobile = request.POST.get('mobile')
-        contact.Telephone = request.POST.get('telephone')
-        contact.Email = request.POST.get('email')
-        contact.Website = request.POST.get('website')
-        contact.Adress = request.POST.get('address')
-        contact.Latitude = request.POST.get('latitude')
-        contact.Longitude = request.POST.get('longitude')
-        contact.Whatsapp = request.POST.get('whatsapp')
-        contact.Facebook = request.POST.get('facebook')
-        contact.Url = request.POST.get('url')
-        contact.Instagram = request.POST.get('instagram')
-        contact.Twitter = request.POST.get('twitter')
-        contact.Linkedin = request.POST.get('linkedin')
-        contact.SMTitle = request.POST.get('smtitle')
-        contact.SMDescription = request.POST.get('smdescription')
-        contact.SMKeywords = request.POST.get('smkeywords')
-        contact.save()
-        messages.success(request,'contact details edited successfully ...!')
-        return redirect('/contact_us/%s' %user.id)
+        if contact:
+            if len(request.FILES) != 0:
+        #         if len(contact.Image) > 0:
+        #             os.remove(contact.Image.path)
+                contact.Image = request.FILES['image']
+            contact.Company_Name = request.POST.get('title')
+            contact.Mobile = request.POST.get('mobile')
+            contact.Telephone = request.POST.get('telephone')
+            contact.Email = request.POST.get('email')
+            contact.Website = request.POST.get('website')
+            contact.Adress = request.POST.get('address')
+            contact.Latitude = request.POST.get('latitude')
+            contact.Longitude = request.POST.get('longitude')
+            contact.Whatsapp = request.POST.get('whatsapp')
+            contact.Facebook = request.POST.get('facebook')
+            contact.Url = request.POST.get('url')
+            contact.Instagram = request.POST.get('instagram')
+            contact.Twitter = request.POST.get('twitter')
+            contact.Linkedin = request.POST.get('linkedin')
+            contact.SMTitle = request.POST.get('smtitle')
+            contact.SMDescription = request.POST.get('smdescription')
+            contact.SMKeywords = request.POST.get('smkeywords')
+            contact.save()
+            messages.success(request,'contact details edited successfully ...!')
+            return redirect('/contact_us/%s' %user.id)
+        else:
+            image = request.FILES['image']
+            title = request.POST.get('title')
+            mobile = request.POST.get('mobile')
+            telephone = request.POST.get('telephone')
+            email = request.POST.get('email')
+            website = request.POST.get('website')
+            address = request.POST.get('address')
+            latitude = request.POST.get('latitude')
+            longitude = request.POST.get('longitude')
+            whatsapp = request.POST.get('whatsapp')
+            facebook = request.POST.get('fecebook')
+            url = request.POST.get('url')
+            instagram = request.POST.get('instagram')
+            twitter = request.POST.get('twitter')
+            linkedin = request.POST.get('linkedin')
+            smtitle = request.POST.get('smtitle')
+            smdescription = request.POST.get('smdescription')
+            smkeywords = request.POST.get('smkeywords')
+
+            data = Contact(Company_Name=title,Adress=address,Telephone=address,
+            Mobile=mobile,Whatsapp=whatsapp,Email=email,Website=website,Longitude=longitude,
+            Latitude=latitude,Facebook=facebook,Instagram=instagram,Linkedin=linkedin,
+            Twitter=twitter,Image=image,Url=url,SMTitle=smtitle,SMDescription=smdescription,SMKeywords=smkeywords)
+            data.save()
+            return redirect('/contact_us/%s' %user.id)
     return render(request,'contact_us.html',{'user':user,'data':contact})
 
 ########################################################################
