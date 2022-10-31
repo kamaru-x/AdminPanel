@@ -174,6 +174,8 @@ def quick_links(request,uid):
         quick.Products_Page = request.POST.get('products')
         quick.Service_Page = request.POST.get('services')
         quick.Testimonials = request.POST.get('testimonials')
+        quick.Optional_Products = request.POST.get('op-products')
+        quick.Optional_Service = request.POST.get('op-services')
         quick.save()
         messages.success(request,'quick links edited successfully ...!')
         return redirect('/quick_links/%s' %user.id)
