@@ -41,6 +41,7 @@
           <th scope="col" class="sort" data-sort="completion">Designation</th>
           <th scope="col" class="sort" data-sort="completion"></th>
           <th scope="col" class="sort" data-sort="completion"></th>
+          <th></th>
         </tr>
       </thead>
       <tbody class="list text-center">
@@ -61,7 +62,24 @@
               <a href="{% url 'edit_testimonial' user.id testimonial.id %}"><button class="btn btn-primary">Edit</button></a>
             </td>
             <td>
-              <a href="{% url 'remove_testimonial' user.id testimonial.id %}"><button class="btn btn-danger">Delete</button></a>
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">Delete</button>
+            </td>
+            <td>
+              <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                    </div>
+                    <div class="modal-body">
+                      do you want to delete the testimonial
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <a href="{% url 'remove_testimonial' user.id testimonial.id %}"><button type="button" class="btn btn-danger">Delete</button></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </td>
           </tr>
         {% endfor %}

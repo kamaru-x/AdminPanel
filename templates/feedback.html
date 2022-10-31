@@ -14,10 +14,6 @@
             </ol>
           </nav>
         </div>
-        <div class="col-lg-6 col-5 text-right">
-          <a href="#" class="btn btn-sm btn-neutral">New</a>
-          <a href="#" class="btn btn-sm btn-neutral">Filters</a>
-        </div>
       </div>
     </div>
   </div>
@@ -68,7 +64,7 @@
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-danger">Delete</button>
+                            <a href="{% url 'remove_feedback' user.id feedback.id %}"><button type="button" class="btn btn-danger">Delete</button></a>
                           </div>
                         </div>
                       </div>

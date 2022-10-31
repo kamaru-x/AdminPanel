@@ -195,3 +195,17 @@ def remove_abt_img(request,uid,aid):
     return redirect('/about_us/%s' %user.id)
 
 ########################################################################
+
+def remove_feedback(request,uid,fid):
+    user = User.objects.get(id=uid)
+    feedback = Feedback.objects.get(id=fid)
+    feedback.delete()
+    return redirect('/feedback/%s' %user.id)
+
+########################################################################
+
+def remove_enquiry(request,uid,eid):
+    user = User.objects.get(id=uid)
+    enquiry = Enquiry.objects.get(id=eid)
+    enquiry.delete()
+    return redirect('/enquiry/%s' %user.id)
