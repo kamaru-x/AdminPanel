@@ -214,3 +214,16 @@ def remove_enquiry(request,uid,eid):
     enquiry = Enquiry.objects.get(id=eid)
     enquiry.delete()
     return redirect('/enquiry/%s' %user.id)
+
+########################################################################
+
+def user_profile(request,uid):
+    user = User.objects.get(id=uid)
+    if request.method == 'POST' :
+        user.Username = request.POST.get('username')
+        user.Password = request.POST.get('password')
+
+        user.save()
+
+        return redirect('/dashboard/%s' %user.id)
+    return render(request,'profile.html',{'user':user})
