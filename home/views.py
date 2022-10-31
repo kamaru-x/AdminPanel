@@ -70,7 +70,10 @@ def about_us(request,uid):
     about = About.objects.last()
     form = AboutForm
     if request.method == "POST":
-        form = AboutForm(request.POST , request.FILES , instance=about)
+        if about :
+            form = AboutForm(request.POST , request.FILES , instance=about)
+        else:
+            form = AboutForm(request.POST , request.FILES)
         if form.is_valid():
             form.save()
             return redirect('/about_us/%s' %user.id)
