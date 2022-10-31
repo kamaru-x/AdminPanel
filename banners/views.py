@@ -16,7 +16,7 @@ def banner(request,uid):
         data = Banners (Caption=caption,Sub_Caption=scaption,Button_Label=label,Link=link,Banner_Image=image)
         data.save()
         messages.success(request,'banner added')
-        return redirect('.')
+        return redirect('/banner/%s' %user.id)
 
     context = {
         'user' : user,

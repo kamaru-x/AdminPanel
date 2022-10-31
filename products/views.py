@@ -30,7 +30,7 @@ def products(request,uid):
         Show_Enquiry=show_enquiry,SMTitle=smtitle,SMDescription=smdescription,SMKeywords=smkeywords)
         Data.save()
         messages.success(request,'added new product succesfully')
-        return redirect('.')
+        return redirect('/products/%s' %user.id)
 
     context = {
         'user' : user,
@@ -99,4 +99,4 @@ def remove_pro_img(request,uid,pid):
     product.Image.delete(save=True)
     product.save()
 
-    return redirect('/edit_product/%s/%d' %user.id %product.id)
+    return redirect('.')

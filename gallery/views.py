@@ -32,7 +32,7 @@ def create_album(request,uid):
         SMDescription=smdescription,SMKeywords=smkeywords)
         Data.save()
         messages.success(request,'album created successfully...!')
-        return redirect('.')
+        return redirect('/create_album/%s' %user.id)
     context = {
         'user' : user
     }
@@ -64,7 +64,7 @@ def upload_image(request,uid):
             Data = Album_Image(Album_Name=album,Image=img,)
             Data.save()
         messages.success(request,'image uploaded successfully ...!')
-        return redirect('.')
+        return redirect('/upload_image/%s' %user.id)
     context = {
         'user' : user,
         'albums' : albums

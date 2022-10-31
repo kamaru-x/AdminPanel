@@ -73,7 +73,7 @@ def about_us(request,uid):
         form = AboutForm(request.POST , request.FILES , instance=about)
         if form.is_valid():
             form.save()
-            return redirect('.')
+            return redirect('/about_us/%s' %user.id)
     form = AboutForm(instance=about)
     context = {
         'user' : user,
@@ -111,7 +111,7 @@ def contact_us(request,uid):
         contact.SMKeywords = request.POST.get('smkeywords')
         contact.save()
         messages.success(request,'contact details edited successfully ...!')
-        return redirect('.')
+        return redirect('/contact_us/%s' %user.id)
     return render(request,'contact_us.html',{'user':user,'data':contact})
 
 ########################################################################
@@ -154,7 +154,7 @@ def manage_menu(request,uid):
         manage.Group_Company = request.POST.get('gop')
         manage.save()
         messages.success(request,'manage manu edited successfully ...!')
-        return redirect('.')
+        return redirect('/manage_menu/%s' %user.id)
     context = {
         'user' : user,
         'manage' : manage,
@@ -176,7 +176,7 @@ def quick_links(request,uid):
         quick.Testimonials = request.POST.get('testimonials')
         quick.save()
         messages.success(request,'quick links edited successfully ...!')
-        return redirect('.')
+        return redirect('/quick_links/%s' %user.id)
     context = {
         'user' : user,
         'quick' : quick,

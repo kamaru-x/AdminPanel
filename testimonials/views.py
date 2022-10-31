@@ -15,7 +15,7 @@ def add_testimonial(request,uid):
         data = Testimonial(Tes_Name=name,Designation=designation,Company_Name=cname,Testimonial=testimonial,Tes_Image=image)
         data.save()
         messages.success(request,'testimonial added')
-        return redirect('.')
+        return redirect('/add_testimonial/%s' %user.id)
     context = {
         'user' : user,
     }

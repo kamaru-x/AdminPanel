@@ -12,7 +12,7 @@ def add_logo(request,uid):
             data = Group_Of_Companies(Logo=img)
             data.save()
         messages.success(request,'logo added')
-        return redirect('.')
+        return redirect('/add_logo/%s' %user.id)
 
     context = {
         'user' : user,

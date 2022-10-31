@@ -27,7 +27,7 @@ def services(request,uid):
         Show_Enquiry=show_enquiry,SMTitle=smtitle,SMDescription=smdescription,SMKeywords=smkeywords)
         Data.save()
         messages.success(request,'new services added successfully')
-        return redirect('.')
+        return redirect('/services/%s' %user.id)
     
     context = {
         'user' : user,
