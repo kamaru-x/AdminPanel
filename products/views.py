@@ -8,7 +8,10 @@ def products(request,uid):
     user = User.objects.get(id=uid)
     product = Product.objects.last()
 
-    refer_id = ('PR-00%s' %str(product.id+1))
+    if product :
+        refer_id = ('PR-00%s' %str(product.id+1))
+    else :
+        refer_id = ('PR-001')
 
 
     if request.method == 'POST':

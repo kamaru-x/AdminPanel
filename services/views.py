@@ -7,7 +7,11 @@ def services(request,uid):
     user = User.objects.get(id=uid)
     service = Service.objects.last()
 
-    refer_id = ('SE-00%s' %str(service.id+1))
+    if service :
+        refer_id = ('SE-00%s' %str(service.id+1))
+    else :
+        refer_id = ('SE-001')
+
     if request.method == 'POST':
         title = request.POST.get('title')
         image = request.FILES['image']
