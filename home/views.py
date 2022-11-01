@@ -47,11 +47,6 @@ def dashboard(request,uid):
     blog_count = len(blogs)
     album_count = len(albums)
 
-    sl = []
-    for i in range(1,len(products)+1):
-        sl.append(i)
-        print(sl)
-
     context = {
         'feedbacks':feedbacks,
         'user':user,
@@ -59,7 +54,6 @@ def dashboard(request,uid):
         'ser' : service_count,
         'blg' : blog_count,
         'alb' : album_count,
-        'sl' : sl
     }
     return render(request,'dashboard.html',context,)
 

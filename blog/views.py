@@ -20,7 +20,7 @@ def blog(request,uid):
         SMDescription=smdescription,SMKeywords=smkeywords)
         Data.save()
         messages.success(request,'new blog added successfully.....!')
-        return redirect('/blog/' %user.id)
+        return redirect('/blog/%s' %user.id)
     return render(request,'blog.html',{'user':user})
 
 ########################################################################
