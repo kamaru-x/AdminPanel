@@ -112,6 +112,6 @@ def remove_image(request,uid,aid,iid):
     image = Album_Image.objects.get(id=iid)
     image.delete()
     messages.success(request,'image deleted successfully')
-    return redirect('/manage_album/%s' %user.id)
+    return redirect('/edit_album/1/%s' %album.id)
 
 ########################################################################

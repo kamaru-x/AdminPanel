@@ -20,7 +20,7 @@ def blog(request,uid):
         SMDescription=smdescription,SMKeywords=smkeywords)
         Data.save()
         messages.success(request,'new blog added successfully.....!')
-        return redirect('/blog/%s' %user.id)
+        return redirect('/blog/' %user.id)
     return render(request,'blog.html',{'user':user})
 
 ########################################################################
@@ -75,6 +75,6 @@ def remove_blog_img(request,uid,bid):
     blog.Image.delete(save=True)
     blog.save()
 
-    return redirect('.')
+    return redirect('/edit_blog/1/%s' %blog.id)
 
 ########################################################################

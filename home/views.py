@@ -76,6 +76,7 @@ def about_us(request,uid):
             form = AboutForm(request.POST , request.FILES)
         if form.is_valid():
             form.save()
+            messages.success(request,'about edited successfully')
             return redirect('/about_us/%s' %user.id)
     form = AboutForm(instance=about)
     context = {
