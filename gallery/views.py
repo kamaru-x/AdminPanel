@@ -48,6 +48,10 @@ def upload_image(request,uid):
         image = request.FILES.getlist('image')
 
         album = Album.objects.get(id=select)
+        count = Album.objects.count()
+
+        album.Images = count
+        album.save()
 
         for img in image: 
             Data = Album_Image(Album_Name=album,Image=img,)
@@ -65,16 +69,9 @@ def upload_image(request,uid):
 def manage_album(request,uid):
     user = User.objects.get(id=uid)
     albums = Album.objects.all()
-    image_count = []
-    for album in albums :
-        images = Album_Image.objects.filter(Album_Name=album)
-        total = len(images)
-        image_count.append(total)
-        print(image_count)
     context = {
         'user' : user,
         'albums' : albums,
-        'count' : image_count
     }
     return render(request,'manage_album.html',context)
 

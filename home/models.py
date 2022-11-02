@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 from ckeditor.fields import RichTextField
 # Create your models here.
@@ -60,6 +61,7 @@ class Blog(models.Model):
 class Album(models.Model):
     Title = models.CharField(max_length=50)
     Thumbnail = models.ImageField(blank=True,null=True,upload_to='album')
+    Images = models.IntegerField(default=0,)
     Url = models.CharField(max_length=20000)
     SMTitle = models.CharField(max_length=2000)
     SMDescription = models.TextField()
