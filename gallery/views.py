@@ -84,6 +84,15 @@ def edit_album(request,uid,aid):
     user = User.objects.get(id=uid)
     album = Album.objects.get(id=aid)
     images = Album_Image.objects.filter(Album_Name=aid)
+    if request.method == 'POST' :
+        if len(request.FILES) != 0:
+        #         if len(album.Image) > 0:
+        #             os.remove(album.Image.path)
+            album.Thumbnail = request.FILES['image']
+        album.Title = request.POST.get('name')
+        album.save()
+        messages.success(request,'album details edited successfully')
+        return redirect('/edit_album/1/%s' %album.id)
     context = {
         'user' : user,
         'album' : album,
