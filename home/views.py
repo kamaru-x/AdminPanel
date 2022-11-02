@@ -173,19 +173,40 @@ def manage_menu(request,uid):
     user = User.objects.get(id=uid)
     manage = Manage_Menu.objects.last()
     if request.method == 'POST':
-        manage.About_Page = request.POST.get('about')
-        manage.Blog_Page = request.POST.get('blog')
-        manage.Image_Gallery = request.POST.get('gallery')
-        manage.Contact_Page = request.POST.get('contact')
-        manage.Products_Page = request.POST.get('products')
-        manage.Service_Page = request.POST.get('services')
-        manage.Testimonials = request.POST.get('testimonials')
-        manage.Feedback_Page = request.POST.get('feedback')
-        manage.Enquiry_Page = request.POST.get('enquiry')
-        manage.Group_Company = request.POST.get('gop')
-        manage.save()
-        messages.success(request,'manage manu edited successfully ...!')
-        return redirect('/manage_menu/%s' %user.id)
+        if manage:
+            manage.About_Page = request.POST.get('about')
+            manage.Blog_Page = request.POST.get('blog')
+            manage.Image_Gallery = request.POST.get('gallery')
+            manage.Contact_Page = request.POST.get('contact')
+            manage.Products_Page = request.POST.get('products')
+            manage.Service_Page = request.POST.get('services')
+            manage.Testimonials = request.POST.get('testimonials')
+            manage.Feedback_Page = request.POST.get('feedback')
+            manage.Enquiry_Page = request.POST.get('enquiry')
+            manage.Group_Company = request.POST.get('gop')
+            manage.save()
+            
+            messages.success(request,'manage manu edited successfully ...!')
+            return redirect('/manage_menu/%s' %user.id)
+        else:
+            about = request.POST.get('about')
+            blog = request.POST.get('blog')
+            gallery = request.POST.get('gallery')
+            contact = request.POST.get('contact')
+            products = request.POST.get('products')
+            services = request.POST.get('services')
+            testimonials = request.POST.get('testimonials')
+            feedback = request.POST.get('feedback')
+            enquiry = request.POST.get('enquiry')
+            gop = request.POST.get('gop')
+            
+            data = Manage_Menu(About_Page=about,Blog_Page=blog,Image_Gallery=gallery,Contact_Page=contact,
+            Products_Page=products,Service_Page=services,Testimonials=testimonials,Feedback_Page=feedback,
+            Enquiry_Page=enquiry,Group_Company=gop)
+            data.save()
+            
+            messages.success(request,'manage manu edited successfully ...!')
+            return redirect('/manage_menu/%s' %user.id)
     context = {
         'user' : user,
         'manage' : manage,
@@ -198,18 +219,34 @@ def quick_links(request,uid):
     user = User.objects.get(id=uid)
     quick = Quick_Links.objects.last()
     if request.method == 'POST':
-        quick.About_Page = request.POST.get('about')
-        quick.Blog_Page = request.POST.get('blog')
-        quick.Image_Gallery = request.POST.get('gallery')
-        quick.Contact_Page = request.POST.get('contact')
-        quick.Products_Page = request.POST.get('products')
-        quick.Service_Page = request.POST.get('services')
-        quick.Testimonials = request.POST.get('testimonials')
-        quick.Optional_Products = request.POST.get('op-products')
-        quick.Optional_Service = request.POST.get('op-services')
-        quick.save()
-        messages.success(request,'quick links edited successfully ...!')
-        return redirect('/quick_links/%s' %user.id)
+        if quick :
+            quick.About_Page = request.POST.get('about')
+            quick.Blog_Page = request.POST.get('blog')
+            quick.Image_Gallery = request.POST.get('gallery')
+            quick.Contact_Page = request.POST.get('contact')
+            quick.Products_Page = request.POST.get('products')
+            quick.Service_Page = request.POST.get('services')
+            quick.Testimonials = request.POST.get('testimonials')
+            quick.Optional_Products = request.POST.get('op-products')
+            quick.Optional_Service = request.POST.get('op-services')
+            quick.save()
+            messages.success(request,'quick links edited successfully ...!')
+            return redirect('/quick_links/%s' %user.id)
+        else:
+            about = request.POST.get('about')
+            blog = request.POST.get('blog')
+            gallery = request.POST.get('gallery')
+            contact = request.POST.get('contact')
+            products = request.POST.get('products')
+            services = request.POST.get('services')
+            testimonials = request.POST.get('testimonials')
+            op_products = request.POST.get('op-products')
+            op_services = request.POST.get('op-services')
+            data = Quick_Links(About_Page=about,Blog_Page=blog,Image_Gallery=gallery,Contact_Page=contact,
+            Products_Page=products,Service_Page=services,Testimonials=testimonials,Optional_Products=op_products,Optional_Service=op_services)
+            data.save()
+            messages.success(request,'quick links edited successfully ...!')
+            return redirect('/quick_links/%s' %user.id)
     context = {
         'user' : user,
         'quick' : quick,
