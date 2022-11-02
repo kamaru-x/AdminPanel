@@ -4,6 +4,8 @@ from home.forms import AboutForm
 from django.contrib import messages
 import os
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.forms import UserChangeForm
 
 # Create your views here.
 
@@ -20,22 +22,18 @@ def test_area(request):
 
 ########################################################################
 
-def login(request):
+def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
 
-        user = User.objects.filter(username=username).exists()
-
-        if not user:
-            messages.warning(request,'invalid Username')
-            return redirect('login')
-        elif password != (User.objects.get(username=username)).password:
-            messages.warning(request,'incorrect password')
-            return redirect('login')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('/dashboard/')
         else:
-            userdata = User.objects.get(username=username)
-            return redirect('dashboard/%s' %userdata.id)
+            messages.error(request,'incorrect email or password')
+            return redirect('.')
     return render(request,'login.html')
 
 ########################################################################
@@ -265,3 +263,6 @@ def remove_enquiry(request,eid):
     return redirect('/enquiry/')
 
 ########################################################################
+
+def user_profile(request):
+    return render(request,'profile.html')

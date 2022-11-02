@@ -37,11 +37,11 @@
               <div class="row">
                     <div class="form-outline mb-4 col-md-6">
                         <label class="form-label">Username</label>
-                        <input required="True" type="text" name="username" class="form-control" />
+                        <input required="True" value="{{request.user.username}}" type="text" name="username" class="form-control" />
                     </div>
                     <div class="form-outline mb-4 col-md-6">
                         <label class="form-label">Password</label>
-                        <input required="True" type="text" name="password" class="form-control" />
+                        <input required="True" value="{{request.user.password}}" type="text" name="password" class="form-control" />
                     </div>
               </div>
               
