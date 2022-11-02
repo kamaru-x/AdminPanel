@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from home.models import User,Testimonial
+from home.models import Testimonial
 from django.contrib import messages
 # Create your views here.
 

@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from home.models import User,Banners
+from home.models import Banners
 from django.contrib import messages
 
 # Create your views here.

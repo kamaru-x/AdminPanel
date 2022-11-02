@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from home.models import User,Album,Album_Image
+from home.models import Album,Album_Image
 from home.forms import AboutForm
 from django.contrib import messages
 

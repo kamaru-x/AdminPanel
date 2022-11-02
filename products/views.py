@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from home.models import User,Product
+from home.models import Product
 from django.contrib import messages
 
 # Create your views here.

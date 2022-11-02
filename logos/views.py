@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from home.models import User,Group_Of_Companies
+from home.models import Group_Of_Companies
 from django.contrib import messages
 # Create your views here.
 
