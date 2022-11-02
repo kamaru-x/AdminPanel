@@ -4,8 +4,7 @@ from django.contrib import messages
 
 # Create your views here.
 
-def products(request,uid):
-    user = User.objects.get(id=uid)
+def products(request):
     product = Product.objects.last()
 
     if product :
@@ -33,10 +32,9 @@ def products(request,uid):
         Show_Enquiry=show_enquiry,SMTitle=smtitle,SMDescription=smdescription,SMKeywords=smkeywords)
         Data.save()
         messages.success(request,'added new product succesfully')
-        return redirect('/products/%s' %user.id)
+        return redirect('/products/')
 
     context = {
-        'user' : user,
         'refer_id' : refer_id
     }
 
@@ -44,19 +42,16 @@ def products(request,uid):
 
 ########################################################################
 
-def manage_product(request,uid):
-    user = User.objects.get(id=uid)
+def manage_product(request):
     products = Product.objects.all()
     context = {
-        'user' : user,
         'products' : products
     }
     return render(request,'manage_product.html',context)
 
 ########################################################################
 
-def edit_product(request,uid,pid):
-    user = User.objects.get(id=uid)
+def edit_product(request,pid):
     product = Product.objects.get(id=pid)
     if request.method == 'POST':
         if len(request.FILES) != 0:
@@ -78,28 +73,25 @@ def edit_product(request,uid,pid):
         messages.success(request,'product details edited successfully')
         return redirect('.')
     context = {
-        'user' : user,
         'product' : product,
     }
     return render(request,'edit_product.html',context)
 
 ########################################################################
 
-def remove_product(request,uid,pid):
-    user = User.objects.get(id=uid)
+def remove_product(request,pid):
     product = Product.objects.get(id=pid)
 
     product.delete()
     messages.success(request,'product deleted successfully')
-    return redirect('/manage_product/%s' %user.id)
+    return redirect('/manage_product/')
 
 ########################################################################
 
-def remove_pro_img(request,uid,pid):
-    user = User.objects.get(id=uid)
+def remove_pro_img(request,pid):
     product = Product.objects.get(id=pid)
 
     product.Image.delete(save=True)
     product.save()
 
-    return redirect('/edit_product/1/%s' %product.id)
+    return redirect('/edit_product/%s' %product.id)

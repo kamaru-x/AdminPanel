@@ -5,8 +5,7 @@ from django.contrib import messages
 
 ########################################################################
 
-def blog(request,uid):
-    user = User.objects.get(id=uid)
+def blog(request):
     if request.method == 'POST':
         title = request.POST.get('title')
         image = request.FILES['image']
@@ -20,20 +19,18 @@ def blog(request,uid):
         SMDescription=smdescription,SMKeywords=smkeywords)
         Data.save()
         messages.success(request,'new blog added successfully.....!')
-        return redirect('/blog/%s' %user.id)
-    return render(request,'blog.html',{'user':user})
+        return redirect('/blog/')
+    return render(request,'blog.html')
 
 ########################################################################
 
-def manage_blog(request,uid):
-    user = User.objects.get(id=uid)
+def manage_blog(request):
     blogs = Blog.objects.all()
-    return render(request,'manage_blog.html',{'blogs':blogs,'user':user})
+    return render(request,'manage_blog.html',{'blogs':blogs})
 
 ########################################################################
 
-def edit_blog(request,uid,bid):
-    user = User.objects.get(id=uid)
+def edit_blog(request,bid):
     blog = Blog.objects.get(id=bid)
     if request.method == 'POST':
         if len(request.FILES) != 0:
@@ -51,30 +48,27 @@ def edit_blog(request,uid,bid):
         messages.success(request,'blog edited successfull...!')
         return redirect('.')
     context = {
-        'user' : user,
         'blog' : blog,
     }
     return render(request,'edit_blog.html',context)
 
 ########################################################################
 
-def remove_blog(request,uid,bid):
-    user = User.objects.get(id=uid)
+def remove_blog(request,bid):
     blog = Blog.objects.get(id=bid)
 
     blog.delete()
     messages.error(request,'blog deleted')
-    return redirect('/manage_blog/%s' %user.id)
+    return redirect('/manage_blog/')
 
 ########################################################################
 
-def remove_blog_img(request,uid,bid):
-    user = User.objects.get(id=uid)
+def remove_blog_img(request,bid):
     blog = Blog.objects.get(id=bid)
 
     blog.Image.delete(save=True)
     blog.save()
 
-    return redirect('/edit_blog/1/%s' %blog.id)
+    return redirect('/edit_blog/%s' %blog.id)
 
 ########################################################################

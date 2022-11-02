@@ -1,16 +1,16 @@
 from django.shortcuts import render,redirect
-from home.models import Contact,Enquiry,Manage_Menu,Product,Quick_Links,Service,User,Feedback,About,Blog,Album
+from home.models import Contact,Enquiry,Manage_Menu,Product,Quick_Links,Service,Feedback,About,Blog,Album
 from home.forms import AboutForm
 from django.contrib import messages
 import os
+from django.contrib.auth.models import User
 
 # Create your views here.
 
 ########################################################################
 
-def index(request,uid):
-    user = User.objects.get(id=uid)
-    return render(request,'index.html',{'user':user})
+def index(request):
+    return render(request,'index.html')
 
 ########################################################################
 
@@ -25,23 +25,22 @@ def login(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
 
-        user = User.objects.filter(Username=username).exists()
+        user = User.objects.filter(username=username).exists()
 
         if not user:
             messages.warning(request,'invalid Username')
             return redirect('login')
-        elif password != (User.objects.get(Username=username)).Password:
+        elif password != (User.objects.get(username=username)).password:
             messages.warning(request,'incorrect password')
             return redirect('login')
         else:
-            userdata = User.objects.get(Username=username)
+            userdata = User.objects.get(username=username)
             return redirect('dashboard/%s' %userdata.id)
     return render(request,'login.html')
 
 ########################################################################
 
-def dashboard(request,uid):
-    user = User.objects.get(id=uid)
+def dashboard(request):
     feedbacks = Feedback.objects.all()
     products = Product.objects.all()
     services = Service.objects.all()
@@ -55,7 +54,6 @@ def dashboard(request,uid):
 
     context = {
         'feedbacks':feedbacks,
-        'user':user,
         'pro' : product_count,
         'ser' : service_count,
         'blg' : blog_count,
@@ -65,8 +63,7 @@ def dashboard(request,uid):
 
 ########################################################################
 
-def about_us(request,uid):
-    user = User.objects.get(id=uid)
+def about_us(request):
     about = About.objects.last()
     form = AboutForm
     if request.method == "POST":
@@ -77,10 +74,9 @@ def about_us(request,uid):
         if form.is_valid():
             form.save()
             messages.success(request,'about edited successfully')
-            return redirect('/about_us/%s' %user.id)
+            return redirect('/about_us/')
     form = AboutForm(instance=about)
     context = {
-        'user' : user,
         'about' : about,
         'form' : form
     }
@@ -88,8 +84,7 @@ def about_us(request,uid):
 
 ########################################################################
 
-def contact_us(request,uid):
-    user = User.objects.get(id=uid)
+def contact_us(request):
     contact = Contact.objects.last()
     if request.method == 'POST':
         if contact:
@@ -116,7 +111,7 @@ def contact_us(request,uid):
             contact.SMKeywords = request.POST.get('smkeywords')
             contact.save()
             messages.success(request,'contact details edited successfully ...!')
-            return redirect('/contact_us/%s' %user.id)
+            return redirect('/contact_us/')
         else:
             image = request.FILES['image']
             title = request.POST.get('title')
@@ -142,35 +137,30 @@ def contact_us(request,uid):
             Latitude=latitude,Facebook=facebook,Instagram=instagram,Linkedin=linkedin,
             Twitter=twitter,Image=image,Url=url,SMTitle=smtitle,SMDescription=smdescription,SMKeywords=smkeywords)
             data.save()
-            return redirect('/contact_us/%s' %user.id)
-    return render(request,'contact_us.html',{'user':user,'data':contact})
+            return redirect('/contact_us/')
+    return render(request,'contact_us.html',{'data':contact})
 
 ########################################################################
 
-def feedback(request,uid):
-    user = User.objects.get(id=uid)
+def feedback(request):
     feedbacks = Feedback.objects.all()
     context = {
-        'user' : user,
         'feedbacks' : feedbacks
     }
     return render(request,'feedback.html',context)
 
 ########################################################################
 
-def enquiry(request,uid):
-    user = User.objects.get(id=uid)
+def enquiry(request):
     enquiries = Enquiry.objects.all()
     context = {
-        'user' : user,
         'enquiries' : enquiries,
     }
     return render(request,'enquiry.html',context)
 
 ########################################################################
 
-def manage_menu(request,uid):
-    user = User.objects.get(id=uid)
+def manage_menu(request):
     manage = Manage_Menu.objects.last()
     if request.method == 'POST':
         if manage:
@@ -187,7 +177,7 @@ def manage_menu(request,uid):
             manage.save()
             
             messages.success(request,'manage manu edited successfully ...!')
-            return redirect('/manage_menu/%s' %user.id)
+            return redirect('/manage_menu/')
         else:
             about = request.POST.get('about')
             blog = request.POST.get('blog')
@@ -206,17 +196,15 @@ def manage_menu(request,uid):
             data.save()
             
             messages.success(request,'manage manu edited successfully ...!')
-            return redirect('/manage_menu/%s' %user.id)
+            return redirect('/manage_menu/')
     context = {
-        'user' : user,
         'manage' : manage,
     }
     return render(request,'manage_menu.html',context)
 
 ########################################################################
 
-def quick_links(request,uid):
-    user = User.objects.get(id=uid)
+def quick_links(request):
     quick = Quick_Links.objects.last()
     if request.method == 'POST':
         if quick :
@@ -231,7 +219,7 @@ def quick_links(request,uid):
             quick.Optional_Service = request.POST.get('op-services')
             quick.save()
             messages.success(request,'quick links edited successfully ...!')
-            return redirect('/quick_links/%s' %user.id)
+            return redirect('/quick_links/')
         else:
             about = request.POST.get('about')
             blog = request.POST.get('blog')
@@ -246,49 +234,34 @@ def quick_links(request,uid):
             Products_Page=products,Service_Page=services,Testimonials=testimonials,Optional_Products=op_products,Optional_Service=op_services)
             data.save()
             messages.success(request,'quick links edited successfully ...!')
-            return redirect('/quick_links/%s' %user.id)
+            return redirect('/quick_links/')
     context = {
-        'user' : user,
         'quick' : quick,
     }
     return render(request,'quick_links.html',context)
 
 ########################################################################
 
-def remove_abt_img(request,uid,aid):
-    user = User.objects.get(id=uid)
+def remove_abt_img(request,aid):
     about = About.objects.get(id=aid)
 
     about.Image.delete(save=True)
     about.save()
 
-    return redirect('/about_us/%s' %user.id)
+    return redirect('/about_us/')
 
 ########################################################################
 
-def remove_feedback(request,uid,fid):
-    user = User.objects.get(id=uid)
+def remove_feedback(request,fid):
     feedback = Feedback.objects.get(id=fid)
     feedback.delete()
-    return redirect('/feedback/%s' %user.id)
+    return redirect('/feedback/')
 
 ########################################################################
 
-def remove_enquiry(request,uid,eid):
-    user = User.objects.get(id=uid)
+def remove_enquiry(request,eid):
     enquiry = Enquiry.objects.get(id=eid)
     enquiry.delete()
-    return redirect('/enquiry/%s' %user.id)
+    return redirect('/enquiry/')
 
 ########################################################################
-
-def user_profile(request,uid):
-    user = User.objects.get(id=uid)
-    if request.method == 'POST' :
-        user.Username = request.POST.get('username')
-        user.Password = request.POST.get('password')
-
-        user.save()
-
-        return redirect('/dashboard/%s' %user.id)
-    return render(request,'profile.html',{'user':user})

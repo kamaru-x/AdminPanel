@@ -57,7 +57,7 @@
             </td>
             <td>{{album.Images}}</td>
             <td>
-              <a href="{% url 'edit_album' user.id album.id %}"><button class="btn btn-primary">Edit</button></a>
+              <a href="{% url 'edit_album' album.id %}"><button class="btn btn-primary">Edit</button></a>
             </td>
             <td>
               <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter-{{forloop.counter}}">Delete</button>
@@ -77,7 +77,7 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <a href="{% url 'remove' user.id album.id %}"><button type="button" class="btn btn-danger">Delete</button></a>
+                      <a href="{% url 'remove' album.id %}"><button type="button" class="btn btn-danger">Delete</button></a>
                     </div>
                   </div>
                 </div>

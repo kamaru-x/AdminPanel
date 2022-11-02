@@ -3,8 +3,7 @@ from home.models import User,Service
 from django.contrib import messages
 # Create your views here.
 
-def services(request,uid):
-    user = User.objects.get(id=uid)
+def services(request):
     service = Service.objects.last()
 
     if service :
@@ -31,29 +30,25 @@ def services(request,uid):
         Show_Enquiry=show_enquiry,SMTitle=smtitle,SMDescription=smdescription,SMKeywords=smkeywords)
         Data.save()
         messages.success(request,'new services added successfully')
-        return redirect('/services/%s' %user.id)
+        return redirect('/services/')
     
     context = {
-        'user' : user,
         'refer_id' : refer_id
     }
     return render(request,'services.html',context)
 
 ########################################################################
 
-def manage_service(request,uid):
-    user = User.objects.get(id=uid)
+def manage_service(request):
     services = Service.objects.all()
     context = {
-        'user' : user,
         'services' : services,
     }
     return render(request,'manage_service.html',context)
 
 ########################################################################
 
-def edit_service(request,uid,sid):
-    user = User.objects.get(id=uid)
+def edit_service(request,sid):
     service = Service.objects.get(id=sid)
     if request.method == 'POST':
         if len(request.FILES) != 0:
@@ -75,28 +70,25 @@ def edit_service(request,uid,sid):
         messages.success(request,'service details edited successfully ...!')
         return redirect('.')
     context = {
-        'user' : user,
         'service' : service,
     }
     return render(request,'edit_service.html',context)
 
 ########################################################################
 
-def remove_service(request,uid,sid):
-    user = User.objects.get(id=uid)
+def remove_service(request,sid):
     service = Service.objects.get(id=sid)
 
     service.delete()
     messages.success(request,'service deleted')
-    return redirect('/manage_service/%s' %user.id)
+    return redirect('/manage_service/')
 
 ########################################################################
 
-def remove_ser_img(request,uid,sid):
-    user = User.objects.get(id=uid)
+def remove_ser_img(request,sid):
     service = Service.objects.get(id=sid)
 
     service.Image.delete(save=True)
     service.save()
 
-    return redirect('/edit_service/1/%s' %service.id)
+    return redirect('/edit_service/%s' %service.id)

@@ -7,8 +7,7 @@ from django.contrib import messages
 
 ########################################################################
 
-def create_album(request,uid):
-    user = User.objects.get(id=uid)
+def create_album(request):
     if request.method == 'POST':
         title = request.POST.get('title')
         image = request.FILES['image']
@@ -21,27 +20,22 @@ def create_album(request,uid):
         SMDescription=smdescription,SMKeywords=smkeywords)
         Data.save()
         messages.success(request,'album created successfully...!')
-        return redirect('/create_album/%s' %user.id)
-    context = {
-        'user' : user
-    }
-    return render(request,'create_album.html',context)
+        return redirect('/create_album/')
+    
+    return render(request,'create_album.html')
 
 ########################################################################
 
-def view_ablum(request,uid,aid):
-    user = User.objects.get(id=uid)
+def view_ablum(request,aid):
     album = Album.objects.get(id=aid)
     context = {
-        'user' : user,
         'album' : album,
     }
     return render(request,'album_view.html',context)
 
 ########################################################################
 
-def upload_image(request,uid):
-    user = User.objects.get(id=uid)
+def upload_image(request):
     albums = Album.objects.all()
     if request.method == 'POST':
         select = request.POST.get('select')
@@ -57,28 +51,24 @@ def upload_image(request,uid):
             Data = Album_Image(Album_Name=album,Image=img,)
             Data.save()
         messages.success(request,'image uploaded successfully ...!')
-        return redirect('/upload_image/%s' %user.id)
+        return redirect('/upload_image/')
     context = {
-        'user' : user,
         'albums' : albums
     }
     return render(request,'upload_image.html',context)
 
 ########################################################################
 
-def manage_album(request,uid):
-    user = User.objects.get(id=uid)
+def manage_album(request):
     albums = Album.objects.all()
     context = {
-        'user' : user,
         'albums' : albums,
     }
     return render(request,'manage_album.html',context)
 
 ########################################################################
 
-def edit_album(request,uid,aid):
-    user = User.objects.get(id=uid)
+def edit_album(request,aid):
     album = Album.objects.get(id=aid)
     images = Album_Image.objects.filter(Album_Name=aid)
     if request.method == 'POST' :
@@ -89,9 +79,8 @@ def edit_album(request,uid,aid):
         album.Title = request.POST.get('name')
         album.save()
         messages.success(request,'album details edited successfully')
-        return redirect('/edit_album/1/%s' %album.id)
+        return redirect('/edit_album/%s' %album.id)
     context = {
-        'user' : user,
         'album' : album,
         'images' : images,
     }
@@ -99,21 +88,19 @@ def edit_album(request,uid,aid):
 
 ########################################################################
 
-def remove(request,uid,aid):
+def remove(request,aid):
     album = Album.objects.get(id=aid)
-    user = User.objects.get(id=uid)
     album.delete()
     messages.success(request,'album deleted successfully')
-    return redirect('/manage_album/%s' %user.id)
+    return redirect('/manage_album/')
 
 ########################################################################
 
-def remove_image(request,uid,aid,iid):
-    user = User.objects.get(id=uid)
+def remove_image(request,aid,iid):
     album = Album.objects.get(id=aid) 
     image = Album_Image.objects.get(id=iid)
     image.delete()
     messages.success(request,'image deleted successfully')
-    return redirect('/edit_album/1/%s' %album.id)
+    return redirect('/edit_album/%s' %album.id)
 
 ########################################################################

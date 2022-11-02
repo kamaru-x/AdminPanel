@@ -3,8 +3,7 @@ from home.models import User,Group_Of_Companies
 from django.contrib import messages
 # Create your views here.
 
-def add_logo(request,uid):
-    user = User.objects.get(id=uid)
+def add_logo(request):
     if request.method == 'POST' :
         image = request.FILES.getlist('image')
 
@@ -12,32 +11,26 @@ def add_logo(request,uid):
             data = Group_Of_Companies(Logo=img)
             data.save()
         messages.success(request,'logo added')
-        return redirect('/add_logo/%s' %user.id)
+        return redirect('/add_logo/')
 
-    context = {
-        'user' : user,
-    }
-    return render(request,'add_logo.html',context)
+    return render(request,'add_logo.html')
 
 ########################################################################
 
-def manage_logo(request,uid):
-    user = User.objects.get(id=uid)
+def manage_logo(request):
     logos = Group_Of_Companies.objects.all()
     context = {
-        'user' : user,
         'logos' : logos,
     }
     return render(request,'manage_logo.html',context)
 
 ########################################################################
 
-def remove_logo(request,uid,lid):
-    user = User.objects.get(id=uid)
+def remove_logo(request,lid):
     logo = Group_Of_Companies.objects.get(id=lid)
 
     logo.delete()
     messages.success(request,'logo deleted')
-    return redirect('/manage_logo/%s' %user.id)
+    return redirect('/manage_logo/')
 
 ########################################################################

@@ -74,7 +74,7 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <a href="{% url 'remove_image' user.id album.id image.id %}"><button type="button" class="btn btn-danger">Delete</button></a>
+                        <a href="{% url 'remove_image' album.id image.id %}"><button type="button" class="btn btn-danger">Delete</button></a>
                       </div>
                     </div>
                   </div>
@@ -85,7 +85,7 @@
     </div>
     <div class="row">
       <div class="col-md-12 text-center mb-5">
-          <a href="{% url 'manage_album' user.id %}"><button class="btn btn-primary btn-lg">SAVE</button></a>
+          <a href="{% url 'manage_album' %}"><button class="btn btn-primary btn-lg">SAVE</button></a>
       </div>
     </div>
 {% endblock content %}

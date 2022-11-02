@@ -4,8 +4,7 @@ from django.contrib import messages
 
 # Create your views here.
 
-def banner(request,uid):
-    user = User.objects.get(id=uid)
+def banner(request):
     if request.method == 'POST' :
         caption = request.POST.get('caption')
         scaption = request.POST.get('scaption')
@@ -16,28 +15,22 @@ def banner(request,uid):
         data = Banners (Caption=caption,Sub_Caption=scaption,Button_Label=label,Link=link,Banner_Image=image)
         data.save()
         messages.success(request,'banner added')
-        return redirect('/banner/%s' %user.id)
+        return redirect('/banner/')
 
-    context = {
-        'user' : user,
-    }
-    return render(request,'banner.html',context)
+    return render(request,'banner.html')
 
 ########################################################################
 
-def manage_banner(request,uid):
-    user = User.objects.get(id=uid)
+def manage_banner(request):
     banners = Banners.objects.all()
     context = {
-        'user' : user,
         'banners' : banners,
     }
     return render(request,'manage_banner.html',context)
 
 ########################################################################
 
-def edit_banner(request,uid,bid):
-    user = User.objects.get(id=uid)
+def edit_banner(request,bid):
     banner = Banners.objects.get(id=bid)
     if request.method == 'POST':
         if len(request.FILES) != 0:
@@ -52,28 +45,25 @@ def edit_banner(request,uid,bid):
         messages.success(request,'banner edited')
         return redirect('.')
     context = {
-        'user' : user,
         'banner' : banner,
     }
     return render(request,'edit_banner.html',context)
 
 ########################################################################
 
-def remove_banner(request,uid,bid):
-    user = User.objects.get(id=uid)
+def remove_banner(request,bid):
     banner = Banners.objects.get(id=bid)
 
     banner.delete()
     messages.success(request,'banner deleted')
-    return redirect('/manage_banner/%s' %user.id)
+    return redirect('/manage_banner/')
 
 ########################################################################
 
-def remove_ban_img(request,uid,bid):
-    user = User.objects.get(id=uid)
+def remove_ban_img(request,bid):
     banner = Banners.objects.get(id=bid)
 
     banner.Banner_Image.delete(save=True)
     banner.save()
 
-    return redirect('/edit_banner/1/%s' %banner.id)
+    return redirect('/edit_banner/%s' %banner.id)

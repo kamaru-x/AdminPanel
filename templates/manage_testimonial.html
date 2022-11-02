@@ -69,7 +69,7 @@
             <td>{{testimonial.Company_Name}}</td>
             <td>{{testimonial.Testimonial}}</td>
             <td>
-              <a href="{% url 'edit_testimonial' user.id testimonial.id %}"><button class="btn btn-primary">Edit</button></a>
+              <a href="{% url 'edit_testimonial' testimonial.id %}"><button class="btn btn-primary">Edit</button></a>
             </td>
             <td>
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter-{{forloop.counter}}">Delete</button>
@@ -85,7 +85,7 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <a href="{% url 'remove_testimonial' user.id testimonial.id %}"><button type="button" class="btn btn-danger">Delete</button></a>
+                      <a href="{% url 'remove_testimonial' testimonial.id %}"><button type="button" class="btn btn-danger">Delete</button></a>
                     </div>
                   </div>
                 </div>

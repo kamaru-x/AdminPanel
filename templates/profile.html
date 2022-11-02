@@ -1,54 +1,58 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-  </head>
-  <body>
-    <div class="container-fluid m-0 p-0">
-        <section class="vh-100" style="background-color: #508bfc;">
-            <div class="container py-5 h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                <div class="card shadow-2-strong" style="border-radius: 1rem;">
-                    <div class="card-body p-5 ">
-                    <div class="text-center">
-                        <h3 class="mb-5">Change Credentials</h3>
-                    </div>
-                    <form action="" method="POST">
-                        {% csrf_token %}
-                        <div class="form-outline mb-4">
-                            <label class="form-label ps-auto" for="username">Username</label>
-                            <input type="text" name="username" id="username" value="{{user.Username}}" class="form-control form-control-lg" />
-                        </div>
-            
-                        <div class="form-outline mb-4">
-                            <label class="form-label ps-auto" for="password">Password</label>
-                            <input type="text" name="password" id="password" value="{{user.Password}}" class="form-control form-control-lg" />
-                        </div>
-                        <div class="text-center">
-                        <input class="btn btn-primary btn-lg btn-block" type="submit"></input>
-                        </div>
-                    </form>
-                    <br>
-                    {% if messages %}
-                        {% for message in messages %}
-                            <div class="alert alert-danger" role="alert">
-                            {{message}} 
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-                    <hr class="my-4">
-
-                    </div>
+{% extends 'index.html' %}
+{% block header %}
+<div class="header bg-primary pb-6">
+  <div class="container-fluid">
+    <div class="header-body">
+      <div class="row align-items-center py-4">
+        <div class="col-lg-6 col-7">
+          <h6 class="h2 text-white d-inline-block mb-0"></h6>
+          <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+            <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+              <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+              <li class="breadcrumb-item"><a href="#">127.0.0.1</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Edit Credentials</li>
+            </ol>
+          </nav>
+          {% if messages %}
+              {% for message in messages %}
+                <div class="alert alert-success" role="alert">
+                    {{message}} 
                 </div>
-                </div>
-            </div>
-            </div>
-        </section>
+              {% endfor %}
+          {% endif %}
+        </div>
+      </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-  </body>
-</html>
+  </div>
+</div>
+{% endblock header %}
+{% block content %}
+    <main class="mx-5">
+        <div class="container-fluid p-5">
+            <div class="text-center">
+                <h1 class="mb-5">Chnage credentials</h1>
+            </div>
+            <form method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="row">
+                    <div class="form-outline mb-4 col-md-6">
+                        <label class="form-label">Username</label>
+                        <input required="True" type="text" name="username" class="form-control" />
+                    </div>
+                    <div class="form-outline mb-4 col-md-6">
+                        <label class="form-label">Password</label>
+                        <input required="True" type="text" name="password" class="form-control" />
+                    </div>
+              </div>
+              
+              <div class="row mb-4">
+                <div class="col-md-4"></div>
+                <div class="col-md-4 d-flex justify-content-center">
+                  <button type="submit" class="btn btn-primary btn-block">submit</button>
+                </div>
+                <div class="col-md-4"></div>
+              </div>
+            </form>
+          </div>
+    </main>
+{% endblock content %}

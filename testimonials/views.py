@@ -3,8 +3,7 @@ from home.models import User,Testimonial
 from django.contrib import messages
 # Create your views here.
 
-def add_testimonial(request,uid):
-    user = User.objects.get(id=uid)
+def add_testimonial(request):
     if request.method == 'POST' :
         name = request.POST.get('name')
         designation = request.POST.get('designation')
@@ -15,27 +14,21 @@ def add_testimonial(request,uid):
         data = Testimonial(Tes_Name=name,Designation=designation,Company_Name=cname,Testimonial=testimonial,Tes_Image=image)
         data.save()
         messages.success(request,'testimonial added')
-        return redirect('/add_testimonial/%s' %user.id)
-    context = {
-        'user' : user,
-    }
-    return render(request,'add_testimonial.html',context)
+        return redirect('/add_testimonial/')
+    return render(request,'add_testimonial.html')
 
 ########################################################################
 
-def manage_testimonial(request,uid):
-    user = User.objects.get(id=uid)
+def manage_testimonial(request):
     testimonials = Testimonial.objects.all()
     context = {
-        'user' : user,
         'testimonials' : testimonials
     }
     return render(request,'manage_testimonial.html',context)
 
 ########################################################################
 
-def edit_testimonial(request,uid,tid):
-    user = User.objects.get(id=uid)
+def edit_testimonial(request,tid):
     testimonial = Testimonial.objects.get(id=tid)
     if request.method == 'POST':
         if len(request.FILES) != 0:
@@ -50,28 +43,25 @@ def edit_testimonial(request,uid,tid):
         messages.success(request,'testimonial edited')
         return redirect('.')
     context = {
-        'user' : user,
         'tes' : testimonial,
     }
     return render(request,'edit_testimonial.html',context)
 
 ########################################################################
 
-def remove_testimonial(request,uid,tid):
-    user = User.objects.get(id=uid)
+def remove_testimonial(request,tid):
     testimonial = Testimonial.objects.get(id=tid)
 
     testimonial.delete()
     messages.success(request,'testimonial deleted')
-    return redirect('/manage_testimonial/%s' %user.id)
+    return redirect('/manage_testimonial/')
 
 ########################################################################
 
-def remove_tes_img(request,uid,tid):
-    user = User.objects.get(id=uid)
+def remove_tes_img(request,tid):
     testimonial = Testimonial.objects.get(id=tid)
 
     testimonial.Tes_Image.delete(save=True)
     testimonial.save()
 
-    return redirect('/edit_testimonial/1/%s' %testimonial.id)
+    return redirect('/edit_testimonial/%s' %testimonial.id)
