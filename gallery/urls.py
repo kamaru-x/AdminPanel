@@ -2,7 +2,6 @@ from django.urls import path
 from gallery import views
 
 urlpatterns = [
-    path('gallery/<int:uid>/',views.gallery,name='gallery'),
     path('create_album/<int:uid>/',views.create_album,name='create_album'),
     path('view_album/<int:uid>/<int:aid>/',views.view_ablum,name='view_album'),
     path('upload_image/<int:uid>/',views.upload_image,name='upload_image'),

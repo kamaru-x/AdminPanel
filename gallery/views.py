@@ -5,17 +5,6 @@ from django.contrib import messages
 
 # Create your views here.
 
-def gallery(request,uid):
-    user = User.objects.get(id=uid)
-    albums = Album.objects.all()
-    form = AboutForm
-    context = {
-        'user' : user,
-        'albums' : albums,
-        'form' : form
-    }
-    return render(request,'gallery.html',context)
-
 ########################################################################
 
 def create_album(request,uid):

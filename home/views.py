@@ -14,6 +14,12 @@ def index(request,uid):
 
 ########################################################################
 
+def test_area(request):
+    blogs = Blog.objects.all()
+    return render(request,'test-area.html',{'blogs':blogs})
+
+########################################################################
+
 def login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
