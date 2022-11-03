@@ -2,6 +2,7 @@ from django import forms
 from django.forms import TextInput,Textarea,FileInput
 from home.models import Blog,About
 from ckeditor.widgets import CKEditorWidget
+from django.contrib.auth.forms import PasswordChangeForm
 
 class Edit_Blog(forms.ModelForm):
     class Meta():
@@ -23,3 +24,10 @@ class AboutForm(forms.ModelForm):
             'SMKeywords' : TextInput(attrs={'class' : 'form-control'}),
             'SMDescription' : Textarea(attrs={'class' : 'form-control'}),
         }
+
+class ChangePassword(PasswordChangeForm):
+    def __init__(self,*args,**kwargs):
+        super().__init__(*args,**kwargs)
+
+        for fieldname in ['old_password','new_password1','new_password2'] :
+            self.fields[fieldname].widget.attrs = {'class' : 'form-control'}

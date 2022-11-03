@@ -130,7 +130,7 @@ def contact_us(request):
             smdescription = request.POST.get('smdescription')
             smkeywords = request.POST.get('smkeywords')
 
-            data = Contact(Company_Name=title,Adress=address,Telephone=address,
+            data = Contact(Company_Name=title,Adress=address,Telephone=telephone,
             Mobile=mobile,Whatsapp=whatsapp,Email=email,Website=website,Longitude=longitude,
             Latitude=latitude,Facebook=facebook,Instagram=instagram,Linkedin=linkedin,
             Twitter=twitter,Image=image,Url=url,SMTitle=smtitle,SMDescription=smdescription,SMKeywords=smkeywords)
@@ -265,4 +265,15 @@ def remove_enquiry(request,eid):
 ########################################################################
 
 def user_profile(request):
-    return render(request,'profile.html')
+    form = UserChangeForm
+    if request.method == "POST":
+        form = AboutForm(request.POST , request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'about edited successfully')
+            return redirect('/about_us/')
+    form = UserChangeForm()
+    context = {
+        'form' : form
+    }
+    return render(request,'change-password.html',context)
