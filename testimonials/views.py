@@ -1,8 +1,10 @@
 from django.shortcuts import render,redirect
 from home.models import Testimonial
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
+@login_required
 def add_testimonial(request):
     if request.method == 'POST' :
         name = request.POST.get('name')
@@ -19,6 +21,7 @@ def add_testimonial(request):
 
 ########################################################################
 
+@login_required
 def manage_testimonial(request):
     testimonials = Testimonial.objects.all()
     context = {
@@ -28,6 +31,7 @@ def manage_testimonial(request):
 
 ########################################################################
 
+@login_required
 def edit_testimonial(request,tid):
     testimonial = Testimonial.objects.get(id=tid)
     if request.method == 'POST':
@@ -49,6 +53,7 @@ def edit_testimonial(request,tid):
 
 ########################################################################
 
+@login_required
 def remove_testimonial(request,tid):
     testimonial = Testimonial.objects.get(id=tid)
 
@@ -58,6 +63,7 @@ def remove_testimonial(request,tid):
 
 ########################################################################
 
+@login_required
 def remove_tes_img(request,tid):
     testimonial = Testimonial.objects.get(id=tid)
 

@@ -6,6 +6,7 @@ import os
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -38,6 +39,7 @@ def user_login(request):
 
 ########################################################################
 
+@login_required
 def dashboard(request):
     feedbacks = Feedback.objects.all()
     products = Product.objects.all()
@@ -61,6 +63,7 @@ def dashboard(request):
 
 ########################################################################
 
+@login_required
 def about_us(request):
     about = About.objects.last()
     form = AboutForm
@@ -82,6 +85,7 @@ def about_us(request):
 
 ########################################################################
 
+@login_required
 def contact_us(request):
     contact = Contact.objects.last()
     if request.method == 'POST':
@@ -140,6 +144,7 @@ def contact_us(request):
 
 ########################################################################
 
+@login_required
 def feedback(request):
     feedbacks = Feedback.objects.all()
     context = {
@@ -149,6 +154,7 @@ def feedback(request):
 
 ########################################################################
 
+@login_required
 def enquiry(request):
     enquiries = Enquiry.objects.all()
     context = {
@@ -158,6 +164,7 @@ def enquiry(request):
 
 ########################################################################
 
+@login_required
 def manage_menu(request):
     manage = Manage_Menu.objects.last()
     if request.method == 'POST':
@@ -202,6 +209,7 @@ def manage_menu(request):
 
 ########################################################################
 
+@login_required
 def quick_links(request):
     quick = Quick_Links.objects.last()
     if request.method == 'POST':
@@ -240,6 +248,7 @@ def quick_links(request):
 
 ########################################################################
 
+@login_required
 def remove_abt_img(request,aid):
     about = About.objects.get(id=aid)
 
@@ -250,6 +259,7 @@ def remove_abt_img(request,aid):
 
 ########################################################################
 
+@login_required
 def remove_feedback(request,fid):
     feedback = Feedback.objects.get(id=fid)
     feedback.delete()
@@ -257,6 +267,7 @@ def remove_feedback(request,fid):
 
 ########################################################################
 
+@login_required
 def remove_enquiry(request,eid):
     enquiry = Enquiry.objects.get(id=eid)
     enquiry.delete()
@@ -264,6 +275,7 @@ def remove_enquiry(request,eid):
 
 ########################################################################
 
+@login_required
 def user_profile(request):
     form = UserChangeForm
     if request.method == "POST":
@@ -277,3 +289,10 @@ def user_profile(request):
         'form' : form
     }
     return render(request,'change-password.html',context)
+
+########################################################################
+
+@login_required
+def signout(request):
+    logout(request)
+    return redirect('/')

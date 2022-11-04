@@ -18,5 +18,6 @@ urlpatterns = [
     path('quick_links/',views.quick_links,name='quick_links'),
     path('manage_menu/',views.manage_menu,name='manage_menu'),
     path('remove_abt_img/<int:aid>/',views.remove_abt_img,name='remove_abt_img'),
-    path('profile/done/',PasswordChangeDoneView.as_view(template_name='change-password.html'))
+    path('profile/done/',PasswordChangeDoneView.as_view(template_name='change-password.html')),
+    path('logout/',views.signout,name='logout'),
 ]

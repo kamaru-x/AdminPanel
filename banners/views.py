@@ -1,9 +1,11 @@
 from django.shortcuts import render,redirect
 from home.models import Banners
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+@login_required
 def banner(request):
     if request.method == 'POST' :
         caption = request.POST.get('caption')
@@ -21,6 +23,7 @@ def banner(request):
 
 ########################################################################
 
+@login_required
 def manage_banner(request):
     banners = Banners.objects.all()
     context = {
@@ -30,6 +33,7 @@ def manage_banner(request):
 
 ########################################################################
 
+@login_required
 def edit_banner(request,bid):
     banner = Banners.objects.get(id=bid)
     if request.method == 'POST':
@@ -51,6 +55,7 @@ def edit_banner(request,bid):
 
 ########################################################################
 
+@login_required
 def remove_banner(request,bid):
     banner = Banners.objects.get(id=bid)
 
@@ -60,6 +65,7 @@ def remove_banner(request,bid):
 
 ########################################################################
 
+@login_required
 def remove_ban_img(request,bid):
     banner = Banners.objects.get(id=bid)
 

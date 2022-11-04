@@ -1,9 +1,11 @@
 from django.shortcuts import render,redirect
 from home.models import Product
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+@login_required
 def products(request):
     product = Product.objects.last()
 
@@ -44,6 +46,7 @@ def products(request):
 
 ########################################################################
 
+@login_required
 def manage_product(request):
     products = Product.objects.all()
     context = {
@@ -53,6 +56,7 @@ def manage_product(request):
 
 ########################################################################
 
+@login_required
 def edit_product(request,pid):
     product = Product.objects.get(id=pid)
     if request.method == 'POST':
@@ -83,6 +87,7 @@ def edit_product(request,pid):
 
 ########################################################################
 
+@login_required
 def remove_product(request,pid):
     product = Product.objects.get(id=pid)
 
@@ -92,6 +97,7 @@ def remove_product(request,pid):
 
 ########################################################################
 
+@login_required
 def remove_pro_img(request,pid):
     product = Product.objects.get(id=pid)
 

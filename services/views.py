@@ -1,8 +1,10 @@
 from django.shortcuts import render,redirect
 from home.models import Service
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
+@login_required
 def services(request):
     service = Service.objects.last()
 
@@ -41,6 +43,7 @@ def services(request):
 
 ########################################################################
 
+@login_required
 def manage_service(request):
     services = Service.objects.all()
     context = {
@@ -50,6 +53,7 @@ def manage_service(request):
 
 ########################################################################
 
+@login_required
 def edit_service(request,sid):
     service = Service.objects.get(id=sid)
     if request.method == 'POST':
@@ -80,6 +84,7 @@ def edit_service(request,sid):
 
 ########################################################################
 
+@login_required
 def remove_service(request,sid):
     service = Service.objects.get(id=sid)
 
@@ -89,6 +94,7 @@ def remove_service(request,sid):
 
 ########################################################################
 
+@login_required
 def remove_ser_img(request,sid):
     service = Service.objects.get(id=sid)
 

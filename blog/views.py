@@ -1,10 +1,12 @@
 from django.shortcuts import render,redirect
 from home.models import Blog
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 ########################################################################
 
+@login_required
 def blog(request):
     if request.method == 'POST':
         title = request.POST.get('title')
@@ -24,12 +26,14 @@ def blog(request):
 
 ########################################################################
 
+@login_required
 def manage_blog(request):
     blogs = Blog.objects.all()
     return render(request,'manage_blog.html',{'blogs':blogs})
 
 ########################################################################
 
+@login_required
 def edit_blog(request,bid):
     blog = Blog.objects.get(id=bid)
     if request.method == 'POST':
@@ -54,6 +58,7 @@ def edit_blog(request,bid):
 
 ########################################################################
 
+@login_required
 def remove_blog(request,bid):
     blog = Blog.objects.get(id=bid)
 
@@ -63,6 +68,7 @@ def remove_blog(request,bid):
 
 ########################################################################
 
+@login_required
 def remove_blog_img(request,bid):
     blog = Blog.objects.get(id=bid)
 

@@ -2,11 +2,13 @@ from django.shortcuts import render,redirect
 from home.models import Album,Album_Image
 from home.forms import AboutForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 ########################################################################
 
+@login_required
 def create_album(request):
     if request.method == 'POST':
         title = request.POST.get('title')
@@ -26,6 +28,7 @@ def create_album(request):
 
 ########################################################################
 
+@login_required
 def view_ablum(request,aid):
     album = Album.objects.get(id=aid)
     context = {
@@ -35,6 +38,7 @@ def view_ablum(request,aid):
 
 ########################################################################
 
+@login_required
 def upload_image(request):
     albums = Album.objects.all()
 
@@ -60,6 +64,7 @@ def upload_image(request):
 
 ########################################################################
 
+@login_required
 def manage_album(request):
     albums = Album.objects.all()
     context = {
@@ -69,6 +74,7 @@ def manage_album(request):
 
 ########################################################################
 
+@login_required
 def edit_album(request,aid):
     album = Album.objects.get(id=aid)
     images = Album_Image.objects.filter(Album_Name=aid)
@@ -89,6 +95,7 @@ def edit_album(request,aid):
 
 ########################################################################
 
+@login_required
 def remove(request,aid):
     album = Album.objects.get(id=aid)
     album.delete()
@@ -97,6 +104,7 @@ def remove(request,aid):
 
 ########################################################################
 
+@login_required
 def remove_image(request,aid,iid):
     album = Album.objects.get(id=aid) 
     image = Album_Image.objects.get(id=iid)

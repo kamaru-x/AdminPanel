@@ -1,8 +1,10 @@
 from django.shortcuts import render,redirect
 from home.models import Group_Of_Companies
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
+@login_required
 def add_logo(request):
     if request.method == 'POST' :
         image = request.FILES.getlist('image')
@@ -17,6 +19,7 @@ def add_logo(request):
 
 ########################################################################
 
+@login_required
 def manage_logo(request):
     logos = Group_Of_Companies.objects.all()
     context = {
@@ -26,6 +29,7 @@ def manage_logo(request):
 
 ########################################################################
 
+@login_required
 def remove_logo(request,lid):
     logo = Group_Of_Companies.objects.get(id=lid)
 

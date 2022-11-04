@@ -161,3 +161,6 @@ CKEDITOR_CONFIGS = {
         ]
     }
 }
+
+LOGIN_REDIRECT_URL = 'dashboard'
+LOGIN_URL = '/gadmin'
