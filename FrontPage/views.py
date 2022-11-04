@@ -97,6 +97,7 @@ def service_single(request,url):
     contact = Contact.objects.last()
     quick = Quick_Links.objects.last()
     menu = Manage_Menu.objects.last()
+    services = Service.objects.all()
 
     if request.method == 'POST' :
         name = request.POST.get('name')
@@ -115,6 +116,7 @@ def service_single(request,url):
         'contact' : contact,
         'quick' : quick,
         'menu' : menu,
+        'services' : services,
     }
     return render(request,'fp/service-single.html',context)
 
@@ -140,6 +142,7 @@ def product(request):
 
 def products_single(request,url):
     product = Product.objects.get(Url=url)
+    products = Product.objects.all()
     services = Service.objects.all()
     contact = Contact.objects.last()
     quick = Quick_Links.objects.last()
@@ -158,6 +161,7 @@ def products_single(request,url):
 
     context = {
         'product' : product,
+        'products' : products,
         'services' : services,
         'contact' : contact,
         'quick' : quick,
