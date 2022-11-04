@@ -45,7 +45,7 @@ def upload_image(request):
         album = Album.objects.get(id=select)
         image_count = Album_Image.objects.filter(Album_Name=album).count()
 
-        album.Images = image_count
+        album.Images = image_count + len(image)
         album.save()
 
         for img in image: 
