@@ -19,7 +19,7 @@ def blog(request):
         SMDescription=smdescription,SMKeywords=smkeywords)
         Data.save()
         messages.success(request,'new blog added successfully.....!')
-        return redirect('/blog/')
+        return redirect('blog')
     return render(request,'blog.html')
 
 ########################################################################
@@ -59,7 +59,7 @@ def remove_blog(request,bid):
 
     blog.delete()
     messages.error(request,'blog deleted')
-    return redirect('/manage_blog/')
+    return redirect('manage_blog')
 
 ########################################################################
 
@@ -69,6 +69,6 @@ def remove_blog_img(request,bid):
     blog.Image.delete(save=True)
     blog.save()
 
-    return redirect('/edit_blog/%s' %blog.id)
+    return redirect('edit_blog/%s' %blog.id)
 
 ########################################################################

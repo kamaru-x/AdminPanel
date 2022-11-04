@@ -14,7 +14,7 @@ def add_testimonial(request):
         data = Testimonial(Tes_Name=name,Designation=designation,Company_Name=cname,Testimonial=testimonial,Tes_Image=image)
         data.save()
         messages.success(request,'testimonial added')
-        return redirect('/add_testimonial/')
+        return redirect('add_testimonial')
     return render(request,'add_testimonial.html')
 
 ########################################################################
@@ -54,7 +54,7 @@ def remove_testimonial(request,tid):
 
     testimonial.delete()
     messages.success(request,'testimonial deleted')
-    return redirect('/manage_testimonial/')
+    return redirect('manage_testimonial')
 
 ########################################################################
 
@@ -64,4 +64,4 @@ def remove_tes_img(request,tid):
     testimonial.Tes_Image.delete(save=True)
     testimonial.save()
 
-    return redirect('/edit_testimonial/%s' %testimonial.id)
+    return redirect('edit_testimonial/%s' %testimonial.id)

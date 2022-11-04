@@ -15,7 +15,7 @@ def banner(request):
         data = Banners (Caption=caption,Sub_Caption=scaption,Button_Label=label,Link=link,Banner_Image=image)
         data.save()
         messages.success(request,'banner added')
-        return redirect('/banner/')
+        return redirect('banner')
 
     return render(request,'banner.html')
 
@@ -56,7 +56,7 @@ def remove_banner(request,bid):
 
     banner.delete()
     messages.success(request,'banner deleted')
-    return redirect('/manage_banner/')
+    return redirect('manage_banner')
 
 ########################################################################
 
@@ -66,4 +66,4 @@ def remove_ban_img(request,bid):
     banner.Banner_Image.delete(save=True)
     banner.save()
 
-    return redirect('/edit_banner/%s' %banner.id)
+    return redirect('edit_banner/%s' %banner.id)

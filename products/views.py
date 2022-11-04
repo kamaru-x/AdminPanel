@@ -32,7 +32,7 @@ def products(request):
         Show_Enquiry=show_enquiry,SMTitle=smtitle,SMDescription=smdescription,SMKeywords=smkeywords)
         Data.save()
         messages.success(request,'added new product succesfully')
-        return redirect('/products/')
+        return redirect('products')
 
     context = {
         'refer_id' : refer_id
@@ -84,7 +84,7 @@ def remove_product(request,pid):
 
     product.delete()
     messages.success(request,'product deleted successfully')
-    return redirect('/manage_product/')
+    return redirect('manage_product')
 
 ########################################################################
 
@@ -94,4 +94,4 @@ def remove_pro_img(request,pid):
     product.Image.delete(save=True)
     product.save()
 
-    return redirect('/edit_product/%s' %product.id)
+    return redirect('edit_product/%s' %product.id)

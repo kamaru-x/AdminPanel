@@ -40,7 +40,7 @@
               <tbody>
                 {% for feedback in feedbacks %}
                 <tr>
-                  <th scope="row">#</th>
+                  <th scope="row">{{forloop.counter}}</th>
                   <td>{{feedback.Name}}</td>
                   <td>{{feedback.Email}}</td>
                   <td>{{feedback.Contact}}</td>

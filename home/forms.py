@@ -13,7 +13,7 @@ class AboutForm(forms.ModelForm):
     Description = forms.CharField(widget=CKEditorWidget())
     class Meta():
         model = About
-        fields = ('Title','Description','Image','Url','SMTitle','SMDescription','SMKeywords')
+        fields = ('Title','Description','Image','Url','SMTitle','SMDescription','SMKeywords','Mission','Vision')
 
         widgets = {
             'Title': TextInput(attrs={'class' : 'form-control','name' : 'title','id':'title'}),
@@ -23,6 +23,8 @@ class AboutForm(forms.ModelForm):
             'SMTitle' : TextInput(attrs={'class' : 'form-control'}),
             'SMKeywords' : TextInput(attrs={'class' : 'form-control'}),
             'SMDescription' : Textarea(attrs={'class' : 'form-control'}),
+            'Mission' : Textarea(attrs={'class' : 'form-control'}),
+            'Vision' : Textarea(attrs={'class' : 'form-control'}),
         }
 
 class ChangePassword(PasswordChangeForm):

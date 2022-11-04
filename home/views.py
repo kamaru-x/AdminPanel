@@ -30,7 +30,7 @@ def user_login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('/dashboard/')
+            return redirect('dashboard')
         else:
             messages.error(request,'incorrect email or password')
             return redirect('.')
@@ -72,7 +72,7 @@ def about_us(request):
         if form.is_valid():
             form.save()
             messages.success(request,'about edited successfully')
-            return redirect('/about_us/')
+            return redirect('about_us')
     form = AboutForm(instance=about)
     context = {
         'about' : about,
@@ -109,7 +109,7 @@ def contact_us(request):
             contact.SMKeywords = request.POST.get('smkeywords')
             contact.save()
             messages.success(request,'contact details edited successfully ...!')
-            return redirect('/contact_us/')
+            return redirect('contact_us')
         else:
             image = request.FILES['image']
             title = request.POST.get('title')
@@ -135,7 +135,7 @@ def contact_us(request):
             Latitude=latitude,Facebook=facebook,Instagram=instagram,Linkedin=linkedin,
             Twitter=twitter,Image=image,Url=url,SMTitle=smtitle,SMDescription=smdescription,SMKeywords=smkeywords)
             data.save()
-            return redirect('/contact_us/')
+            return redirect('contact_us')
     return render(request,'contact_us.html',{'data':contact})
 
 ########################################################################
@@ -175,7 +175,7 @@ def manage_menu(request):
             manage.save()
             
             messages.success(request,'manage manu edited successfully ...!')
-            return redirect('/manage_menu/')
+            return redirect('manage_menu')
         else:
             about = request.POST.get('about')
             blog = request.POST.get('blog')
@@ -194,7 +194,7 @@ def manage_menu(request):
             data.save()
             
             messages.success(request,'manage manu edited successfully ...!')
-            return redirect('/manage_menu/')
+            return redirect('manage_menu')
     context = {
         'manage' : manage,
     }
@@ -217,7 +217,7 @@ def quick_links(request):
             quick.Optional_Service = request.POST.get('op-services')
             quick.save()
             messages.success(request,'quick links edited successfully ...!')
-            return redirect('/quick_links/')
+            return redirect('quick_links')
         else:
             about = request.POST.get('about')
             blog = request.POST.get('blog')
@@ -232,7 +232,7 @@ def quick_links(request):
             Products_Page=products,Service_Page=services,Testimonials=testimonials,Optional_Products=op_products,Optional_Service=op_services)
             data.save()
             messages.success(request,'quick links edited successfully ...!')
-            return redirect('/quick_links/')
+            return redirect('quick_links')
     context = {
         'quick' : quick,
     }
@@ -246,21 +246,21 @@ def remove_abt_img(request,aid):
     about.Image.delete(save=True)
     about.save()
 
-    return redirect('/about_us/')
+    return redirect('about_us')
 
 ########################################################################
 
 def remove_feedback(request,fid):
     feedback = Feedback.objects.get(id=fid)
     feedback.delete()
-    return redirect('/feedback/')
+    return redirect('feedback')
 
 ########################################################################
 
 def remove_enquiry(request,eid):
     enquiry = Enquiry.objects.get(id=eid)
     enquiry.delete()
-    return redirect('/enquiry/')
+    return redirect('enquiry')
 
 ########################################################################
 
@@ -271,7 +271,7 @@ def user_profile(request):
         if form.is_valid():
             form.save()
             messages.success(request,'about edited successfully')
-            return redirect('/about_us/')
+            return redirect('about_us')
     form = UserChangeForm()
     context = {
         'form' : form

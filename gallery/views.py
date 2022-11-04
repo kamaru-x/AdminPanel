@@ -20,7 +20,7 @@ def create_album(request):
         SMDescription=smdescription,SMKeywords=smkeywords)
         Data.save()
         messages.success(request,'album created successfully...!')
-        return redirect('/create_album/')
+        return redirect('create_album')
     
     return render(request,'create_album.html')
 
@@ -51,7 +51,7 @@ def upload_image(request):
             Data = Album_Image(Album_Name=album,Image=img,)
             Data.save()
         messages.success(request,'image uploaded successfully ...!')
-        return redirect('/upload_image/')
+        return redirect('upload_image')
     context = {
         'albums' : albums
     }
@@ -79,7 +79,7 @@ def edit_album(request,aid):
         album.Title = request.POST.get('name')
         album.save()
         messages.success(request,'album details edited successfully')
-        return redirect('/edit_album/%s' %album.id)
+        return redirect('edit_album/%s' %album.id)
     context = {
         'album' : album,
         'images' : images,
@@ -92,7 +92,7 @@ def remove(request,aid):
     album = Album.objects.get(id=aid)
     album.delete()
     messages.success(request,'album deleted successfully')
-    return redirect('/manage_album/')
+    return redirect('manage_album')
 
 ########################################################################
 
@@ -101,6 +101,6 @@ def remove_image(request,aid,iid):
     image = Album_Image.objects.get(id=iid)
     image.delete()
     messages.success(request,'image deleted successfully')
-    return redirect('/edit_album/%s' %album.id)
+    return redirect('edit_album/%s' %album.id)
 
 ########################################################################

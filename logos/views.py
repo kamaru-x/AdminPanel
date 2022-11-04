@@ -11,7 +11,7 @@ def add_logo(request):
             data = Group_Of_Companies(Logo=img)
             data.save()
         messages.success(request,'logo added')
-        return redirect('/add_logo/')
+        return redirect('add_logo')
 
     return render(request,'add_logo.html')
 
@@ -31,6 +31,6 @@ def remove_logo(request,lid):
 
     logo.delete()
     messages.success(request,'logo deleted')
-    return redirect('/manage_logo/')
+    return redirect('manage_logo')
 
 ########################################################################

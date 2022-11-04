@@ -30,7 +30,7 @@ def services(request):
         Show_Enquiry=show_enquiry,SMTitle=smtitle,SMDescription=smdescription,SMKeywords=smkeywords)
         Data.save()
         messages.success(request,'new services added successfully')
-        return redirect('/services/')
+        return redirect('services')
     
     context = {
         'refer_id' : refer_id
@@ -81,7 +81,7 @@ def remove_service(request,sid):
 
     service.delete()
     messages.success(request,'service deleted')
-    return redirect('/manage_service/')
+    return redirect('manage_service')
 
 ########################################################################
 
@@ -91,4 +91,4 @@ def remove_ser_img(request,sid):
     service.Image.delete(save=True)
     service.save()
 
-    return redirect('/edit_service/%s' %service.id)
+    return redirect('edit_service/%s' %service.id)

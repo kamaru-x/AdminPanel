@@ -33,6 +33,7 @@
                   <th scope="col">Email</th>
                   <th scope="col">Mobile</th>
                   <th scop="col">Product</th>
+                  <th>Refer No</th>
                   <th scope="col">Date</th>
                   <th></th>
                   <th></th>
@@ -41,11 +42,12 @@
               <tbody>
                 {% for enquiry in enquiries %}
                 <tr>
-                  <th scope="row">1</th>
+                  <th scope="row">{{forloop.counter}}</th>
                   <td>{{enquiry.Name}}</td>
                   <td>{{enquiry.Email}}</td>
                   <td>{{enquiry.Mobile_Number}}</td>
-                  <td>{{enquiry.Product_Name.Title}}</td>
+                  <td>{{enquiry.Product_Name}}</td>
+                  <td>{{enquiry.Refer_number}}</td>
                   <td>{{enquiry.Date}}</td>
                   <td>
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter-{{forloop.counter}}">Delete</button>

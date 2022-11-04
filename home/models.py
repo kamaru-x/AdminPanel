@@ -1,4 +1,3 @@
-from email.policy import default
 from django.db import models
 from ckeditor.fields import RichTextField
 # Create your models here.
@@ -15,7 +14,7 @@ class User(models.Model):
 ########################################################################
 
 class Feedback(models.Model):
-    Date = models.DateField()
+    Date = models.DateField(auto_now_add=True)
     Name = models.CharField(max_length=100)
     Email = models.EmailField()
     Contact = models.CharField(max_length=15)
@@ -32,7 +31,9 @@ class Feedback(models.Model):
 class About(models.Model):
     Title = models.CharField(max_length=50)
     #Description = models.TextField()
-    Description = RichTextField()
+    Mission = models.TextField()
+    Vision = models.TextField(null=True,blank=True)
+    Description = RichTextField(null=True,blank=True)
     Image = models.ImageField(blank=True,null=True,upload_to='about_us')
     Url = models.CharField(max_length=20000)
     SMTitle = models.CharField(max_length=2000)
@@ -147,12 +148,11 @@ class Service(models.Model):
 ########################################################################
 
 class Enquiry(models.Model):
-    Date = models.DateField()
-    Time = models.TimeField()
+    Date = models.DateField(auto_now_add=True)
     Name = models.CharField(max_length=50)
     Mobile_Number = models.CharField(max_length=15,null=True, default=None, blank=True)
     Email = models.EmailField(null=True, default=None, blank=True)
-    Product_Name = models.ForeignKey(Product,on_delete=models.CASCADE,null=True, default=None, blank=True)
+    Product_Name = models.CharField(max_length=50,null=True, default=None, blank=True)
     Refer_number = models.CharField(max_length=6,null=True, default=None, blank=True)
 
     def __str__(self):
