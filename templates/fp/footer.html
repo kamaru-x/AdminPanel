@@ -19,15 +19,38 @@
             <h6 class="text-white mb-3 mb-md-4">Quick Links</h6>
             <ul class="list-unstyled">
               <li><a href="{% url 'indexpage' %}"><i class="btn-icon fas fa-long-arrow-alt-right mr-2"></i>Home</a></li>
-              <li><a href="{% url 'about' %}"><i class="btn-icon fas fa-long-arrow-alt-right mr-2"></i>About</a></li>
-              <li><a href="{% url 'servicepage' %}"><i class="btn-icon fas fa-long-arrow-alt-right mr-2"></i>Services</a></li>
+              
+              {% if quick.About_Page %}
+                <li><a href="{% url 'about' %}"><i class="btn-icon fas fa-long-arrow-alt-right mr-2"></i>About</a></li>
+              {% endif %}
+
+              {% if quick.Service_Page %}
+                <li><a href="{% url 'servicepage' %}"><i class="btn-icon fas fa-long-arrow-alt-right mr-2"></i>Services</a></li>
+              {% endif %}
+
+              {% if quick.Products_Page %}
+                <li><a href="{% url 'productspage' %}"><i class="btn-icon fas fa-long-arrow-alt-right mr-2"></i>Products</a></li>
+              {% endif %}
+
               <li><a href="{% url 'team' %}"><i class="btn-icon fas fa-long-arrow-alt-right mr-2"></i>Team</a></li>
-              <li><a href="{% url 'blogspage' %}"><i class="btn-icon fas fa-long-arrow-alt-right mr-2"></i>Blogs</a></li>
-              <li><a href="{% url 'gallerypage' %}"><i class="btn-icon fas fa-long-arrow-alt-right mr-2"></i>Gallery</a></li>
-              <li><a href="{% url 'contactpage' %}"><i class="btn-icon fas fa-long-arrow-alt-right mr-2"></i>Contact</a></li>
+
+              {% if quick.Blog_Page %}
+                <li><a href="{% url 'blogspage' %}"><i class="btn-icon fas fa-long-arrow-alt-right mr-2"></i>Blogs</a></li>
+              {% endif %}
+
+              {% if quick.Image_Gallery %}
+                <li><a href="{% url 'gallerypage' %}"><i class="btn-icon fas fa-long-arrow-alt-right mr-2"></i>Gallery</a></li>
+              {% endif %}
+
+              {% if quick.Contact_Page %}
+                <li><a href="{% url 'contactpage' %}"><i class="btn-icon fas fa-long-arrow-alt-right mr-2"></i>Contact</a></li>
+              {% endif %}
+
             </ul>
           </div>
         </div>
+        
+        {% if quick.Optional_Service %}
         <div class="col-lg-2 col-sm-6 mb-4 mb-lg-0">
           <div class="footer-link">
             <h6 class="text-white mb-3 mb-md-4">Services</h6>
@@ -38,7 +61,9 @@
             </ul>
           </div>
         </div>
+        {% endif %}
         
+        {% if quick.Optional_Products %}
         <div class="col-lg-2 col-sm-6 mb-4 mb-lg-0">
           <div class="footer-link">
             <h6 class="text-white mb-3 mb-md-4">Products</h6>
@@ -49,6 +74,7 @@
             </ul>
           </div>
         </div>
+        {% endif %}
 
         <div class="col-lg-2 col-sm-6 mb-4 mb-sm-0">
           <div class="footer-link">
