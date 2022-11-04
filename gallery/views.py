@@ -37,12 +37,13 @@ def view_ablum(request,aid):
 
 def upload_image(request):
     albums = Album.objects.all()
+
     if request.method == 'POST':
         select = request.POST.get('select')
         image = request.FILES.getlist('image')
 
         album = Album.objects.get(id=select)
-        image_count = Album.objects.filter(id=select).count()
+        image_count = Album_Image.objects.filter(Album_Name=album).count()
 
         album.Images = image_count
         album.save()
