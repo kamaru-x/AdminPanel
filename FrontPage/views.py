@@ -13,6 +13,7 @@ def indexpage(request):
     testimonials = Testimonial.objects.all()
     banners = Banners.objects.all()
     quick = Quick_Links.objects.last()
+    menu = Manage_Menu.objects.last()
 
     context = {
         'about' : about,
@@ -23,8 +24,18 @@ def indexpage(request):
         'banners' : banners,
         'contact' : contact,
         'quick' : quick,
+        'menu' : menu,
     }
     return render(request,'fp/index.html',context)
+
+########################################################################
+
+def header(request):
+    menu = Manage_Menu.objects.last()
+    context = {
+        'menu' : menu,
+    }
+    return render(request,'fp/header.html',context)
 
 ########################################################################
 
@@ -34,12 +45,15 @@ def aboutpage(request):
     services = Service.objects.all()
     products = Product.objects.all()
     quick = Quick_Links.objects.last()
+    menu = Manage_Menu.objects.last()
+
     context = {
         'about' : about,
         'services' : services,
         'products' : products,
         'contact' : contact,
-        'quick' : quick
+        'quick' : quick,
+        'menu' : menu,
     }
     return render(request,'fp/about.html',context)
 
@@ -50,11 +64,14 @@ def service(request):
     contact = Contact.objects.last()
     products = Product.objects.all()
     quick = Quick_Links.objects.last()
+    menu = Manage_Menu.objects.last()
+
     context = {
         'services' : services,
         'contact' : contact,
         'products' : products,
-        'quick' : quick
+        'quick' : quick,
+        'menu' : menu,
     }
     return render(request,'fp/service.html',context)
 
@@ -65,6 +82,7 @@ def service_single(request,url):
     products = Product.objects.all()
     contact = Contact.objects.last()
     quick = Quick_Links.objects.last()
+    menu = Manage_Menu.objects.last()
 
     if request.method == 'POST' :
         name = request.POST.get('name')
@@ -82,6 +100,7 @@ def service_single(request,url):
         'products' : products,
         'contact' : contact,
         'quick' : quick,
+        'menu' : menu,
     }
     return render(request,'fp/service-single.html',context)
 
@@ -92,11 +111,14 @@ def product(request):
     products = Product.objects.all()
     contact = Contact.objects.last()
     quick = Quick_Links.objects.last()
+    menu = Manage_Menu.objects.last()
+
     context = {
         'products' : products,
         'services' : services,
         'contact' : contact,
         'quick' : quick,
+        'menu' : menu,
     }
     return render(request,'fp/products.html',context)
 
@@ -107,6 +129,7 @@ def products_single(request,url):
     services = Service.objects.all()
     contact = Contact.objects.last()
     quick = Quick_Links.objects.last()
+    menu = Manage_Menu.objects.last()
 
     if request.method == 'POST' :
         name = request.POST.get('name')
@@ -124,6 +147,7 @@ def products_single(request,url):
         'services' : services,
         'contact' : contact,
         'quick' : quick,
+        'menu' : menu,
     }
     return render(request,'fp/products-single.html',context)
 
@@ -135,12 +159,15 @@ def blog(request):
     services = Service.objects.all()
     contact = Contact.objects.last()
     quick = Quick_Links.objects.last()
+    menu = Manage_Menu.objects.last()
+
     context = {
         'blogs' : blogs,
         'products' : product,
         'services' : services,
         'contact' : contact,
         'quick' : quick,
+        'menu' : menu,
     }
     return render(request,'fp/blog.html',context)
 
@@ -152,12 +179,15 @@ def blog_single(request,url):
     services = Service.objects.all()
     contact = Contact.objects.last()
     quick = Quick_Links.objects.last()
+    menu = Manage_Menu.objects.last()
+
     context = {
         'blog' : blog,
         'products' : product,
         'services' : services,
         'contact' : contact,
         'quick' : quick,
+        'menu' : menu,
     }
     return render(request,'fp/blog-single.html',context)
 
@@ -169,6 +199,7 @@ def gallery(request):
     services = Service.objects.all()
     contact = Contact.objects.last()
     quick = Quick_Links.objects.last()
+    menu = Manage_Menu.objects.last()
 
     context = {
         'albums' : albums,
@@ -176,6 +207,7 @@ def gallery(request):
         'services' : services,
         'contact' : contact,
         'quick' : quick,
+        'menu' : menu,
     }
     return render(request,'fp/gallery.html',context)
 
@@ -187,6 +219,7 @@ def album_inner(request,id):
     services = Service.objects.all()
     contact = Contact.objects.last()
     quick = Quick_Links.objects.last()
+    menu = Manage_Menu.objects.last()
 
     context = {
         'images' : images,
@@ -194,6 +227,7 @@ def album_inner(request,id):
         'services' : services,
         'contact' : contact,
         'quick' : quick,
+        'menu' : menu,
     }
     return render(request,'fp/album-inner.html',context)
 
@@ -204,6 +238,7 @@ def contact(request):
     product = Product.objects.all()
     services = Service.objects.all()
     quick = Quick_Links.objects.last()
+    menu = Manage_Menu.objects.last()
 
     if request.method == 'POST':
         name = request.POST.get('email')
@@ -220,6 +255,7 @@ def contact(request):
         'products' : product,
         'services' : services,
         'quick' : quick,
+        'menu' : menu,
     }
     return render(request,'fp/contact.html',context)
 

@@ -56,31 +56,46 @@
                         <li class="nav-item dropdown active">
                             <a class="nav-link" href="{% url 'indexpage' %}" role="button"  aria-haspopup="true" aria-expanded="false">Home</a>
                         </li>
-                        <li class="dropdown nav-item">
-                             <a class="nav-link" href="{% url 'about' %}" role="button"  aria-haspopup="true" aria-expanded="false">About</a>
-                        </li>
-                        <li class="dropdown nav-item">
-                             <a class="nav-link" href="{% url 'servicepage' %}" role="button"  aria-haspopup="true" aria-expanded="false">Service</a>
-                             <!-- <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#"><span>Service1</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span>Service2</span></a></li>
-                            </ul> -->
-                        </li>
+
+                        {% if menu.About_Page %}
+                          <li class="dropdown nav-item">
+                              <a class="nav-link" href="{% url 'about' %}" role="button"  aria-haspopup="true" aria-expanded="false">About</a>
+                          </li>
+                        {% endif %}
+
+                        {% if menu.Service_Page %}
+                          <li class="dropdown nav-item">
+                              <a class="nav-link" href="{% url 'servicepage' %}" role="button"  aria-haspopup="true" aria-expanded="false">Service</a>
+                          </li>
+                        {% endif %}
+
                         <!--<li class="dropdown nav-item">-->
                         <!--     <a class="nav-link" href="team.html" role="button"  aria-haspopup="true" aria-expanded="false">Team</a>-->
                         <!--</li>-->
-                        <li class="dropdown nav-item">
-                             <a class="nav-link" href="{% url 'productspage' %}" role="button"  aria-haspopup="true" aria-expanded="false">Products</a>
-                        </li>
-                        <li class="dropdown nav-item">
-                             <a class="nav-link" href="{% url 'blogspage' %}" role="button"  aria-haspopup="true" aria-expanded="false">Blog</a>
-                        </li>
-                        <li class="dropdown nav-item">
-                             <a class="nav-link" href="{% url 'gallerypage' %}" role="button"  aria-haspopup="true" aria-expanded="false">Gallery</a>
-                        </li>
-                        <li class="dropdown nav-item">
-                            <a class="nav-link" href="{% url 'contactpage' %}" role="button"  aria-haspopup="true" aria-expanded="false">Contact</a>
-                        </li>
+
+                        {% if menu.Products_Page %}
+                          <li class="dropdown nav-item">
+                              <a class="nav-link" href="{% url 'productspage' %}" role="button"  aria-haspopup="true" aria-expanded="false">Products</a>
+                          </li>
+                        {% endif %}
+
+                        {% if menu.Blog_Page %}
+                          <li class="dropdown nav-item">
+                              <a class="nav-link" href="{% url 'blogspage' %}" role="button"  aria-haspopup="true" aria-expanded="false">Blog</a>
+                          </li>
+                        {% endif %}
+                        
+                        {% if menu.Image_Gallery %}
+                          <li class="dropdown nav-item">
+                              <a class="nav-link" href="{% url 'gallerypage' %}" role="button"  aria-haspopup="true" aria-expanded="false">Gallery</a>
+                          </li>
+                        {% endif %}
+
+                        {% if menu.Contact_Page %}
+                          <li class="dropdown nav-item">
+                              <a class="nav-link" href="{% url 'contactpage' %}" role="button"  aria-haspopup="true" aria-expanded="false">Contact</a>
+                          </li>
+                        {% endif %}
                         <!--<li class="dropdown nav-item header-search">-->
                         <!--    <div class="search">-->
                         <!--        <a class="search-btn not_click" href="javascript:void(0);"></a>-->
