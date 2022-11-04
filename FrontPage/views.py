@@ -15,6 +15,18 @@ def indexpage(request):
     quick = Quick_Links.objects.last()
     menu = Manage_Menu.objects.last()
 
+    featured = []
+
+    for p in products :
+        if p.Show_Feature :
+            featured.append(p)
+
+    feature = []
+
+    for s in services :
+        if s.Show_Feature :
+            feature.append(s)
+
     context = {
         'about' : about,
         'services' : services,
@@ -25,6 +37,8 @@ def indexpage(request):
         'contact' : contact,
         'quick' : quick,
         'menu' : menu,
+        'featured' : featured,
+        'feature' : feature,
     }
     return render(request,'fp/index.html',context)
 

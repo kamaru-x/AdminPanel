@@ -67,16 +67,16 @@
               <h2>Our Products</h2>
             </div>
           </div>
-        {% for product in products %}  
+        {% for f in featured %}  
           <div class="col-lg-3 col-sm-6 mb-4 pb-2">
-            <a href="{% url 'single-product' product.Url %}"><div class="team team-style-1">
+            <a href="{% url 'single-product' f.Url %}"><div class="team team-style-1">
               <div class="team-img">
-                <img class="img-fluid" src="{{product.Image.url}}" alt="">
+                <img class="img-fluid" src="{{f.Image.url}}" alt="">
               </div>
               <div class="team-info">
-                <h6 class="team-title"><a href="">{{product.Title}}</a><p class="pro-price"><del style="color:red;">${{product.Actual_Price}}</del>&nbsp ${{product.Offer_Price}}</p></h6>
+                <h6 class="team-title"><a href="">{{f.Title}}</a><p class="pro-price"><del style="color:red;">${{f.Actual_Price}}</del>&nbsp ${{f.Offer_Price}}</p></h6>
                 <!--<span class="team-designation">Description</span>-->
-                <a class="btn-link" href="{% url 'single-product' product.Url %}">View Product</a>
+                <a class="btn-link" href="{% url 'single-product' f.Url %}">View Product</a>
               </div>
             </div></a>
           </div>
@@ -129,15 +129,15 @@
                 </div>
                 <div class="col-lg-8">
                     <div class="owl-carousel mt-n4 mb-n4" data-nav-arrow="false" data-items="2" data-md-items="2" data-sm-items="2" data-xs-items="2" data-xx-items="1" data-space="30" data-autoheight="true" data-autospeed="4000">
-                      {% for service in services %}
+                      {% for f in feature %}
                         <div class="item">
-                            <a href="{% url 'single-service' service.Url %}"><div class="service-item mb-3">
+                            <a href="{% url 'single-service' f.Url %}"><div class="service-item mb-3">
                                 <div class="service-img">
-                                    <img class="img-fluid" src="{{service.Image.url}}" alt="">
+                                    <img class="img-fluid" src="{{f.Image.url}}" alt="">
                                     <!--<a href="service.html"><i class="fas fa-long-arrow-alt-right"></i></a>-->
                                 </div>
                                 <div class="service-info">
-                                    <h6 class="service-info-title"><a href="{% url 'single-service' service.Url %}">{{service.Title}}</a></h6>
+                                    <h6 class="service-info-title"><a href="{% url 'single-service' f.Url %}">{{f.Title}}</a></h6>
                                 </div>
                             </div></a>
                         </div>
