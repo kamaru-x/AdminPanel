@@ -63,38 +63,50 @@
               <div class="row text-center mt-5 mb-5">
 
                 {% if product.Show_Price %}
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                       <label class="form-label">Show Price</label>
                       <input type="checkbox" id="checkbox" checked="True" value="True" name="check1">
                   </div>
                 {% else %}
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <label class="form-label">Show Price</label>
                     <input type="checkbox" id="checkbox" value="True" name="check1">
                   </div>
                 {% endif %}
 
                 {% if product.Show_Whatsapp %}
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                       <label class="form-label">Order By whatsapp</label>
                       <input type="checkbox" id="checkbox" checked="True" value="True" name="check2">
                   </div>
                 {% else %}
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <label class="form-label">Order By whatsapp</label>
                     <input type="checkbox" id="checkbox" value="True" name="check2">
                   </div>
                 {% endif %}
 
                 {% if product.Show_Enquiry %}
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                       <label class="form-label">Show enquiry form</label>
                       <input type="checkbox" id="checkbox" checked="True" value="True" name="check3">
                   </div>
                 {% else %}
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <label class="form-label">Show enquiry form</label>
                     <input type="checkbox" id="checkbox" value="True" name="check3">
+                  </div>
+                {% endif %}
+
+                {% if product.Show_Feature %}
+                  <div class="col-md-3">
+                      <label class="form-label">Show in feature</label>
+                      <input type="checkbox" id="checkbox" checked="True" value="True" name="check4">
+                  </div>
+                {% else %}
+                  <div class="col-md-3">
+                    <label class="form-label">Show in feature</label>
+                    <input type="checkbox" id="checkbox" value="True" name="check4">
                   </div>
                 {% endif %}
               </div>
@@ -138,6 +150,13 @@
                   </div> 
                 </div>
               {% endif %}
+
+              <div class="row">
+                <div class="form-outline mb-4 col-md-12">
+                  <label class="form-label">Url</label>
+                  <input required="True" type="text" value="{{product.Url}}" name="url" class="form-control" />
+              </div>
+              </div>
 
               <div class="row">
                 <div class="form-outline mb-4 col-md-6">
