@@ -23,13 +23,14 @@ def products(request):
         actual_price = request.POST.get('actual_price')
         offer_price = request.POST.get('offer_price')
         number = request.POST.get('number')
+        url = request.POST.get('url')
         smtitle = request.POST.get('smtitle')
         smkeywords = request.POST.get('smkeywords')
         smdescription = request.POST.get('smdescription')
 
         Data = Product(Title=title,Image=image,Refer_number=refer_id,Description=description,Show_Price=show_price,
         Actual_Price=actual_price,Offer_Price=offer_price,Show_Whatsapp=whatsapp,Whatsapp_Number=number,
-        Show_Enquiry=show_enquiry,SMTitle=smtitle,SMDescription=smdescription,SMKeywords=smkeywords)
+        Show_Enquiry=show_enquiry,Url=url,SMTitle=smtitle,SMDescription=smdescription,SMKeywords=smkeywords)
         Data.save()
         messages.success(request,'added new product succesfully')
         return redirect('products')
@@ -66,6 +67,7 @@ def edit_product(request,pid):
         product.Show_Whatsapp = request.POST.get('check2')
         product.Whatsapp_Number = request.POST.get('number')
         product.Show_Enquiry = request.POST.get('check3')
+        product.Url = request.POST.get('url')
         product.SMTitle = request.POST.get('smtitle')
         product.SMDescription = request.POST.get('smdescription')
         product.SMKeywords = request.POST.get('smkeywords')

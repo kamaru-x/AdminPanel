@@ -33,7 +33,7 @@
             <h6 class="text-white mb-3 mb-md-4">Services</h6>
             <ul class="list-unstyled">
               {% for service in services %}
-                <li><a href="{% url 'single-service' service.id %}"><i class="btn-icon fas fa-long-arrow-alt-right mr-2"></i>{{service.Title}}</a></li>
+                <li><a href="{% url 'single-service' service.Url %}"><i class="btn-icon fas fa-long-arrow-alt-right mr-2"></i>{{service.Title}}</a></li>
               {% endfor %}
             </ul>
           </div>
@@ -44,7 +44,7 @@
             <h6 class="text-white mb-3 mb-md-4">Products</h6>
             <ul class="list-unstyled">
               {% for product in products %}
-                <li><a href="{% url 'single-product' product.id %}"><i class="btn-icon fas fa-long-arrow-alt-right mr-2"></i>{{product.Title}}</a></li>
+                <li><a href="{% url 'single-product' product.Url %}"><i class="btn-icon fas fa-long-arrow-alt-right mr-2"></i>{{product.Title}}</a></li>
               {% endfor %}
             </ul>
           </div>

@@ -44,14 +44,14 @@
         <div class="row">
           {% for product in products %}
           <div class="col-lg-3 col-sm-6 mb-4 pb-2">
-            <a class="btn-link" href="{% url 'single-product' product.id %}"><div class="team team-style-1">
+            <a class="btn-link" href="{% url 'single-product' product.Url %}"><div class="team team-style-1">
               <div class="team-img">
                 <img class="img-fluid" src="{{product.Image.url}}" alt="">
               </div>
               <div class="team-info">
-                <h6 class="team-title"><a href="{% url 'single-product' product.id %}">{{product.Title}}</a><p class="pro-price"><del style="color:red;">${{product.Actual_Price}}</del>&nbsp ${{product.Offer_Price}}</p></h6>
+                <h6 class="team-title"><a href="{% url 'single-product' product.Url %}">{{product.Title}}</a><p class="pro-price"><del style="color:red;">${{product.Actual_Price}}</del>&nbsp ${{product.Offer_Price}}</p></h6>
                 <!--<span class="team-designation">Description</span>-->
-                <a class="btn-link" href="{% url 'single-product' product.id %}">View Product</a>
+                <a class="btn-link" href="{% url 'single-product' product.Url %}">View Product</a>
               </div>
             </div></a>
           </div>

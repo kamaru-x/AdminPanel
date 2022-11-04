@@ -54,8 +54,8 @@ def service(request):
 
 ########################################################################
 
-def service_single(request,sid):
-    service = Service.objects.get(id=sid)
+def service_single(request,url):
+    service = Service.objects.get(Url=url)
     products = Product.objects.all()
     contact = Contact.objects.last()
 
@@ -92,8 +92,8 @@ def product(request):
 
 ########################################################################
 
-def products_single(request,pid):
-    product = Product.objects.get(id=pid)
+def products_single(request,url):
+    product = Product.objects.get(Url=url)
     services = Service.objects.all()
     contact = Contact.objects.last()
 
@@ -132,8 +132,8 @@ def blog(request):
 
 ########################################################################
 
-def blog_single(request,bid):
-    blog = Blog.objects.get(id=bid)
+def blog_single(request,url):
+    blog = Blog.objects.get(Url=url)
     product = Product.objects.all()
     services = Service.objects.all()
     contact = Contact.objects.last()
@@ -162,8 +162,8 @@ def gallery(request):
 
 ########################################################################
 
-def album_inner(request,aid):
-    images = Album_Image.objects.filter(Album_Name=aid)
+def album_inner(request,id):
+    images = Album_Image.objects.filter(Album_Name=id)
     product = Product.objects.all()
     services = Service.objects.all()
     contact = Contact.objects.last()

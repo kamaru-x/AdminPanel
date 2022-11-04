@@ -21,13 +21,14 @@ def services(request):
         actual_price = request.POST.get('actual_price')
         offer_price = request.POST.get('offer_price')
         number = request.POST.get('number')
+        url = request.POST.get('url')
         smtitle = request.POST.get('smtitle')
         smkeywords = request.POST.get('smkeywords')
         smdescription = request.POST.get('smdescription')
 
         Data = Service(Title=title,Image=image,Refer_number=refer_id,Description=description,Show_Price=show_price,
         Actual_Price=actual_price,Offer_Price=offer_price,Show_Whatsapp=whatsapp,Whatsapp_Number=number,
-        Show_Enquiry=show_enquiry,SMTitle=smtitle,SMDescription=smdescription,SMKeywords=smkeywords)
+        Show_Enquiry=show_enquiry,Url=url,SMTitle=smtitle,SMDescription=smdescription,SMKeywords=smkeywords)
         Data.save()
         messages.success(request,'new services added successfully')
         return redirect('services')
@@ -63,6 +64,7 @@ def edit_service(request,sid):
         service.Show_Whatsapp = request.POST.get('check2')
         service.Whatsapp_Number = request.POST.get('number')
         service.Show_Enquiry = request.POST.get('check3')
+        service.Url = request.POST.get('url')
         service.SMTitle = request.POST.get('smtitle')
         service.SMDescription = request.POST.get('smdescription')
         service.SMKeywords = request.POST.get('smkeywords')

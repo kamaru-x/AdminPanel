@@ -44,14 +44,14 @@
             <div class="row">
                 {% for blog in blogs %}
                 <div class="col-lg-4 col-sm-6 pb-2 pt-5 pb-lg-0 mb-4 mb-lg-0">
-                    <a href="{% url 'blog-single' blog.id %}"><div class="case-study-item">
+                    <a href="{% url 'blog-single' blog.Url %}"><div class="case-study-item">
                         <div class="case-study-img">
                             <img class="img-fluid" src="{{blog.Image.url}}" alt="">
                             <!--<a href=""><i class="fas fa-long-arrow-alt-right"></i></a>-->
                         </div>
                         <div class="case-study-info">
                             <!--<a class="case-study-category" href="">Travel & Aviation</a>-->
-                            <h6 class="case-study-title"><a href="{% url 'blog-single' blog.id %}">{{blog.Title}}</a></h6>
+                            <h6 class="case-study-title"><a href="{% url 'blog-single' blog.Url %}">{{blog.Title}}</a></h6>
                         </div>
                     </div></a>
                 </div>
