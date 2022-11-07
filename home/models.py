@@ -54,6 +54,9 @@ class Blog(models.Model):
     SMDescription = models.TextField()
     SMKeywords = models.CharField(max_length=2000)
 
+    class Meta:
+        ordering =('-id',)
+
     def __str__(self):
         return self.Title
 
@@ -68,6 +71,9 @@ class Album(models.Model):
     SMDescription = models.TextField()
     SMKeywords = models.CharField(max_length=2000)
 
+    class Meta:
+        ordering =('-id',)
+
     def __str__(self):
         return self.Title
 
@@ -76,6 +82,9 @@ class Album(models.Model):
 class Album_Image(models.Model):
     Album_Name = models.ForeignKey(Album, on_delete=models.CASCADE)
     Image = models.ImageField(blank=True,null=True,upload_to='album-image')
+
+    class Meta:
+        ordering =('-id',)
 
     def __str__(self):
         return self.Album_Name.Title
@@ -124,6 +133,9 @@ class Product(models.Model):
     SMDescription = models.TextField()
     SMKeywords = models.CharField(max_length=2000, null=True, default=None, blank=True)
 
+    class Meta:
+        ordering =('-id',)
+
     def __str__(self):
         return self.Title
 
@@ -146,6 +158,9 @@ class Service(models.Model):
     SMDescription = models.TextField()
     SMKeywords = models.CharField(max_length=2000, null=True, default=None, blank=True)
 
+    class Meta:
+        ordering =('-id',)
+
     def __str__(self):
         return self.Title
 
@@ -158,6 +173,9 @@ class Enquiry(models.Model):
     Email = models.EmailField(null=True, default=None, blank=True)
     Product_Name = models.CharField(max_length=50,null=True, default=None, blank=True)
     Refer_number = models.CharField(max_length=6,null=True, default=None, blank=True)
+
+    class Meta:
+        ordering =('-id',)
 
     def __str__(self):
         return self.Name

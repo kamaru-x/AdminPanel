@@ -20,16 +20,15 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('FrontPage.urls')),
-    path('gadmin/',include('home.urls')),
-    path('gadmin/',include('blog.urls')),
-    path('gadmin/',include('gallery.urls')),
-    path('gadmin/',include('logos.urls')),
-    path('gadmin/',include('products.urls')),
-    path('gadmin/',include('services.urls')),
-    path('gadmin/',include('testimonials.urls')),
-    path('gadmin/',include('banners.urls')),
-    path('gadmin/',include('django.contrib.auth.urls')),
+    path('',include('home.urls')),
+    path('',include('blog.urls')),
+    path('',include('gallery.urls')),
+    path('',include('logos.urls')),
+    path('',include('products.urls')),
+    path('',include('services.urls')),
+    path('',include('testimonials.urls')),
+    path('',include('banners.urls')),
+    path('',include('django.contrib.auth.urls')),
     path('ckeditor/',include('ckeditor_uploader.urls'))
 ]
 
